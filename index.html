@@ -1213,25 +1213,29 @@
     .hero-actions { flex-direction: column; gap: 12px; }
     .hero-actions a { width: 100%; text-align: center; }
 
-    /* Stats bar */
+    /* Stats bar - 2x2 grid */
     .stats-bar {
+      display: grid !important;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
     }
+    .stat-item {
+      border-right: 1px solid var(--border) !important;
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-item:nth-child(2n) { border-right: none !important; }
 
-    /* Catalog tabs - scrollável horizontalmente */
+    /* Catalog tabs - largura igual, sem corte */
     .catalog-tabs {
       width: 100%;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
+      overflow: visible;
       margin-bottom: 32px;
     }
-    .catalog-tabs::-webkit-scrollbar { display: none; }
     .catalog-tab {
-      flex-shrink: 0;
-      padding: 11px 22px;
-      font-size: 0.78rem;
+      flex: 1;
+      padding: 11px 8px;
+      font-size: 0.72rem;
+      text-align: center;
+      letter-spacing: 0.04em;
     }
 
     /* Catalog grid - 1 coluna */
