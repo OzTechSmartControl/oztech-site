@@ -1191,7 +1191,88 @@
   @media (max-width: 600px) {
     .swhat-grid { grid-template-columns: 1fr 1fr; }
   }
-  
+
+  /* ===== MOBILE RESPONSIVO ===== */
+  @media (max-width: 768px) {
+    /* Seções - padding reduzido */
+    section { padding: 56px 5vw !important; }
+    nav { padding: 0 5vw; }
+
+    /* Hero */
+    .hero { padding: 100px 5vw 56px !important; }
+    .hero-badge {
+      font-size: 0.62rem;
+      padding: 7px 14px;
+      letter-spacing: 0.05em;
+      white-space: normal;
+      text-align: center;
+      max-width: 280px;
+    }
+    .hero h1 { font-size: clamp(2rem, 9vw, 3.2rem); }
+    .hero p { font-size: 0.95rem; }
+    .hero-actions { flex-direction: column; gap: 12px; }
+    .hero-actions a { width: 100%; text-align: center; }
+
+    /* Stats bar */
+    .stats-bar {
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Catalog tabs - scrollável horizontalmente */
+    .catalog-tabs {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      margin-bottom: 32px;
+    }
+    .catalog-tabs::-webkit-scrollbar { display: none; }
+    .catalog-tab {
+      flex-shrink: 0;
+      padding: 11px 22px;
+      font-size: 0.78rem;
+    }
+
+    /* Catalog grid - 1 coluna */
+    .cat-grid { grid-template-columns: 1fr; }
+
+    /* Sobre - hexágono menor */
+    .hexagon-bg { width: 220px; height: 220px; }
+    .hexagon-bg img { width: 130px; }
+    .about-layout { gap: 32px; }
+
+    /* O que fazemos - 1 coluna */
+    .swhat-grid { grid-template-columns: 1fr !important; }
+
+    /* Custom dev types - 2 colunas */
+    .cdev-types { grid-template-columns: 1fr 1fr; }
+
+    /* Plans */
+    .plans-grid { grid-template-columns: 1fr; }
+
+    /* Steps */
+    .steps { grid-template-columns: 1fr 1fr; }
+    .steps::before { display: none; }
+
+    /* Footer */
+    footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .footer-links { flex-wrap: wrap; gap: 16px; }
+
+    /* Section titles */
+    .section-title { font-size: clamp(1.5rem, 7vw, 2.2rem); }
+  }
+
+  @media (max-width: 480px) {
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .cdev-types { grid-template-columns: 1fr; }
+    .hero h1 { font-size: clamp(1.8rem, 8vw, 2.8rem); }
+  }
   </style>
 <meta content="Sistemas web, automações, dashboards e plataformas SaaS para transformar operações manuais em processos inteligentes, centralizados e escaláveis." name="description"/></head>
 <body>
