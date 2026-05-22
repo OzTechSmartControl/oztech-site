@@ -1224,21 +1224,27 @@
     }
     .stat-item:nth-child(2n) { border-right: none !important; }
 
-    /* Catalog tabs - scroll horizontal, sem quebra de linha */
+    /* Catalog tabs - empilhadas verticalmente */
     .catalog-tabs {
-      width: 100%;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      margin-bottom: 32px;
+      flex-direction: column !important;
+      width: 100% !important;
+      overflow: visible !important;
+      margin-bottom: 28px;
     }
-    .catalog-tabs::-webkit-scrollbar { display: none; }
     .catalog-tab {
-      flex-shrink: 0;
+      padding: 13px 20px !important;
+      font-size: 0.85rem !important;
+      text-align: left !important;
+      border-bottom: 1px solid var(--border) !important;
+      border-radius: 0 !important;
       white-space: nowrap;
-      padding: 12px 20px;
-      font-size: 0.78rem;
     }
+    .catalog-tab:last-child { border-bottom: none !important; }
+
+    /* Stats bar - fonte menor para caber no grid 2x2 */
+    .stat-num { font-size: 1.15rem !important; }
+    .stat-label { font-size: 0.7rem !important; }
+    .stat-item { padding: 20px 4vw !important; }
 
     /* Catalog grid - 1 coluna */
     .cat-grid { grid-template-columns: 1fr; }
