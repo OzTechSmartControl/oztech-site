@@ -105,7 +105,8 @@
     position: relative;
     min-height: 100vh;
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
+    flex-direction: column;
     padding: 120px 5vw 80px;
     overflow: hidden;
   }
@@ -1286,7 +1287,21 @@
     .cdev-types { grid-template-columns: 1fr; }
     .hero h1 { font-size: clamp(1.8rem, 8vw, 2.8rem); }
   }
-  </style>
+  
+  /* Hero two-part layout */
+  .hero-top {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    gap: 40px;
+  }
+  .hero-bottom {
+    width: 100%;
+    padding-top: 64px;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+  }
+</style>
 <meta content="Sistemas web, automações, dashboards e plataformas SaaS para transformar operações manuais em processos inteligentes, centralizados e escaláveis." name="description"/></head>
 <body>
 <!-- NAV -->
@@ -1302,6 +1317,7 @@
 <div class="hero-bg-circle c1"></div>
 <div class="hero-bg-circle c2"></div>
 <div class="hero-bg-circle c3"></div>
+<div class="hero-top">
 <div class="hero-content">
   <div class="hero-badge">Automação, SaaS e Sistemas Sob Medida</div>
   <h1>Sua visão. <span>Nossa tecnologia</span>.</h1>
@@ -1313,6 +1329,23 @@
 </div>
 <div class="hero-visual">
   <img alt="OzTech SmartControl" src="Logo_-_OzTech_SmartControl.png"/>
+</div>
+</div>
+<div class="hero-bottom">
+<div style="text-align:center; margin-bottom:40px;">
+  <div class="section-tag" style="justify-content:center;">Nossas soluções</div>
+  <h2 class="section-title">O que fazemos</h2>
+  <p class="section-sub" style="max-width:660px; margin:0 auto;">Temos sistemas prontos totalmente adaptáveis ao seu negócio e também desenvolvemos soluções sob medida para empresas e profissionais.</p>
+</div>
+<div class="swhat-grid">
+  <div class="swhat-card"><div class="swhat-icon">🌐</div><h4>Sistemas Web</h4><p>Plataformas completas com painel administrativo e acesso de qualquer dispositivo.</p></div>
+  <div class="swhat-card"><div class="swhat-icon">⚡</div><h4>Automação de Processos</h4><p>Elimine tarefas repetitivas com fluxos automáticos que trabalham por você.</p></div>
+  <div class="swhat-card"><div class="swhat-icon">📊</div><h4>Dashboards Inteligentes</h4><p>Visualize KPIs e indicadores da sua operação em tempo real, numa tela clara e moderna.</p></div>
+  <div class="swhat-card"><div class="swhat-icon">☁️</div><h4>SaaS Personalizado</h4><p>Sistemas em nuvem prontos para usar, escaláveis e adaptados à sua marca e operação.</p></div>
+  <div class="swhat-card"><div class="swhat-icon">🗂️</div><h4>CRM e ERP</h4><p>Centralize clientes, vendas, estoque e processos em um sistema integrado.</p></div>
+  <div class="swhat-card"><div class="swhat-icon">🔗</div><h4>Integrações API</h4><p>Conectamos sistemas e ferramentas para eliminar retrabalho e unificar seus dados.</p></div>
+  <div class="swhat-card"><div class="swhat-icon">🤖</div><h4>IA e Chatbots</h4><p>Atendimento inteligente e automação conversacional com inteligência artificial.</p></div>
+</div>
 </div>
 </section>
 
@@ -1339,22 +1372,7 @@
 
 <!-- DEMONSTRACAO -->
 <!-- O QUE FAZEMOS -->
-<section id="o-que-fazemos" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-<div style="text-align:center; margin-bottom:48px;">
-  <div class="section-tag" style="justify-content:center;">Nossas soluções</div>
-  <h2 class="section-title">O que fazemos</h2>
-  <p class="section-sub" style="max-width:660px; margin:0 auto;">Temos sistemas prontos totalmente adaptáveis ao seu negócio e também desenvolvemos soluções sob medida para empresas e profissionais.</p>
-</div>
-<div class="swhat-grid">
-  <div class="swhat-card"><div class="swhat-icon">🌐</div><h4>Sistemas Web</h4><p>Plataformas completas com painel administrativo e acesso de qualquer dispositivo.</p></div>
-  <div class="swhat-card"><div class="swhat-icon">⚡</div><h4>Automação de Processos</h4><p>Elimine tarefas repetitivas com fluxos automáticos que trabalham por você.</p></div>
-  <div class="swhat-card"><div class="swhat-icon">📊</div><h4>Dashboards Inteligentes</h4><p>Visualize KPIs e indicadores da sua operação em tempo real, numa tela clara e moderna.</p></div>
-  <div class="swhat-card"><div class="swhat-icon">☁️</div><h4>SaaS Personalizado</h4><p>Sistemas em nuvem prontos para usar, escaláveis e adaptados à sua marca e operação.</p></div>
-  <div class="swhat-card"><div class="swhat-icon">🗂️</div><h4>CRM e ERP</h4><p>Centralize clientes, vendas, estoque e processos em um sistema integrado.</p></div>
-  <div class="swhat-card"><div class="swhat-icon">🔗</div><h4>Integrações API</h4><p>Conectamos sistemas e ferramentas para eliminar retrabalho e unificar seus dados.</p></div>
-  <div class="swhat-card"><div class="swhat-icon">🤖</div><h4>IA e Chatbots</h4><p>Atendimento inteligente e automação conversacional com inteligência artificial.</p></div>
-</div>
-</section>
+
 
 <!-- ABOUT -->
 <section id="sobre" style="background: rgba(13,18,32,0.5); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
