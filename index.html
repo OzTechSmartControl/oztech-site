@@ -1575,6 +1575,32 @@
   }
   .stat-num   { font-size: 0.9rem !important; font-weight: 700; color: var(--blue) !important; text-transform: none !important; text-align: center !important; }
   .stat-label { font-size: 0.7rem !important; color: var(--muted); text-transform: none !important; line-height: 1.45; text-align: center !important; }
+
+  /* ── Problemas redesign ── */
+  .prob-header { text-align: center; }
+  .prob-card { display: flex; flex-direction: column; gap: 12px; }
+  .prob-icon {
+    width: 56px; height: 56px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 4px;
+  }
+  .prob-card h3 { font-size: 1rem; font-weight: 700; margin: 0; }
+  .prob-card p  { font-size: 0.82rem; color: var(--muted); line-height: 1.55; margin: 0; flex: 1; }
+  .prob-check   { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: var(--muted); margin-top: 4px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); }
+  .prob-check-icon { font-size: 0.9rem; font-weight: 700; }
+  .prob-cta {
+    display: flex; align-items: center; gap: 20px;
+    background: rgba(63,169,245,0.06);
+    border: 1px solid rgba(63,169,245,0.2);
+    border-radius: 16px; padding: 24px 32px; margin-top: 40px;
+  }
+  .prob-cta-icon { font-size: 2rem; flex-shrink: 0; }
+  .prob-cta div  { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+  .prob-cta strong { font-size: 0.95rem; color: #fff; }
+  .prob-cta span   { font-size: 0.78rem; color: var(--muted); }
+  @media (max-width: 768px) {
+    .prob-cta { flex-direction: column; text-align: center; }
+  }
 </style>
 <meta content="Sistemas web, automações, dashboards e plataformas SaaS para transformar operações manuais em processos inteligentes, centralizados e escaláveis." name="description"/><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
@@ -1615,13 +1641,45 @@
   <div class="stat-item"><span class="stat-num">Suporte Especializado</span><span class="stat-label">Time pronto para te atender e acompanhar o crescimento do seu negócio.</span></div>
 </div>
 </div>
-<h2 class="section-title">Sua operação está crescendo, mas os processos continuam manuais?</h2>
-<p class="section-sub">Muitas empresas perdem tempo, dinheiro e produtividade por falta de sistemas inteligentes, automação e centralização operacional.</p>
+<div class="prob-header">
+  <div class="section-tag" style="justify-content:center; margin-bottom:20px;">⚙️ Automação Inteligente</div>
+  <h2 class="section-title" style="text-align:center;">Sua operação está crescendo,<br><span style="color:var(--blue)">mas os processos continuam manuais?</span></h2>
+  <p class="section-sub" style="text-align:center; max-width:600px; margin:16px auto 48px;">A falta de automação pode gerar retrabalho, erros e perda de tempo.<br>Nossas soluções transformam processos manuais em fluxos inteligentes.</p>
+</div>
 <div class="services-grid problem-grid">
-  <div class="service-card"><div class="service-icon">⏱️</div><h3>Processos lentos</h3><p>Reduza etapas manuais, retrabalho e dependência de planilhas espalhadas.</p></div>
-  <div class="service-card"><div class="service-icon">📉</div><h3>Falta de indicadores</h3><p>Veja dados importantes em tempo real para decidir com mais segurança.</p></div>
-  <div class="service-card"><div class="service-icon">🧩</div><h3>Informações descentralizadas</h3><p>Centralize cadastros, atendimentos, financeiro e operação em um só ambiente.</p></div>
-  <div class="service-card"><div class="service-icon">🔁</div><h3>Tarefas repetitivas</h3><p>Automatize rotinas operacionais e libere sua equipe para atividades estratégicas.</p></div>
+  <div class="service-card prob-card">
+    <div class="prob-icon" style="background:rgba(99,102,241,0.15); color:#818cf8;">⚡</div>
+    <h3>Processos lentos</h3>
+    <p>Tarefas manuais consomem tempo e reduzem a produtividade da sua equipe.</p>
+    <div class="prob-check"><span class="prob-check-icon" style="color:#818cf8;">✔</span> Aumente a velocidade e ganhe mais tempo.</div>
+  </div>
+  <div class="service-card prob-card">
+    <div class="prob-icon" style="background:rgba(236,72,153,0.15); color:#f472b6;">📋</div>
+    <h3>Falta de padronização</h3>
+    <p>Cada pessoa faz de um jeito, resultando em falhas e informações inconsistentes.</p>
+    <div class="prob-check"><span class="prob-check-icon" style="color:#f472b6;">✔</span> Padronize processos e reduza erros operacionais.</div>
+  </div>
+  <div class="service-card prob-card">
+    <div class="prob-icon" style="background:rgba(16,185,129,0.15); color:#34d399;">🧩</div>
+    <h3>Informações desconectadas</h3>
+    <p>Dados espalhados em planilhas e sistemas que não se comunicam entre si.</p>
+    <div class="prob-check"><span class="prob-check-icon" style="color:#34d399;">✔</span> Centralize dados e tenha visão completa do seu negócio.</div>
+  </div>
+  <div class="service-card prob-card">
+    <div class="prob-icon" style="background:rgba(59,130,246,0.15); color:#60a5fa;">💬</div>
+    <h3>Tomadas reativas</h3>
+    <p>Sem dados em tempo real, as decisões são tomadas com atraso e sem segurança.</p>
+    <div class="prob-check"><span class="prob-check-icon" style="color:#60a5fa;">✔</span> Tenha informações em tempo real para decidir melhor.</div>
+  </div>
+</div>
+
+<div class="prob-cta">
+  <div class="prob-cta-icon">🚀</div>
+  <div>
+    <strong>Transforme sua operação com automação e tecnologia.</strong>
+    <span>Menos retrabalho, mais controle e resultados reais.</span>
+  </div>
+  <a class="btn-primary" href="#catalogo" style="white-space:nowrap;">Conhecer soluções →</a>
 </div>
 </section>
 
