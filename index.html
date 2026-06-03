@@ -243,12 +243,12 @@
   .stat-item:last-child { border-right: none; }
   .stat-num {
     font-family: 'Orbitron', sans-serif;
-    font-size: 2rem;
+    font-size: 0.95rem;
     font-weight: 700;
     color: var(--blue);
     display: block;
   }
-  .stat-label { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+  .stat-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
 
   /* SECTION */
   section { position: relative; z-index: 2; padding: 100px 5vw; }
@@ -1244,8 +1244,8 @@
     .catalog-tab:last-child { border-bottom: none !important; }
 
     /* Stats bar - fonte menor para caber no grid 2x2 */
-    .stat-num { font-size: 1.15rem !important; }
-    .stat-label { font-size: 0.7rem !important; }
+    .stat-num { font-size: 0.95rem; }
+    .stat-label { font-size: 0.72rem; }
     .stat-item { padding: 20px 4vw !important; }
 
     /* Catalog grid - 1 coluna */
@@ -1504,6 +1504,12 @@
     flex-shrink: 0;
   }
   .stat-item > div:last-child { display: flex; flex-direction: column; gap: 4px; }
+
+  /* Stats-bar layout fix */
+  .stat-num { font-size: 0.95rem !important; font-weight: 700; text-transform: none !important; line-height: 1.3; color: var(--blue) !important; }
+  .stat-label { font-size: 0.72rem !important; text-transform: none !important; color: var(--muted); line-height: 1.45; }
+  .stat-item { padding: 20px 24px !important; align-items: flex-start; gap: 12px; }
+  .stat-icon-wrap { font-size: 1.2rem; width: 38px; height: 38px; flex-shrink: 0; }
 </style>
 <meta content="Sistemas web, automações, dashboards e plataformas SaaS para transformar operações manuais em processos inteligentes, centralizados e escaláveis." name="description"/><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
@@ -1554,10 +1560,6 @@
     <div class="stat-icon-wrap">🎧</div>
     <div><span class="stat-num">Suporte Especializado</span><span class="stat-label">Time pronto para te atender e acompanhar o crescimento do seu negócio.</span></div>
   </div>
-</div>
-  <div class="stat-item"><span class="stat-num">Automação</span><span class="stat-label">menos tarefas manuais</span></div>
-  <div class="stat-item"><span class="stat-num">Dashboards</span><span class="stat-label">decisões com dados</span></div>
-  <div class="stat-item"><span class="stat-num">SaaS</span><span class="stat-label">produtos escaláveis</span></div>
 </div>
 
 <!-- PROBLEMAS -->
