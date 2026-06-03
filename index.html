@@ -1359,6 +1359,51 @@
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+
+  /* ── Glassmorphism panel ── */
+  .hero-glass {
+    margin-top: 40px;
+    background: rgba(63,169,245,0.04);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(63,169,245,0.18);
+    border-radius: 16px;
+    padding: 14px 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 16px;
+    max-width: 620px;
+  }
+  .hero-glass-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 10px;
+    border-radius: 8px;
+    opacity: 0;
+    animation: glassItemIn 0.45s ease forwards;
+    transition: background 0.25s ease;
+  }
+  .hero-glass-item:hover { background: rgba(63,169,245,0.09); }
+  .hero-glass-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--blue);
+    flex-shrink: 0;
+    box-shadow: 0 0 6px rgba(63,169,245,0.7);
+  }
+  .hero-glass-icon { font-size: 1rem; flex-shrink: 0; width: 22px; text-align: center; }
+  .hero-glass-text {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.78);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  @keyframes glassItemIn {
+    from { opacity: 0; transform: translateX(-14px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
 </style>
 <meta content="Sistemas web, automações, dashboards e plataformas SaaS para transformar operações manuais em processos inteligentes, centralizados e escaláveis." name="description"/></head>
 <body>
@@ -1383,33 +1428,44 @@
     <a class="btn-primary" href="#contato">Solicitar orçamento</a>
     <a class="btn-outline" href="#catalogo">Conhecer soluções</a>
   </div>
-  <!-- TICKER -->
-  <div class="hero-ticker-wrap">
-    <div class="hero-ticker">
-      <span>⚡ Automação de Processos</span><span class="ticker-dot"> &middot; </span>
-      <span>🌐 Sistemas Web</span><span class="ticker-dot"> &middot; </span>
-      <span>📊 Dashboards Inteligentes</span><span class="ticker-dot"> &middot; </span>
-      <span>🤖 IA e Chatbots</span><span class="ticker-dot"> &middot; </span>
-      <span>☁️ SaaS Personalizado</span><span class="ticker-dot"> &middot; </span>
-      <span>🔗 Integrações API</span><span class="ticker-dot"> &middot; </span>
-      <span>🗂️ CRM e ERP</span><span class="ticker-dot"> &middot; </span>
-      <span>⚡ Automação de Processos</span><span class="ticker-dot"> &middot; </span>
-      <span>🌐 Sistemas Web</span><span class="ticker-dot"> &middot; </span>
-      <span>📊 Dashboards Inteligentes</span><span class="ticker-dot"> &middot; </span>
-      <span>🤖 IA e Chatbots</span><span class="ticker-dot"> &middot; </span>
-      <span>☁️ SaaS Personalizado</span><span class="ticker-dot"> &middot; </span>
-      <span>🔗 Integrações API</span><span class="ticker-dot"> &middot; </span>
-      <span>🗂️ CRM e ERP</span><span class="ticker-dot"> &middot; </span>
+  <!-- GLASS PANEL -->
+  <div class="hero-glass">
+    <div class="hero-glass-item" style="animation-delay:0.15s">
+      <span class="hero-glass-dot"></span>
+      <span class="hero-glass-icon">🌐</span>
+      <span class="hero-glass-text">Sistemas Web</span>
+    </div>
+    <div class="hero-glass-item" style="animation-delay:0.28s">
+      <span class="hero-glass-dot"></span>
+      <span class="hero-glass-icon">⚡</span>
+      <span class="hero-glass-text">Automação de Processos</span>
+    </div>
+    <div class="hero-glass-item" style="animation-delay:0.41s">
+      <span class="hero-glass-dot"></span>
+      <span class="hero-glass-icon">📊</span>
+      <span class="hero-glass-text">Dashboards Inteligentes</span>
+    </div>
+    <div class="hero-glass-item" style="animation-delay:0.54s">
+      <span class="hero-glass-dot"></span>
+      <span class="hero-glass-icon">☁️</span>
+      <span class="hero-glass-text">SaaS Personalizado</span>
+    </div>
+    <div class="hero-glass-item" style="animation-delay:0.67s">
+      <span class="hero-glass-dot"></span>
+      <span class="hero-glass-icon">🗂️</span>
+      <span class="hero-glass-text">CRM e ERP</span>
+    </div>
+    <div class="hero-glass-item" style="animation-delay:0.80s">
+      <span class="hero-glass-dot"></span>
+      <span class="hero-glass-icon">🔗</span>
+      <span class="hero-glass-text">Integrações API</span>
+    </div>
+    <div class="hero-glass-item" style="animation-delay:0.93s">
+      <span class="hero-glass-dot"></span>
+      <span class="hero-glass-icon">🤖</span>
+      <span class="hero-glass-text">IA e Chatbots</span>
     </div>
   </div>
-
-  <!-- FEATURE CARDS -->
-  <div class="hero-features">
-    <div class="hero-feat" style="animation-delay:0.15s">
-      <div class="hero-feat-icon">🌐</div>
-      <h4>Sistemas &amp; SaaS</h4>
-      <p>Plataformas web prontas ou desenvolvidas sob medida para o seu negócio.</p>
-    </div>
     <div class="hero-feat" style="animation-delay:0.35s">
       <div class="hero-feat-icon">⚡</div>
       <h4>Automação &amp; IA</h4>
