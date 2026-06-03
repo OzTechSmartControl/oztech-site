@@ -174,7 +174,7 @@
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
   .hero h1 {
     font-family: 'Orbitron', sans-serif;
-    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-size: clamp(1.6rem, 3.2vw, 2.6rem);
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: 20px;
@@ -1459,7 +1459,8 @@
     pointer-events: none;
   }
   #particles-js canvas { pointer-events: auto; }
-  .hero-bg-circle, .hero-content, .hero-visual { position: relative; z-index: 2; }
+  .hero-content { position: relative; z-index: 2; }
+  .hero-visual  { position: relative; z-index: 2; }
 
   /* ── Scroll reveal ── */
   .reveal {
@@ -1471,6 +1472,9 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  .hero h1 { white-space: nowrap; }
+  .hero p  { white-space: nowrap; font-size: 0.9rem; }
 </style>
 <meta content="Sistemas web, automações, dashboards e plataformas SaaS para transformar operações manuais em processos inteligentes, centralizados e escaláveis." name="description"/><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
