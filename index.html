@@ -1287,7 +1287,79 @@
     .cdev-types { grid-template-columns: 1fr; }
     .hero h1 { font-size: clamp(1.8rem, 8vw, 2.8rem); }
   }
-  </style>
+  
+  /* ── Hero Ticker ── */
+  .hero-ticker-wrap {
+    margin-top: 44px;
+    overflow: hidden;
+    border-top: 1px solid rgba(63,169,245,0.15);
+    border-bottom: 1px solid rgba(63,169,245,0.15);
+    padding: 11px 0;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+  .hero-ticker {
+    display: flex;
+    gap: 0;
+    white-space: nowrap;
+    width: max-content;
+    animation: tickerScroll 22s linear infinite;
+  }
+  .hero-ticker span {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .ticker-dot { color: var(--blue) !important; opacity: 0.6; }
+  @keyframes tickerScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── Hero Feature Cards ── */
+  .hero-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .hero-feat {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(63,169,245,0.12);
+    border-radius: 12px;
+    padding: 20px 18px;
+    opacity: 0;
+    animation: featSlideUp 0.55s ease forwards;
+    cursor: default;
+    transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+  }
+  .hero-feat:hover {
+    border-color: rgba(63,169,245,0.4);
+    background: rgba(63,169,245,0.07);
+    transform: translateY(-3px);
+  }
+  .hero-feat-icon { font-size: 1.4rem; margin-bottom: 10px; }
+  .hero-feat h4 {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .hero-feat p {
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+  @keyframes featSlideUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
 <meta content="Sistemas web, automações, dashboards e plataformas SaaS para transformar operações manuais em processos inteligentes, centralizados e escaláveis." name="description"/></head>
 <body>
 <!-- NAV -->
