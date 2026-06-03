@@ -1612,6 +1612,21 @@
   .prob-cta { padding: 16px 24px !important; margin-top: 24px !important; gap: 16px !important; }
   .prob-cta strong { font-size: 0.88rem !important; }
   .prob-cta span   { font-size: 0.73rem !important; }
+
+  /* Fix problem-grid overflow */
+  .problem-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  .prob-card, .service-card {
+    min-width: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    word-break: break-word !important;
+  }
 </style>
 <meta content="Sistemas web, automações, dashboards e plataformas SaaS para transformar operações manuais em processos inteligentes, centralizados e escaláveis." name="description"/><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
@@ -1677,14 +1692,6 @@
     <p>Sem dados em tempo real, as decisões são tomadas com atraso e sem segurança.</p>
     <div class="prob-check"><span class="prob-check-icon" style="color:#60a5fa;">✔</span> Tenha informações em tempo real para decidir melhor.</div>
   </div>
-</div>
-
-<div class="prob-cta">
-  <div>
-    <strong>Transforme sua operação com automação e tecnologia.</strong>
-    <span>Menos retrabalho, mais controle e resultados reais.</span>
-  </div>
-  <a class="btn-primary" href="#catalogo" style="white-space:nowrap;">Conhecer soluções →</a>
 </div>
 </section>
 
