@@ -1450,8 +1450,30 @@
     from { opacity: 0; transform: scale(0.88) translateY(10px); }
     to   { opacity: 1; transform: scale(1) translateY(0); }
   }
+
+  /* ── Particles ── */
+  #particles-js {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  #particles-js canvas { pointer-events: auto; }
+  .hero-bg-circle, .hero-content, .hero-visual { position: relative; z-index: 2; }
+
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>
-<meta content="Sistemas web, automações, dashboards e plataformas SaaS para transformar operações manuais em processos inteligentes, centralizados e escaláveis." name="description"/></head>
+<meta content="Sistemas web, automações, dashboards e plataformas SaaS para transformar operações manuais em processos inteligentes, centralizados e escaláveis." name="description"/><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
 <body>
 <!-- NAV -->
 <nav>
@@ -1463,6 +1485,7 @@
 </nav>
 <!-- HERO -->
 <section class="hero">
+<div id="particles-js"></div>
 <div class="hero-bg-circle c1"></div>
 <div class="hero-bg-circle c2"></div>
 <div class="hero-bg-circle c3"></div>
@@ -2076,5 +2099,45 @@ function zeSend() {
 }
 </script>
 
+
+<script>
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 70, density: { enable: true, value_area: 900 } },
+    color: { value: "#3fa9f5" },
+    shape: { type: "circle" },
+    opacity: { value: 0.35, random: true, anim: { enable: true, speed: 0.8, opacity_min: 0.05, sync: false } },
+    size: { value: 2.5, random: true, anim: { enable: false } },
+    line_linked: { enable: true, distance: 160, color: "#3fa9f5", opacity: 0.12, width: 1 },
+    move: { enable: true, speed: 1.2, direction: "none", random: true, straight: false, out_mode: "out", bounce: false }
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: {
+      onhover: { enable: true, mode: "grab" },
+      onclick: { enable: true, mode: "push" },
+      resize: true
+    },
+    modes: {
+      grab: { distance: 180, line_linked: { opacity: 0.45 } },
+      push: { particles_nb: 3 }
+    }
+  },
+  retina_detect: true
+});
+
+// Scroll reveal
+const revealEls = document.querySelectorAll("section:not(.hero), .stats-bar, .swhat-card, .plan-card, .step, .about-layout");
+revealEls.forEach(el => el.classList.add("reveal"));
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add("visible"), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
