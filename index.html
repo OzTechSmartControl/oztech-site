@@ -1404,6 +1404,52 @@
     from { opacity: 0; transform: translateX(-14px); }
     to   { opacity: 1; transform: translateX(0); }
   }
+
+  /* ── Hero chips ── */
+  .hero-chips-wrap { margin-top: 40px; max-width: 700px; }
+  .hero-chips-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--blue);
+    margin-bottom: 14px;
+    font-weight: 600;
+    opacity: 0;
+    animation: chipIn 0.4s ease 0.05s forwards;
+  }
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border: 1px solid rgba(63,169,245,0.28);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.75);
+    background: rgba(63,169,245,0.05);
+    cursor: default;
+    opacity: 0;
+    animation: chipIn 0.4s ease forwards;
+    transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+  }
+  .chip:hover {
+    border-color: rgba(63,169,245,0.75);
+    background: rgba(63,169,245,0.14);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  .chip:nth-child(1) { animation-delay: 0.12s; }
+  .chip:nth-child(2) { animation-delay: 0.22s; }
+  .chip:nth-child(3) { animation-delay: 0.32s; }
+  .chip:nth-child(4) { animation-delay: 0.42s; }
+  .chip:nth-child(5) { animation-delay: 0.52s; }
+  .chip:nth-child(6) { animation-delay: 0.62s; }
+  .chip:nth-child(7) { animation-delay: 0.72s; }
+  @keyframes chipIn {
+    from { opacity: 0; transform: scale(0.88) translateY(10px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
 </style>
 <meta content="Sistemas web, automações, dashboards e plataformas SaaS para transformar operações manuais em processos inteligentes, centralizados e escaláveis." name="description"/></head>
 <body>
@@ -1428,18 +1474,19 @@
     <a class="btn-primary" href="#contato">Solicitar orçamento</a>
     <a class="btn-outline" href="#catalogo">Conhecer soluções</a>
   </div>
-  <!-- GLASS PANEL -->
-  <div class="hero-glass">
-    <div class="hero-glass-item" style="animation-delay:0.15s">
-      <span class="hero-glass-dot"></span>
-      <span class="hero-glass-icon">🌐</span>
-      <span class="hero-glass-text">Sistemas Web</span>
+  <!-- CHIPS -->
+  <div class="hero-chips-wrap">
+    <p class="hero-chips-label">O que desenvolvemos:</p>
+    <div class="hero-chips">
+      <span class="chip">🌐 Sistemas Web</span>
+      <span class="chip">⚡ Automação de Processos</span>
+      <span class="chip">📊 Dashboards Inteligentes</span>
+      <span class="chip">☁️ SaaS Personalizado</span>
+      <span class="chip">🗂️ CRM e ERP</span>
+      <span class="chip">🔗 Integrações API</span>
+      <span class="chip">🤖 IA e Chatbots</span>
     </div>
-    <div class="hero-glass-item" style="animation-delay:0.28s">
-      <span class="hero-glass-dot"></span>
-      <span class="hero-glass-icon">⚡</span>
-      <span class="hero-glass-text">Automação de Processos</span>
-    </div>
+  </div>
     <div class="hero-glass-item" style="animation-delay:0.41s">
       <span class="hero-glass-dot"></span>
       <span class="hero-glass-icon">📊</span>
