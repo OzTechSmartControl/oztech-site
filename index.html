@@ -1123,7 +1123,7 @@
     top: 50%;
     transform: translateY(-50%);
     z-index: 3;
-    width: 320px;
+    width: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1139,7 +1139,7 @@
     top: 50%;
     transform: translateY(-50%);
     z-index: 3;
-    width: 320px;
+    width: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1296,8 +1296,8 @@
   /* ── Lightning ring ── */
   .lightning-ring {
     position: relative;
-    width: 260px;
-    height: 260px;
+    width: 160px;
+    height: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1305,7 +1305,7 @@
   .lightning-ring::before {
     content: "";
     position: absolute;
-    inset: -18px;
+    inset: -12px;
     border-radius: 50%;
     border: 2px solid transparent;
     border-top-color: rgba(63,169,245,0.9);
@@ -1315,7 +1315,7 @@
   .lightning-ring::after {
     content: "";
     position: absolute;
-    inset: -30px;
+    inset: -20px;
     border-radius: 50%;
     border: 1.5px solid transparent;
     border-left-color: rgba(63,169,245,0.75);
@@ -1327,7 +1327,7 @@
   .lightning-sparks {
     position: absolute;
     top: -50px; left: -50px;
-    width: 360px; height: 360px;
+    width: 260px; height: 260px;
     pointer-events: none;
     z-index: 1;
   }
@@ -1356,10 +1356,10 @@
 
   /* Electric glow pulse on logo */
   .lightning-ring img {
-    width: 260px;
-    height: 260px;
+    width: 160px;
+    height: 160px;
     object-fit: contain;
-    animation: heroFloat 5s ease-in-out infinite, electricPulse 3.2s ease-in-out infinite;
+    animation: heroFloat 4s ease-in-out infinite, electricPulse 3.2s ease-in-out infinite;
   }
   @keyframes electricPulse {
     0%,100% { filter: drop-shadow(0 0 28px rgba(63,169,245,0.55)) drop-shadow(0 0 70px rgba(63,169,245,0.18)); }
