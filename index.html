@@ -1533,6 +1533,48 @@
   .stat-item { flex-direction: column !important; gap: 4px !important; padding: 22px 24px !important; }
   .stat-num  { font-size: 0.9rem !important; font-weight: 700; color: var(--blue) !important; text-transform: none !important; }
   .stat-label{ font-size: 0.7rem !important; color: var(--muted); text-transform: none !important; line-height: 1.4; }
+
+  /* ── Stats-bar cards ── */
+  .stats-bar {
+    display: flex !important;
+    gap: 16px !important;
+    padding: 24px 5vw !important;
+    overflow: visible !important;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+  .stat-item {
+    flex: 1 !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 6px !important;
+    padding: 22px 18px !important;
+    background: var(--panel) !important;
+    border: 1px solid rgba(63,169,245,0.14) !important;
+    border-radius: 14px !important;
+    min-width: 0 !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    animation: statFloat 4s ease-in-out infinite;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .stat-item:hover {
+    border-color: rgba(63,169,245,0.4) !important;
+    box-shadow: 0 8px 28px rgba(63,169,245,0.1);
+  }
+  .stat-item:nth-child(1) { animation-delay: 0s; }
+  .stat-item:nth-child(2) { animation-delay: 0.8s; }
+  .stat-item:nth-child(3) { animation-delay: 1.6s; }
+  .stat-item:nth-child(4) { animation-delay: 2.4s; }
+  @keyframes statFloat {
+    0%,100% { transform: translateY(0px); }
+    50%      { transform: translateY(-5px); }
+  }
+  .stat-num   { font-size: 0.9rem !important; font-weight: 700; color: var(--blue) !important; text-transform: none !important; text-align: center !important; }
+  .stat-label { font-size: 0.7rem !important; color: var(--muted); text-transform: none !important; line-height: 1.45; text-align: center !important; }
 </style>
 <meta content="Sistemas web, automações, dashboards e plataformas SaaS para transformar operações manuais em processos inteligentes, centralizados e escaláveis." name="description"/><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
