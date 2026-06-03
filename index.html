@@ -1492,6 +1492,18 @@
     .hero { padding: 100px 5vw 60px !important; min-height: auto !important; }
     section { overflow-x: hidden; }
   }
+
+  .stat-item { display: flex; align-items: flex-start; gap: 14px; }
+  .stat-icon-wrap {
+    font-size: 1.4rem;
+    background: rgba(63,169,245,0.1);
+    border: 1px solid rgba(63,169,245,0.2);
+    border-radius: 10px;
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .stat-item > div:last-child { display: flex; flex-direction: column; gap: 4px; }
 </style>
 <meta content="Sistemas web, automações, dashboards e plataformas SaaS para transformar operações manuais em processos inteligentes, centralizados e escaláveis." name="description"/><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
@@ -1526,7 +1538,23 @@
 
 <!-- STATS -->
 <div class="stats-bar">
-  <div class="stat-item"><span class="stat-num">Controle</span><span class="stat-label">em tempo real</span></div>
+  <div class="stat-item">
+    <div class="stat-icon-wrap">🎨</div>
+    <div><span class="stat-num">100% Personalizável</span><span class="stat-label">Seu sistema com a cara da sua empresa. Cores, logo, domínio e identidade visual.</span></div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-icon-wrap">💻</div>
+    <div><span class="stat-num">Web e Mobile</span><span class="stat-label">Acesse de qualquer lugar, em qualquer dispositivo, com segurança e praticidade.</span></div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-icon-wrap">☁️</div>
+    <div><span class="stat-num">Licença por Assinatura</span><span class="stat-label">Planos flexíveis e escaláveis. Pague apenas pelo que usa e cancele quando quiser.</span></div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-icon-wrap">🎧</div>
+    <div><span class="stat-num">Suporte Especializado</span><span class="stat-label">Time pronto para te atender e acompanhar o crescimento do seu negócio.</span></div>
+  </div>
+</div>
   <div class="stat-item"><span class="stat-num">Automação</span><span class="stat-label">menos tarefas manuais</span></div>
   <div class="stat-item"><span class="stat-num">Dashboards</span><span class="stat-label">decisões com dados</span></div>
   <div class="stat-item"><span class="stat-num">SaaS</span><span class="stat-label">produtos escaláveis</span></div>
