@@ -29,7 +29,6 @@
     color: var(--text);
     font-family: 'Exo 2', sans-serif;
     font-weight: 400;
-    overflow-x: hidden;
   }
 
   /* ANIMATED BG GRID */
@@ -756,14 +755,16 @@
 
   /* ===== ZE ===== */
   @keyframes ze-float {
-    0%,100% { bottom: 28px; box-shadow: 0 4px 24px rgba(63,169,245,0.45); }
-    50%     { bottom: 42px; box-shadow: 0 12px 36px rgba(63,169,245,0.65); }
+    0%,100% { transform: translate3d(0, 0, 0); }
+    50%     { transform: translate3d(0, -12px, 0); }
   }
   #ze-fab-container {
     position: fixed;
-    right: 28px;
+    bottom: 28px; right: 28px;
     z-index: 9999;
-    bottom: 28px; /* fallback */
+    width: 62px; height: 62px;
+    will-change: transform;
+    animation: ze-float 3s ease-in-out infinite;
   }
   #ze-fab {
     position: relative;
@@ -777,8 +778,7 @@
     transition: box-shadow 0.2s, transform 0.2s;
   }
   #ze-fab:hover { transform: scale(1.08); box-shadow: 0 6px 32px rgba(63,169,245,0.65); }
-  /* Animação de float no container (sem transform = sem bug Safari) */
-  #ze-fab-container { animation: ze-float 3s ease-in-out infinite; }
+  #ze-fab-container:hover { animation-play-state: paused; }
   #ze-fab svg { width: 28px; height: 28px; fill: #fff; }
   #ze-badge {
     position: absolute;
