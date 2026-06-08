@@ -756,15 +756,14 @@
 
   /* ===== ZE ===== */
   @keyframes ze-float {
-    0%   { transform: translateY(0px); }
-    50%  { transform: translateY(-8px); }
-    100% { transform: translateY(0px); }
+    0%,100% { bottom: 28px; box-shadow: 0 4px 24px rgba(63,169,245,0.45); }
+    50%     { bottom: 42px; box-shadow: 0 12px 36px rgba(63,169,245,0.65); }
   }
-  /* Wrapper mantém o position:fixed sem transform, evitando bug de Safari/iOS */
   #ze-fab-container {
     position: fixed;
-    bottom: 28px; right: 28px;
+    right: 28px;
     z-index: 9999;
+    bottom: 28px; /* fallback */
   }
   #ze-fab {
     position: relative;
@@ -775,10 +774,11 @@
     cursor: pointer;
     box-shadow: 0 4px 24px rgba(63,169,245,0.45);
     display: flex; align-items: center; justify-content: center;
-    animation: ze-float 3s ease-in-out infinite;
-    transition: box-shadow 0.2s;
+    transition: box-shadow 0.2s, transform 0.2s;
   }
-  #ze-fab:hover { animation-play-state: paused; transform: scale(1.08); box-shadow: 0 6px 32px rgba(63,169,245,0.65); }
+  #ze-fab:hover { transform: scale(1.08); box-shadow: 0 6px 32px rgba(63,169,245,0.65); }
+  /* Animação de float no container (sem transform = sem bug Safari) */
+  #ze-fab-container { animation: ze-float 3s ease-in-out infinite; }
   #ze-fab svg { width: 28px; height: 28px; fill: #fff; }
   #ze-badge {
     position: absolute;
@@ -944,7 +944,7 @@
 
   @media (max-width: 420px) {
     #ze-window { width: calc(100vw - 24px); right: 12px; bottom: 92px; }
-    #ze-fab-container { bottom: 16px; right: 16px; }
+    #ze-fab-container { right: 12px; animation: none; bottom: 16px; }
   }
 
 
