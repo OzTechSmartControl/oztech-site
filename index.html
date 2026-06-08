@@ -755,6 +755,11 @@
   }
 
   /* ===== ZE ===== */
+  @keyframes ze-float {
+    0%   { transform: translateY(0px);   box-shadow: 0 4px 24px rgba(63,169,245,0.45); }
+    50%  { transform: translateY(-8px);  box-shadow: 0 10px 32px rgba(63,169,245,0.60); }
+    100% { transform: translateY(0px);   box-shadow: 0 4px 24px rgba(63,169,245,0.45); }
+  }
   #ze-fab {
     position: fixed;
     bottom: 28px; right: 28px;
@@ -766,9 +771,10 @@
     cursor: pointer;
     box-shadow: 0 4px 24px rgba(63,169,245,0.45);
     display: flex; align-items: center; justify-content: center;
-    transition: transform 0.2s, box-shadow 0.2s;
+    animation: ze-float 3s ease-in-out infinite;
+    transition: box-shadow 0.2s;
   }
-  #ze-fab:hover { transform: scale(1.08); box-shadow: 0 6px 32px rgba(63,169,245,0.65); }
+  #ze-fab:hover { animation-play-state: paused; transform: scale(1.08); box-shadow: 0 6px 32px rgba(63,169,245,0.65); }
   #ze-fab svg { width: 28px; height: 28px; fill: #fff; }
   #ze-badge {
     position: absolute;
