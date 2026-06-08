@@ -2352,43 +2352,15 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 revealEls.forEach(el => observer.observe(el));
 
-// ── Ze: posicionamento via JS (substitui position:fixed com bug cross-browser) ──
+// ── Ze FAB: força position:fixed via inline style com !important ──
 (function() {
   const fab = document.getElementById('ze-fab-container');
-  const zeWin = document.getElementById('ze-window');
-  const zeFig = document.getElementById('ze-figure');
   if (!fab) return;
-
-  // Sobrescreve position:fixed com absolute + scroll-tracking via rAF
-  [fab, zeWin, zeFig].forEach(el => {
-    if (!el) return;
-    el.style.position = 'absolute';
-    el.style.bottom = 'auto';
-  });
-
-  function sync() {
-    const sy = window.pageYOffset;
-    const sh = window.innerHeight;
-
-    // Ze FAB: bottom:28px, height:62px → top = scrollY + vh - 28 - 62
-    fab.style.top = Math.round(sy + sh - 90) + 'px';
-
-    // Ze Window: bottom:104px
-    if (zeWin) {
-      const wh = zeWin.offsetHeight || 480;
-      zeWin.style.top = Math.round(sy + sh - 104 - wh) + 'px';
-    }
-
-    // Ze Figure: bottom:104px
-    if (zeFig) {
-      const fh = zeFig.offsetHeight || 300;
-      zeFig.style.top = Math.round(sy + sh - 104 - fh) + 'px';
-    }
-
-    requestAnimationFrame(sync);
-  }
-
-  sync();
+  fab.style.setProperty('position', 'fixed', 'important');
+  fab.style.setProperty('bottom', '28px', 'important');
+  fab.style.setProperty('right', '28px', 'important');
+  fab.style.setProperty('z-index', '9999', 'important');
+  fab.style.setProperty('top', 'auto', 'important');
 })();
 </script>
 </body>
