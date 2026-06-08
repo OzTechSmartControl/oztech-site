@@ -754,17 +754,12 @@
   }
 
   /* ===== ZE ===== */
-  @keyframes ze-float {
-    0%,100% { transform: translate3d(0, 0, 0); }
-    50%     { transform: translate3d(0, -12px, 0); }
-  }
+  /* Container fixo sem NENHUMA animação/transform — evita bug de position:fixed */
   #ze-fab-container {
     position: fixed;
     bottom: 28px; right: 28px;
     z-index: 9999;
     width: 62px; height: 62px;
-    will-change: transform;
-    animation: ze-float 3s ease-in-out infinite;
   }
   #ze-fab {
     position: relative;
@@ -773,12 +768,19 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    box-shadow: 0 4px 24px rgba(63,169,245,0.45);
     display: flex; align-items: center; justify-content: center;
-    transition: box-shadow 0.2s, transform 0.2s;
+    transition: transform 0.2s;
   }
-  #ze-fab:hover { transform: scale(1.08); box-shadow: 0 6px 32px rgba(63,169,245,0.65); }
-  #ze-fab-container:hover { animation-play-state: paused; }
+  #ze-fab:hover { transform: scale(1.08); }
+  /* Apenas a IMAGEM flutua — nenhum transform no elemento fixo */
+  @keyframes ze-img-float {
+    0%,100% { transform: translateY(0px);  filter: drop-shadow(0 4px 18px rgba(63,169,245,0.55)); }
+    50%     { transform: translateY(-9px); filter: drop-shadow(0 14px 28px rgba(63,169,245,0.85)); }
+  }
+  #ze-fab img {
+    animation: ze-img-float 3s ease-in-out infinite;
+  }
+  #ze-fab:hover img { animation-play-state: paused; }
   #ze-fab svg { width: 28px; height: 28px; fill: #fff; }
   #ze-badge {
     position: absolute;
