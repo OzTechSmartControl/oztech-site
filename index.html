@@ -754,12 +754,19 @@
   }
 
   /* ===== ZE ===== */
-  /* Container fixo sem NENHUMA animação/transform — evita bug de position:fixed */
-  #ze-fab-container {
+  /* Overlay cobre 100% do viewport — mesmo padrão da nav que funciona */
+  #ze-overlay {
     position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 9990;
+    pointer-events: none;
+  }
+  /* Ze elementos ficam absolute DENTRO do overlay fixo */
+  #ze-fab-container {
+    position: absolute;
     bottom: 28px; right: 28px;
-    z-index: 9999;
     width: 62px; height: 62px;
+    pointer-events: all;
   }
   #ze-fab {
     position: relative;
@@ -793,7 +800,7 @@
   }
 
   #ze-window {
-    position: fixed;
+    position: absolute;
     bottom: 104px; right: 28px;
     z-index: 9998;
     width: 370px;
@@ -952,7 +959,7 @@
 
   /* ZE FIGURE */
   #ze-figure {
-    position: fixed;
+    position: absolute;
     bottom: 104px;
     right: 320px;
     z-index: 9997;
@@ -2096,6 +2103,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <a href="#contato">Contato</a>
 </div>
 </footer>
+<!-- ===== ZE OVERLAY (position:fixed cobre 100% da viewport) ===== -->
+<div id="ze-overlay">
 <!-- ===== ZE FAB ===== -->
 <div id="ze-fab-container">
 <button aria-label="Abrir chat Zé" id="ze-fab" onclick="zeToggle()">
@@ -2125,6 +2134,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </button>
 </div>
 </div>
+</div><!-- /#ze-overlay -->
 <script>
 // ===== ZE =====
 const ZE_SYSTEM = `Você é a Zé, Inteligência Virtual da da OzTech SmartControl — empresa brasileira de desenvolvimento de software sob medida.
@@ -2352,16 +2362,6 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 revealEls.forEach(el => observer.observe(el));
 
-// ── Ze FAB: força position:fixed via inline style com !important ──
-(function() {
-  const fab = document.getElementById('ze-fab-container');
-  if (!fab) return;
-  fab.style.setProperty('position', 'fixed', 'important');
-  fab.style.setProperty('bottom', '28px', 'important');
-  fab.style.setProperty('right', '28px', 'important');
-  fab.style.setProperty('z-index', '9999', 'important');
-  fab.style.setProperty('top', 'auto', 'important');
-})();
 </script>
 </body>
 </html>
