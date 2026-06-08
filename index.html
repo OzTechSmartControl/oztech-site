@@ -756,14 +756,18 @@
 
   /* ===== ZE ===== */
   @keyframes ze-float {
-    0%   { transform: translateY(0px);   box-shadow: 0 4px 24px rgba(63,169,245,0.45); }
-    50%  { transform: translateY(-8px);  box-shadow: 0 10px 32px rgba(63,169,245,0.60); }
-    100% { transform: translateY(0px);   box-shadow: 0 4px 24px rgba(63,169,245,0.45); }
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
   }
-  #ze-fab {
+  /* Wrapper mantém o position:fixed sem transform, evitando bug de Safari/iOS */
+  #ze-fab-container {
     position: fixed;
     bottom: 28px; right: 28px;
     z-index: 9999;
+  }
+  #ze-fab {
+    position: relative;
     width: 62px; height: 62px;
     border-radius: 50%;
     background: transparent;
@@ -940,7 +944,7 @@
 
   @media (max-width: 420px) {
     #ze-window { width: calc(100vw - 24px); right: 12px; bottom: 92px; }
-    #ze-fab { bottom: 16px; right: 16px; }
+    #ze-fab-container { bottom: 16px; right: 16px; }
   }
 
 
@@ -2091,10 +2095,12 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 </footer>
 <!-- ===== ZE FAB ===== -->
+<div id="ze-fab-container">
 <button aria-label="Abrir chat Zé" id="ze-fab" onclick="zeToggle()">
 <div id="ze-badge"></div>
 <img alt="Zé" src="Ze_OTech_02_sem_fundo.png" style="width:62px;height:62px;border-radius:50%;object-fit:cover;object-position:top center;"/>
 </button>
+</div>
 <!-- ===== ZE WINDOW ===== -->
 <div id="ze-figure">
 <img alt="Zé" id="ze-figure-img" src="Ze_OTech_02_sem_fundo.png" style="display:block;"/>
