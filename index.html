@@ -455,13 +455,36 @@
     content: '';
     position: absolute;
     top: 36px; left: 8%; right: 8%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(63,169,245,0.12) 15%, rgba(63,169,245,0.12) 85%, transparent);
   }
+  .step-seg-fill {
+    height: 100%;
+    background: linear-gradient(90deg, rgba(63,169,245,0.45), #3fa9f5 50%, rgba(63,169,245,0.45));
+    box-shadow: 0 0 10px 2px rgba(63,169,245,0.65), 0 0 26px 6px rgba(63,169,245,0.22);
+  }
+  .step-ring-svg {
+    position: absolute;
+    inset: -4px;
+    width: 80px; height: 80px;
+    transform: rotate(-90deg);
+    pointer-events: none;
+    overflow: visible;
+  }
+  .step-ring-circle {
+    fill: none;
+    stroke: #3fa9f5;
+    stroke-width: 3;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 5px rgba(63,169,245,0.9));
+  }
+  .step.step-done    .step-num { box-shadow: 0 0 26px rgba(63,169,245,0.55), 0 0 55px rgba(63,169,245,0.18); border-color: #3fa9f5; }
+  .step.step-loading .step-num { box-shadow: 0 0 18px rgba(63,169,245,0.4); }
   .step {
     text-align: center;
     padding: 0 20px;
     position: relative;
+    transition: opacity 0.4s ease;
   }
   .step-num {
     width: 72px; height: 72px;
@@ -477,6 +500,7 @@
     position: relative;
     z-index: 1;
     box-shadow: 0 0 20px rgba(63,169,245,0.20);
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
   }
   .step h4 {
     font-family: 'Orbitron', sans-serif;
@@ -2047,7 +2071,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <h2 class="section-title">Como trabalhamos</h2>
 <p class="section-sub" style="margin: 0 auto 0;">Um processo simples, transparente e eficiente do primeiro contato à entrega final.</p>
 </div>
-<div class="steps">
+<div class="steps" id="steps-track">
 <div class="step">
 <div class="step-num">01</div>
 <h4>Diagnóstico</h4>
@@ -2395,6 +2419,91 @@ particlesJS("particles-js", {
   },
   retina_detect: true
 });
+
+// Steps neon progress animation
+(function initStepsProgress() {
+  const track = document.getElementById('steps-track');
+  if (!track) return;
+  const stepEls = Array.from(track.querySelectorAll('.step'));
+  if (stepEls.length < 4) return;
+
+  const R = 36, C = +(2 * Math.PI * R).toFixed(1); // 226.2
+
+  // Inject SVG ring inside each step-num
+  const ns = 'http://www.w3.org/2000/svg';
+  const circles = stepEls.map(step => {
+    const num = step.querySelector('.step-num');
+    const svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('class', 'step-ring-svg');
+    svg.setAttribute('viewBox', '0 0 80 80');
+    const circle = document.createElementNS(ns, 'circle');
+    circle.setAttribute('class', 'step-ring-circle');
+    circle.setAttribute('cx', '40'); circle.setAttribute('cy', '40');
+    circle.setAttribute('r', String(R));
+    circle.setAttribute('stroke-dasharray', String(C));
+    circle.setAttribute('stroke-dashoffset', String(C));
+    svg.appendChild(circle); num.appendChild(svg);
+    return circle;
+  });
+
+  // Inject 3 neon line segments between step centers (12.5%→37.5%→62.5%→87.5%)
+  const segs = [['12.5%','25%'],['37.5%','25%'],['62.5%','25%']].map(([l,w]) => {
+    const wrap = document.createElement('div');
+    wrap.style.cssText = 'position:absolute;top:35px;left:'+l+';width:'+w+';height:2px;z-index:2;overflow:hidden';
+    const fill = document.createElement('div');
+    fill.className = 'step-seg-fill';
+    fill.style.cssText = 'width:0%;height:100%';
+    wrap.appendChild(fill);
+    track.insertBefore(wrap, track.firstChild);
+    return fill;
+  });
+
+  const SEG = 800, RING = 1400, GAP = 220, PAUSE = 1800;
+
+  function setStep(i, state) {
+    stepEls[i].className = 'step reveal visible step-' + state;
+    stepEls[i].style.opacity = state === 'inactive' ? '0.32' : '';
+    const c = circles[i];
+    if (state === 'loading') {
+      c.style.transition = 'stroke-dashoffset ' + RING + 'ms ease-in-out';
+      c.style.strokeDashoffset = '0';
+    } else if (state === 'done') {
+      c.style.transition = 'none';
+      c.style.strokeDashoffset = '0';
+    } else {
+      c.style.transition = 'none';
+      c.style.strokeDashoffset = String(C);
+    }
+  }
+
+  function fillLine(fill, cb) {
+    fill.style.cssText = 'width:0%;height:100%;transition:none';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      fill.style.transition = 'width ' + SEG + 'ms ease';
+      fill.style.width = '100%';
+      setTimeout(cb, SEG + GAP);
+    }));
+  }
+
+  function run() {
+    segs.forEach(f => { f.style.cssText = 'width:0%;height:100%;transition:none'; });
+    stepEls.forEach((_, i) => setStep(i, i === 0 ? 'done' : 'inactive'));
+    let i = 0;
+    function next() {
+      if (i >= 3) { setTimeout(run, PAUSE); return; }
+      setTimeout(() => fillLine(segs[i], () => {
+        setStep(i + 1, 'loading');
+        setTimeout(() => { setStep(i + 1, 'done'); i++; next(); }, RING + GAP);
+      }), i === 0 ? 900 : 0);
+    }
+    next();
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) { obs.disconnect(); run(); }
+  }, { threshold: 0.4 });
+  obs.observe(track);
+})();
 
 // Scroll reveal
 const revealEls = document.querySelectorAll("section:not(.hero), .stats-bar, .swhat-card, .plan-card, .step, .mvv-rings");
