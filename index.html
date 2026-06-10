@@ -329,7 +329,13 @@
     max-width: 1060px;
     margin: 0 auto;
   }
-  .mvv-ring-item { display: flex; flex-direction: column; align-items: center; }
+  .mvv-ring-item { display: flex; flex-direction: column; align-items: center; animation: mvv-float 4s ease-in-out infinite; }
+  .mvv-ring-item:nth-child(2) { animation-delay: 0.9s; }
+  .mvv-ring-item:nth-child(3) { animation-delay: 1.8s; }
+  @keyframes mvv-float {
+    0%,100% { transform: translateY(0px); }
+    50%      { transform: translateY(-14px); }
+  }
   .mvv-ring-wrap { position: relative; width: 300px; height: 300px; }
   .mvv-r-outer {
     position: absolute;
