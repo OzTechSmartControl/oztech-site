@@ -2083,7 +2083,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="ci-icon">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44"><rect x="3" y="8" width="38" height="28" rx="3" fill="none" stroke="#3fa9f5" stroke-width="2.2"/><polyline points="3,8 22,24 41,8" fill="none" stroke="#3fa9f5" stroke-width="2.2" stroke-linejoin="round"/></svg>
     </div>
-    <div><div class="ci-label">E-mail</div><div class="ci-value">oztechsmartcontro@gmail.com</div></div>
+    <div><div class="ci-label">E-mail</div><div class="ci-value">contato@oztechsmartcontrol.com.br</div></div>
   </div>
 
   <div class="contact-info-item">
@@ -2190,7 +2190,7 @@ SOBRE A EMPRESA:
 - Nome: OzTech SmartControl
 - Missão: Facilitar e agregar valor aos negócios dos clientes por meio de tecnologia acessível
 - Modelos de contratação: Projetos sob medida (escopo fixo) e Assinaturas SaaS
-- Contato: oztechsmartcontro@gmail.com | Instagram: @OzTech.io
+- Contato: contato@oztechsmartcontrol.com.br | Instagram: @OzTech.io
 
 SOLUÇÕES DISPONÍVEIS AGORA:
 1. Oz.Finance (PF) — controle de receitas, despesas, metas e relatórios. Acesso: https://oztechsmartcontrol.github.io/Gestao-Financeira-
@@ -2309,7 +2309,7 @@ async function zeCallAPI() {
     const data = await res.json();
     typing.remove();
 
-    const reply = data.content && data.content[0] ? data.content[0].text : 'Desculpe, ocorreu um erro. Tente novamente ou entre em contato pelo e-mail oztechsmartcontro@gmail.com 😊';
+    const reply = data.content && data.content[0] ? data.content[0].text : 'Desculpe, ocorreu um erro. Tente novamente ou entre em contato pelo e-mail contato@oztechsmartcontrol.com.br 😊';
     zeHistory.push({ role: 'assistant', content: reply });
 
     const div = document.createElement('div');
@@ -2340,13 +2340,13 @@ async function zeCallAPI() {
     }
   } catch(e) {
     typing.remove();
-    zeBotMsg('Ops! Houve um problema de conexão. Entre em contato pelo e-mail **oztechsmartcontro@gmail.com** ou Instagram **@OzTech.io** 😊');
+    zeBotMsg('Ops! Houve um problema de conexão. Entre em contato pelo e-mail **contato@oztechsmartcontrol.com.br** ou Instagram **@OzTech.io** 😊');
   }
 }
 
 function zeQuickAction(label) {
   if (label === '📧 Enviar e-mail') {
-    window.location.href = 'mailto:oztechsmartcontro@gmail.com';
+    window.location.href = 'mailto:contato@oztechsmartcontrol.com.br';
   } else if (label === '📸 Instagram') {
     window.open('https://instagram.com/OzTech.io', '_blank');
   } else if (label === 'Acessar Oz.Finance') {
