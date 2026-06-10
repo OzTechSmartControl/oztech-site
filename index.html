@@ -315,51 +315,76 @@
   }
   .service-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
 
-  /* ABOUT */
-  .about-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: center;
-  }
-  @media (max-width: 768px) { .about-layout { grid-template-columns: 1fr; } }
-  .about-visual {
-    position: relative;
+  /* ABOUT - MVV Rings */
+  .mvv-section-head { text-align: center; margin-bottom: 52px; }
+  .mvv-section-head .section-tag { justify-content: center; }
+  .mvv-section-head .section-sub { max-width: 680px; margin: 0 auto; }
+  .mvv-rings {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: flex-start;
+    gap: 44px;
+    flex-wrap: wrap;
   }
-  .hexagon-bg {
-    width: 320px; height: 320px;
-    background: var(--panel);
-    clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
-    display: flex; align-items: center; justify-content: center;
-    border: none;
-    position: relative;
+  .mvv-ring-item { display: flex; flex-direction: column; align-items: center; }
+  .mvv-ring-wrap { position: relative; width: 220px; height: 220px; }
+  .mvv-r-outer {
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    border: 2px dashed rgba(63,169,245,0.32);
+    animation: mvv-spin 10s linear infinite;
   }
-  .hexagon-bg::before {
+  .mvv-r-outer::after {
     content: '';
     position: absolute;
-    inset: -2px;
-    clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
-    background: linear-gradient(135deg, var(--blue), transparent 60%);
-    z-index: -1;
+    width: 10px; height: 10px;
+    background: #3fa9f5;
+    border-radius: 50%;
+    box-shadow: 0 0 14px 4px rgba(63,169,245,0.75);
+    top: 50%; left: -6px;
+    transform: translateY(-50%);
   }
-  .hexagon-bg img { width: 180px; border-radius: 12px; }
-  .mission-list { list-style: none; margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
-  .mission-list li {
+  .mvv-r-main {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(63,169,245,0.72);
+    box-shadow: 0 0 28px rgba(63,169,245,0.26), 0 0 60px rgba(63,169,245,0.08), inset 0 0 36px rgba(63,169,245,0.06);
+    animation: mvv-glow 3s ease-in-out infinite;
+  }
+  .mvv-r-inner {
+    position: absolute;
+    inset: 18px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, rgba(10,14,26,0.95), rgba(18,24,42,0.95));
+    border: 1px solid rgba(63,169,245,0.16);
     display: flex;
-    gap: 14px;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    text-align: center;
+    gap: 3px;
   }
-  .mission-list li::before {
-    content: '▸';
-    color: var(--blue);
-    font-size: 1rem;
-    flex-shrink: 0;
-    margin-top: 2px;
+  .mvv-r-icon { font-size: 1.7rem; line-height: 1; margin-bottom: 4px; }
+  .mvv-r-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.68rem;
+    color: #3fa9f5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 5px;
   }
-  .mission-list li span { color: var(--muted); font-size: 0.93rem; line-height: 1.65; }
+  .mvv-r-text { font-size: 0.74rem; color: var(--muted); line-height: 1.5; }
+  @keyframes mvv-spin { to { transform: rotate(360deg); } }
+  @keyframes mvv-glow {
+    0%,100% { box-shadow: 0 0 28px rgba(63,169,245,0.26), 0 0 60px rgba(63,169,245,0.08), inset 0 0 36px rgba(63,169,245,0.06); border-color: rgba(63,169,245,0.72); }
+    50% { box-shadow: 0 0 52px rgba(63,169,245,0.55), 0 0 90px rgba(63,169,245,0.18), inset 0 0 52px rgba(63,169,245,0.14); border-color: #3fa9f5; }
+  }
+  @media (max-width: 720px) { .mvv-ring-wrap { width: 175px; height: 175px; } .mvv-rings { gap: 20px; } }
+  @media (max-width: 480px) { .mvv-rings { flex-direction: column; align-items: center; } .mvv-ring-wrap { width: 220px; height: 220px; } }
 
   /* PLANS */
   .plans-grid {
@@ -1095,15 +1120,6 @@
   .cdev-type .ct-icon { font-size: 1.9rem; margin-bottom: 10px; }
   .cdev-type h4 { font-family: 'Orbitron', sans-serif; font-size: 0.78rem; color: #fff; margin-bottom: 7px; }
   .cdev-type p { font-size: 0.79rem; color: var(--muted); line-height: 1.55; }
-  /* Sobre V2 */
-  .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0 28px; }
-  .mv-card {
-    background: rgba(63,169,245,0.07); border: 1px solid var(--border);
-    border-radius: 12px; padding: 20px 18px;
-  }
-  .mv-card .mv-icon { font-size: 1.5rem; margin-bottom: 8px; }
-  .mv-card h4 { font-family: 'Orbitron', sans-serif; font-size: 0.8rem; color: var(--blue); margin-bottom: 6px; letter-spacing: 0.06em; text-transform: uppercase; }
-  .mv-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
   /* Portfolio V2 */
   .port-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
   .port-card {
@@ -1129,7 +1145,6 @@
   .port-cta-primary:hover { text-decoration: underline; }
   .port-cta-muted { color: var(--muted); font-style: italic; font-weight: 400; font-size: 0.8rem; }
   @media (max-width: 640px) {
-    .mv-grid { grid-template-columns: 1fr; }
     .cat-grid { grid-template-columns: 1fr; }
     .cdev-types { grid-template-columns: 1fr 1fr; }
   }
@@ -1270,10 +1285,6 @@
     /* Catalog grid - 1 coluna */
     .cat-grid { grid-template-columns: 1fr; }
 
-    /* Sobre - hexágono menor */
-    .hexagon-bg { width: 220px; height: 220px; }
-    .hexagon-bg img { width: 130px; }
-    .about-layout { gap: 32px; }
 
     /* O que fazemos - 1 coluna */
     .swhat-grid { grid-template-columns: 1fr !important; }
@@ -1756,26 +1767,52 @@
 
 <!-- ABOUT -->
 <section id="sobre" style="background: rgba(13,18,32,0.5); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-<div class="about-layout">
-  <div class="about-visual">
-    <div class="hexagon-bg"><img alt="OzTech SmartControl" src="Logo_-_OzTech_SmartControl.png" style="width:200px;height:200px;object-fit:contain;filter:drop-shadow(0 0 16px rgba(63,169,245,0.5));"/></div>
-  </div>
-  <div>
-    <div class="section-tag">Sobre a OzTech</div>
-    <h2 class="section-title">Mais do que software:<br/>transformação operacional</h2>
-    <p class="section-sub" style="margin-bottom:28px;">A OzTech SmartControl nasceu para resolver um problema real: empresas e profissionais que operam no modo manual, perdendo tempo, dinheiro e competitividade. Desenvolvemos sistemas inteligentes que simplificam, automatizam e escalam operações.</p>
-    <div class="mv-grid">
-      <div class="mv-card"><div class="mv-icon">🎯</div><h4>Missão</h4><p>Transformar operações manuais em sistemas inteligentes, acessíveis e eficientes para empresas de todos os portes.</p></div>
-      <div class="mv-card"><div class="mv-icon">🔭</div><h4>Visão</h4><p>Ser referência em automação e SaaS para pequenas e médias empresas brasileiras, tornando tecnologia de qualidade acessível.</p></div>
+<div class="mvv-section-head">
+  <div class="section-tag" style="justify-content:center;">Sobre a OzTech</div>
+  <h2 class="section-title">Mais do que software:<br/>transformação operacional</h2>
+  <p class="section-sub" style="max-width:680px; margin:0 auto;">A OzTech SmartControl nasceu para resolver um problema real: empresas e profissionais que operam no modo manual, perdendo tempo, dinheiro e competitividade. Desenvolvemos sistemas inteligentes que simplificam, automatizam e escalam operações.</p>
+</div>
+<div class="mvv-rings">
+
+  <!-- MISSÃO -->
+  <div class="mvv-ring-item">
+    <div class="mvv-ring-wrap">
+      <div class="mvv-r-outer"></div>
+      <div class="mvv-r-main"></div>
+      <div class="mvv-r-inner">
+        <span class="mvv-r-icon">🎯</span>
+        <h4 class="mvv-r-title">Missão</h4>
+        <p class="mvv-r-text">Transformar operações manuais em sistemas inteligentes, acessíveis e eficientes para empresas de todos os portes.</p>
+      </div>
     </div>
-    <ul class="mission-list">
-      <li><span>Soluções moldadas à necessidade e orçamento de cada cliente</span></li>
-      <li><span>Projetos entregues com agilidade e qualidade técnica comprovada</span></li>
-      <li><span>Parceria de longo prazo: crescemos junto com o seu negócio</span></li>
-      <li><span>Transparência total em cada etapa do desenvolvimento</span></li>
-      <li><span>Comprometidos com resultados concretos e mensuráveis</span></li>
-    </ul>
   </div>
+
+  <!-- VISÃO -->
+  <div class="mvv-ring-item">
+    <div class="mvv-ring-wrap">
+      <div class="mvv-r-outer" style="animation-direction:reverse;animation-duration:13s;"></div>
+      <div class="mvv-r-main" style="animation-delay:1s;"></div>
+      <div class="mvv-r-inner">
+        <span class="mvv-r-icon">🔭</span>
+        <h4 class="mvv-r-title">Visão</h4>
+        <p class="mvv-r-text">Ser referência em automação e SaaS para pequenas e médias empresas brasileiras, tornando tecnologia de qualidade acessível.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALORES -->
+  <div class="mvv-ring-item">
+    <div class="mvv-ring-wrap">
+      <div class="mvv-r-outer" style="animation-duration:8s;"></div>
+      <div class="mvv-r-main" style="animation-delay:2s;"></div>
+      <div class="mvv-r-inner">
+        <span class="mvv-r-icon">⭐</span>
+        <h4 class="mvv-r-title">Valores</h4>
+        <p class="mvv-r-text">Credibilidade, Inovação, Transparência e Comprometimento com resultados concretos e mensuráveis.</p>
+      </div>
+    </div>
+  </div>
+
 </div>
 </section>
 
@@ -2350,7 +2387,7 @@ particlesJS("particles-js", {
 });
 
 // Scroll reveal
-const revealEls = document.querySelectorAll("section:not(.hero), .stats-bar, .swhat-card, .plan-card, .step, .about-layout");
+const revealEls = document.querySelectorAll("section:not(.hero), .stats-bar, .swhat-card, .plan-card, .step, .mvv-rings");
 revealEls.forEach(el => el.classList.add("reveal"));
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
