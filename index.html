@@ -451,13 +451,7 @@
     margin-top: 56px;
     position: relative;
   }
-  .steps::before {
-    content: '';
-    position: absolute;
-    top: 36px; left: 8%; right: 8%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(63,169,245,0.12) 15%, rgba(63,169,245,0.12) 85%, transparent);
-  }
+  .steps::before { display: none; }
   .step-seg-fill {
     height: 100%;
     background: linear-gradient(90deg, rgba(63,169,245,0.45), #3fa9f5 50%, rgba(63,169,245,0.45));
