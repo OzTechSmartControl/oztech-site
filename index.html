@@ -2446,17 +2446,20 @@ particlesJS("particles-js", {
     return circle;
   });
 
-  // Inject 3 neon line segments between step centers (12.5%→37.5%→62.5%→87.5%)
-  const segs = [['12.5%','25%'],['37.5%','25%'],['62.5%','25%']].map(([l,w]) => {
-    const wrap = document.createElement('div');
-    wrap.style.cssText = 'position:absolute;top:35px;left:'+l+';width:'+w+';height:2px;z-index:2;overflow:hidden';
-    const fill = document.createElement('div');
-    fill.className = 'step-seg-fill';
-    fill.style.cssText = 'width:0%;height:100%';
-    wrap.appendChild(fill);
-    track.insertBefore(wrap, track.firstChild);
-    return fill;
-  });
+  // ONE continuous neon line — full span (same bounds as gray ::before)
+  // left: 8%, width: 84% — z-index 10 paints above circle backgrounds
+  const lineWrap = document.createElement('div');
+  lineWrap.style.cssText = 'position:absolute;top:34px;left:8%;width:84%;height:3px;z-index:10;overflow:hidden';
+  const lineFill = document.createElement('div');
+  lineFill.className = 'step-seg-fill';
+  lineFill.style.cssText = 'width:0%;height:100%';
+  lineWrap.appendChild(lineFill);
+  track.insertBefore(lineWrap, track.firstChild);
+
+  // % of the 84% line where each step center falls
+  // col centers at 12.5%, 37.5%, 62.5%, 87.5% of .steps → offset by left:8%
+  // formula: (center - 8) / 84 * 100
+  const pcts = [5.4, 35.1, 64.9, 94.0]; // [step1, step2, step3, step4]
 
   const SEG = 800, RING = 1400, GAP = 220, PAUSE = 1800;
 
@@ -2476,22 +2479,20 @@ particlesJS("particles-js", {
     }
   }
 
-  function fillLine(fill, cb) {
-    fill.style.cssText = 'width:0%;height:100%;transition:none';
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      fill.style.transition = 'width ' + SEG + 'ms ease';
-      fill.style.width = '100%';
-      setTimeout(cb, SEG + GAP);
-    }));
+  function fillTo(pct, cb) {
+    lineFill.style.transition = 'width ' + SEG + 'ms ease';
+    lineFill.style.width = pct + '%';
+    setTimeout(cb, SEG + GAP);
   }
 
   function run() {
-    segs.forEach(f => { f.style.cssText = 'width:0%;height:100%;transition:none'; });
+    // Reset: line already at step-1 center
+    lineFill.style.cssText = 'width:' + pcts[0] + '%;height:100%;transition:none';
     stepEls.forEach((_, i) => setStep(i, i === 0 ? 'done' : 'inactive'));
     let i = 0;
     function next() {
       if (i >= 3) { setTimeout(run, PAUSE); return; }
-      setTimeout(() => fillLine(segs[i], () => {
+      setTimeout(() => fillTo(pcts[i + 1], () => {
         setStep(i + 1, 'loading');
         setTimeout(() => { setStep(i + 1, 'done'); i++; next(); }, RING + GAP);
       }), i === 0 ? 900 : 0);
