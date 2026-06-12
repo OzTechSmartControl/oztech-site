@@ -104,8 +104,10 @@
     position: relative;
     min-height: 100vh;
     display: flex;
-    align-items: flex-start;
-    padding: 120px 5vw 80px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 110px 5vw 70px;
     overflow: hidden;
   }
   .hero-bg-circle {
@@ -115,23 +117,23 @@
   }
   .hero-bg-circle.c1 {
     width: 700px; height: 700px;
-    right: -100px; top: 50%;
-    transform: translateY(-50%);
+    left: 50%; top: 68%;
+    transform: translate(-50%, -50%);
     background: radial-gradient(circle, rgba(63,169,245,0.10) 0%, transparent 70%);
     border: 1px solid rgba(63,169,245,0.10);
     animation: pulse 6s ease-in-out infinite;
   }
   .hero-bg-circle.c2 {
     width: 480px; height: 480px;
-    right: 60px; top: 50%;
-    transform: translateY(-50%);
+    left: 50%; top: 68%;
+    transform: translate(-50%, -50%);
     border: 1px solid rgba(63,169,245,0.14);
     animation: pulse 6s ease-in-out infinite 1s;
   }
   .hero-bg-circle.c3 {
     width: 260px; height: 260px;
-    right: 220px; top: 50%;
-    transform: translateY(-50%);
+    left: 50%; top: 68%;
+    transform: translate(-50%, -50%);
     border: 1px solid rgba(63,169,245,0.20);
     animation: pulse 6s ease-in-out infinite 2s;
   }
@@ -142,8 +144,11 @@
   .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 850px;
+    max-width: 760px;
+    width: 100%;
+    text-align: center;
     animation: fadeUp 0.9s ease both;
+    margin-bottom: 48px;
   }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(32px); }
@@ -184,10 +189,10 @@
     font-size: 0.95rem;
     color: var(--muted);
     line-height: 1.75;
-    margin-bottom: 40px;
-    max-width: 100%;
+    margin: 0 auto 40px;
+    max-width: 600px;
   }
-  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
   .btn-primary {
     background: var(--blue);
     color: var(--bg);
@@ -1159,30 +1164,72 @@
     .cdev-types { grid-template-columns: 1fr 1fr; }
   }
   
-  /* ===== HERO VISUAL (LOGO) ===== */
-  .hero { justify-content: space-between; }
-  .hero-visual {
-    position: relative;
-    z-index: 2;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 320px;
-    margin-top: 210px;
-  }
-  .hero-visual img {
-    width: 260px;
-    height: 260px;
-    object-fit: contain;
-    filter: drop-shadow(0 0 28px rgba(63,169,245,0.55)) drop-shadow(0 0 70px rgba(63,169,245,0.18));
-    animation: heroFloat 5s ease-in-out infinite;
-  }
+  /* ===== HERO DIAGRAM ===== */
   @keyframes heroFloat {
     0%,100% { transform: translateY(0px) rotate(0deg); }
     50%      { transform: translateY(-14px) rotate(1deg); }
   }
-  @media (max-width: 900px) { .hero-visual { display: none; } }
+  .hd-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 1080px;
+    height: clamp(360px, 42vw, 500px);
+    z-index: 2;
+    animation: fadeUp 0.9s ease 0.3s both;
+  }
+  .hd-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: visible;
+  }
+  .hd-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(150px, 16vw, 200px);
+    height: clamp(150px, 16vw, 200px);
+    z-index: 4;
+  }
+  .hd-center img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 28px rgba(63,169,245,0.55)) drop-shadow(0 0 70px rgba(63,169,245,0.18));
+    animation: heroFloat 5s ease-in-out infinite;
+  }
+  .hd-card {
+    position: absolute;
+    background: rgba(10,15,28,0.88);
+    border: 1px solid rgba(63,169,245,0.28);
+    border-radius: 14px;
+    padding: 15px 18px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    width: 230px;
+    z-index: 3;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(6px);
+  }
+  .hd-card:hover { border-color: rgba(63,169,245,0.65); box-shadow: 0 0 26px rgba(63,169,245,0.2); }
+  .hd-icon {
+    flex-shrink: 0;
+    width: 42px; height: 42px;
+    background: rgba(63,169,245,0.1);
+    border: 1px solid rgba(63,169,245,0.22);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hd-icon svg { width: 20px; height: 20px; stroke: #3fa9f5; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .hd-text strong { display: block; font-size: 0.80rem; font-weight: 700; color: #fff; margin-bottom: 3px; font-family: 'Exo 2', sans-serif; }
+  .hd-text span { font-size: 0.70rem; color: var(--muted); line-height: 1.4; }
+  .hd-tl { top: 6%; left: 0; }
+  .hd-bl { bottom: 6%; left: 0; }
+  .hd-tr { top: 6%; right: 0; }
+  .hd-br { bottom: 6%; right: 0; }
+  .hd-bc { bottom: 0; left: calc(50% - 115px); }
+  @media (max-width: 960px) { .hd-wrap { display: none; } }
   
   
   /* ===== O QUE FAZEMOS ===== */
@@ -1323,8 +1370,8 @@
     /* ── Mobile hero fixes ── */
     .hero h1 { white-space: normal !important; font-size: clamp(1.8rem, 8vw, 2.6rem) !important; }
     .hero p  { white-space: normal !important; font-size: 0.88rem !important; max-width: 100% !important; }
-    .hero-visual { display: none !important; }
-    .hero-content { max-width: 100% !important; width: 100%; }
+    .hd-wrap { display: none !important; }
+    .hero-content { max-width: 100% !important; width: 100%; margin-bottom: 0 !important; }
     .hero-actions { flex-direction: column !important; gap: 12px !important; width: 100%; }
     .hero-actions a { width: 100% !important; text-align: center !important; box-sizing: border-box; }
   
@@ -1524,8 +1571,8 @@
     transform: translateY(0);
   }
 
-  .hero h1 { white-space: nowrap; }
-  .hero p  { white-space: nowrap; font-size: 0.9rem; }
+  .hero h1 { white-space: normal; }
+  .hero p  { font-size: 0.9rem; }
 
   /* ── Prevent horizontal overflow globally on mobile ── */
   @media (max-width: 768px) {
@@ -1707,6 +1754,7 @@
 <div class="hero-bg-circle c1"></div>
 <div class="hero-bg-circle c2"></div>
 <div class="hero-bg-circle c3"></div>
+
 <div class="hero-content">
   <div class="hero-badge">Automação, SaaS e Sistemas Sob Medida</div>
   <h1>Sua visão. <span>Nossa tecnologia</span>.</h1>
@@ -1716,9 +1764,91 @@
     <a class="btn-outline" href="#catalogo">Conhecer soluções</a>
   </div>
 </div>
-<div class="hero-visual">
-  <img alt="OzTech SmartControl" src="Logo_-_OzTech_SmartControl.png"/>
+
+<!-- Feature diagram (desktop only) -->
+<div class="hd-wrap">
+  <svg class="hd-svg" viewBox="0 0 1000 460" aria-hidden="true">
+    <!-- Connecting lines: start at logo edge, end at card edge -->
+    <line x1="426" y1="188" x2="230" y2="64" stroke="rgba(63,169,245,0.35)" stroke-width="1.5"/>
+    <line x1="426" y1="272" x2="230" y2="396" stroke="rgba(63,169,245,0.35)" stroke-width="1.5"/>
+    <line x1="574" y1="188" x2="770" y2="64" stroke="rgba(63,169,245,0.35)" stroke-width="1.5"/>
+    <line x1="574" y1="272" x2="770" y2="396" stroke="rgba(63,169,245,0.35)" stroke-width="1.5"/>
+    <line x1="500" y1="315" x2="500" y2="386" stroke="rgba(63,169,245,0.35)" stroke-width="1.5"/>
+    <!-- Mid-line dots -->
+    <circle cx="328" cy="126" r="3" fill="#3fa9f5" opacity="0.5"/>
+    <circle cx="328" cy="330" r="3" fill="#3fa9f5" opacity="0.5"/>
+    <circle cx="672" cy="126" r="3" fill="#3fa9f5" opacity="0.5"/>
+    <circle cx="672" cy="330" r="3" fill="#3fa9f5" opacity="0.5"/>
+    <circle cx="500" cy="350" r="3" fill="#3fa9f5" opacity="0.5"/>
+    <!-- Card endpoint dots -->
+    <circle cx="230" cy="64" r="5" fill="#3fa9f5" opacity="0.7"/>
+    <circle cx="230" cy="396" r="5" fill="#3fa9f5" opacity="0.7"/>
+    <circle cx="770" cy="64" r="5" fill="#3fa9f5" opacity="0.7"/>
+    <circle cx="770" cy="396" r="5" fill="#3fa9f5" opacity="0.7"/>
+    <circle cx="500" cy="386" r="5" fill="#3fa9f5" opacity="0.7"/>
+  </svg>
+
+  <!-- Central OZ logo -->
+  <div class="hd-center">
+    <img alt="OzTech SmartControl" src="Logo_-_OzTech_SmartControl.png"/>
+  </div>
+
+  <!-- Top-left: Software sob medida -->
+  <div class="hd-card hd-tl">
+    <div class="hd-icon">
+      <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 10l2 2-2 2M13 10l2 2-2 2"/></svg>
+    </div>
+    <div class="hd-text">
+      <strong>Software sob medida</strong>
+      <span>Sistemas adaptados à operação do cliente</span>
+    </div>
+  </div>
+
+  <!-- Bottom-left: SaaS por assinatura -->
+  <div class="hd-card hd-bl">
+    <div class="hd-icon">
+      <svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+    </div>
+    <div class="hd-text">
+      <strong>SaaS por assinatura</strong>
+      <span>Produtos prontos, escaláveis e na nuvem</span>
+    </div>
+  </div>
+
+  <!-- Top-right: Sites profissionais -->
+  <div class="hd-card hd-tr">
+    <div class="hd-icon">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    </div>
+    <div class="hd-text">
+      <strong>Sites profissionais</strong>
+      <span>Presença digital com credibilidade</span>
+    </div>
+  </div>
+
+  <!-- Bottom-right: Apps web, mobile e desktop -->
+  <div class="hd-card hd-br">
+    <div class="hd-icon">
+      <svg viewBox="0 0 24 24"><rect x="2" y="4" width="12" height="9" rx="1"/><rect x="15" y="8" width="7" height="12" rx="1"/><path d="M6 13v4M6 21h12"/></svg>
+    </div>
+    <div class="hd-text">
+      <strong>Apps web, mobile e desktop</strong>
+      <span>Aplicações para diferentes jornadas</span>
+    </div>
+  </div>
+
+  <!-- Bottom-center: Dados e automação -->
+  <div class="hd-card hd-bc">
+    <div class="hd-icon">
+      <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-3 3"/></svg>
+    </div>
+    <div class="hd-text">
+      <strong>Dados e automação</strong>
+      <span>Dashboards, relatórios e integrações</span>
+    </div>
+  </div>
 </div>
+
 </section>
 
 <!-- STATS -->
