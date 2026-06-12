@@ -104,10 +104,10 @@
     position: relative;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 110px 5vw 70px;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 120px 5vw 80px;
     overflow: hidden;
   }
   .hero-bg-circle {
@@ -117,23 +117,23 @@
   }
   .hero-bg-circle.c1 {
     width: 700px; height: 700px;
-    left: 50%; top: 68%;
-    transform: translate(-50%, -50%);
+    right: -100px; top: 50%;
+    transform: translateY(-50%);
     background: radial-gradient(circle, rgba(63,169,245,0.10) 0%, transparent 70%);
     border: 1px solid rgba(63,169,245,0.10);
     animation: pulse 6s ease-in-out infinite;
   }
   .hero-bg-circle.c2 {
     width: 480px; height: 480px;
-    left: 50%; top: 68%;
-    transform: translate(-50%, -50%);
+    right: 60px; top: 50%;
+    transform: translateY(-50%);
     border: 1px solid rgba(63,169,245,0.14);
     animation: pulse 6s ease-in-out infinite 1s;
   }
   .hero-bg-circle.c3 {
     width: 260px; height: 260px;
-    left: 50%; top: 68%;
-    transform: translate(-50%, -50%);
+    right: 220px; top: 50%;
+    transform: translateY(-50%);
     border: 1px solid rgba(63,169,245,0.20);
     animation: pulse 6s ease-in-out infinite 2s;
   }
@@ -144,11 +144,9 @@
   .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 760px;
-    width: 100%;
-    text-align: center;
+    max-width: 480px;
+    text-align: left;
     animation: fadeUp 0.9s ease both;
-    margin-bottom: 48px;
   }
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(32px); }
@@ -189,10 +187,10 @@
     font-size: 0.95rem;
     color: var(--muted);
     line-height: 1.75;
-    margin: 0 auto 40px;
-    max-width: 600px;
+    margin-bottom: 40px;
+    max-width: 100%;
   }
-  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
   .btn-primary {
     background: var(--blue);
     color: var(--bg);
@@ -1171,9 +1169,11 @@
   }
   .hd-wrap {
     position: relative;
-    width: 100%;
-    max-width: 1080px;
-    height: clamp(360px, 42vw, 500px);
+    flex-shrink: 0;
+    width: 56%;
+    max-width: 760px;
+    height: clamp(500px, 58vw, 700px);
+    margin-top: 0;
     z-index: 2;
     animation: fadeUp 0.9s ease 0.3s both;
   }
@@ -1371,7 +1371,7 @@
     .hero h1 { white-space: normal !important; font-size: clamp(1.8rem, 8vw, 2.6rem) !important; }
     .hero p  { white-space: normal !important; font-size: 0.88rem !important; max-width: 100% !important; }
     .hd-wrap { display: none !important; }
-    .hero-content { max-width: 100% !important; width: 100%; margin-bottom: 0 !important; }
+    .hero-content { max-width: 100% !important; width: 100%; }
     .hero-actions { flex-direction: column !important; gap: 12px !important; width: 100%; }
     .hero-actions a { width: 100% !important; text-align: center !important; box-sizing: border-box; }
   
@@ -1767,25 +1767,25 @@
 
 <!-- Feature diagram (desktop only) -->
 <div class="hd-wrap">
-  <svg class="hd-svg" viewBox="0 0 1000 460" aria-hidden="true">
-    <!-- Connecting lines: start at logo edge, end at card edge -->
-    <line x1="426" y1="188" x2="230" y2="64" stroke="rgba(63,169,245,0.35)" stroke-width="1.5"/>
-    <line x1="426" y1="272" x2="230" y2="396" stroke="rgba(63,169,245,0.35)" stroke-width="1.5"/>
-    <line x1="574" y1="188" x2="770" y2="64" stroke="rgba(63,169,245,0.35)" stroke-width="1.5"/>
-    <line x1="574" y1="272" x2="770" y2="396" stroke="rgba(63,169,245,0.35)" stroke-width="1.5"/>
-    <line x1="500" y1="315" x2="500" y2="386" stroke="rgba(63,169,245,0.35)" stroke-width="1.5"/>
+  <svg class="hd-svg" viewBox="0 0 760 700" aria-hidden="true">
+    <!-- Connecting lines: from logo edge to each card -->
+    <line x1="310" y1="279" x2="230" y2="82" stroke="rgba(63,169,245,0.35)" stroke-width="1.5"/>
+    <line x1="310" y1="421" x2="230" y2="618" stroke="rgba(63,169,245,0.35)" stroke-width="1.5"/>
+    <line x1="450" y1="279" x2="530" y2="82" stroke="rgba(63,169,245,0.35)" stroke-width="1.5"/>
+    <line x1="450" y1="421" x2="530" y2="618" stroke="rgba(63,169,245,0.35)" stroke-width="1.5"/>
+    <line x1="380" y1="450" x2="380" y2="645" stroke="rgba(63,169,245,0.35)" stroke-width="1.5"/>
     <!-- Mid-line dots -->
-    <circle cx="328" cy="126" r="3" fill="#3fa9f5" opacity="0.5"/>
-    <circle cx="328" cy="330" r="3" fill="#3fa9f5" opacity="0.5"/>
-    <circle cx="672" cy="126" r="3" fill="#3fa9f5" opacity="0.5"/>
-    <circle cx="672" cy="330" r="3" fill="#3fa9f5" opacity="0.5"/>
-    <circle cx="500" cy="350" r="3" fill="#3fa9f5" opacity="0.5"/>
+    <circle cx="270" cy="181" r="3" fill="#3fa9f5" opacity="0.5"/>
+    <circle cx="270" cy="520" r="3" fill="#3fa9f5" opacity="0.5"/>
+    <circle cx="490" cy="181" r="3" fill="#3fa9f5" opacity="0.5"/>
+    <circle cx="490" cy="520" r="3" fill="#3fa9f5" opacity="0.5"/>
+    <circle cx="380" cy="548" r="3" fill="#3fa9f5" opacity="0.5"/>
     <!-- Card endpoint dots -->
-    <circle cx="230" cy="64" r="5" fill="#3fa9f5" opacity="0.7"/>
-    <circle cx="230" cy="396" r="5" fill="#3fa9f5" opacity="0.7"/>
-    <circle cx="770" cy="64" r="5" fill="#3fa9f5" opacity="0.7"/>
-    <circle cx="770" cy="396" r="5" fill="#3fa9f5" opacity="0.7"/>
-    <circle cx="500" cy="386" r="5" fill="#3fa9f5" opacity="0.7"/>
+    <circle cx="230" cy="82" r="5" fill="#3fa9f5" opacity="0.7"/>
+    <circle cx="230" cy="618" r="5" fill="#3fa9f5" opacity="0.7"/>
+    <circle cx="530" cy="82" r="5" fill="#3fa9f5" opacity="0.7"/>
+    <circle cx="530" cy="618" r="5" fill="#3fa9f5" opacity="0.7"/>
+    <circle cx="380" cy="645" r="5" fill="#3fa9f5" opacity="0.7"/>
   </svg>
 
   <!-- Central OZ logo -->
@@ -2121,6 +2121,49 @@ document.addEventListener('DOMContentLoaded', function() {
     if (navDropdown && !navDropdown.contains(e.target)) closeDropdown();
   });
 });
+
+// Hero diagram: dynamically position SVG lines to connect logo to cards
+function updateHeroDiagram() {
+  const svg = document.querySelector('.hd-svg');
+  const wrap = document.querySelector('.hd-wrap');
+  const centerEl = document.querySelector('.hd-center');
+  if (!svg || !wrap || !centerEl) return;
+  const wrapRect = wrap.getBoundingClientRect();
+  if (wrapRect.width === 0) return;
+  const cRect = centerEl.getBoundingClientRect();
+  const lx = cRect.left - wrapRect.left + cRect.width / 2;
+  const ly = cRect.top - wrapRect.top + cRect.height / 2;
+  const lr = cRect.width / 2 * 0.82;
+  svg.setAttribute('viewBox', '0 0 ' + wrapRect.width + ' ' + wrapRect.height);
+  const cards = [...document.querySelectorAll('.hd-card')];
+  const lines = [...svg.querySelectorAll('line')];
+  const allCircles = [...svg.querySelectorAll('circle')];
+  const endDots = allCircles.filter(c => parseFloat(c.getAttribute('r')) === 5);
+  const midDots = allCircles.filter(c => parseFloat(c.getAttribute('r')) === 3);
+  cards.forEach(function(card, i) {
+    const cr = card.getBoundingClientRect();
+    const cx = cr.left - wrapRect.left + cr.width / 2;
+    const cy = cr.top - wrapRect.top + cr.height / 2;
+    const left = cr.left - wrapRect.left, right = cr.right - wrapRect.left;
+    const top = cr.top - wrapRect.top, bottom = cr.bottom - wrapRect.top;
+    const dx = lx - cx, dy = ly - cy;
+    let t = Infinity;
+    if (dx > 0) t = Math.min(t, (right - cx) / dx);
+    else if (dx < 0) t = Math.min(t, (left - cx) / dx);
+    if (dy > 0) t = Math.min(t, (bottom - cy) / dy);
+    else if (dy < 0) t = Math.min(t, (top - cy) / dy);
+    const ex = cx + dx * t, ey = cy + dy * t;
+    const edx = ex - lx, edy = ey - ly;
+    const elen = Math.sqrt(edx * edx + edy * edy);
+    const sx = lx + (edx / elen) * lr, sy = ly + (edy / elen) * lr;
+    if (lines[i]) { lines[i].setAttribute('x1', sx.toFixed(1)); lines[i].setAttribute('y1', sy.toFixed(1)); lines[i].setAttribute('x2', ex.toFixed(1)); lines[i].setAttribute('y2', ey.toFixed(1)); }
+    if (endDots[i]) { endDots[i].setAttribute('cx', ex.toFixed(1)); endDots[i].setAttribute('cy', ey.toFixed(1)); }
+    if (midDots[i]) { midDots[i].setAttribute('cx', ((sx + ex) / 2).toFixed(1)); midDots[i].setAttribute('cy', ((sy + ey) / 2).toFixed(1)); }
+  });
+}
+window.addEventListener('load', updateHeroDiagram);
+window.addEventListener('resize', updateHeroDiagram);
+setTimeout(updateHeroDiagram, 600);
 </script>
 <!-- PLANS -->
 <section id="planos">
