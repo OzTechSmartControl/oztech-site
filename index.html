@@ -145,7 +145,7 @@
     position: relative;
     z-index: 2;
     flex-shrink: 0;
-    max-width: 490px;
+    max-width: none;
     text-align: left;
     animation: fadeUp 0.9s ease both;
   }
@@ -182,6 +182,7 @@
     line-height: 1.1;
     margin-bottom: 20px;
     color: #fff;
+    white-space: nowrap;
   }
   .hero h1 span { color: var(--blue); }
   .hero p {
@@ -2123,11 +2124,11 @@ function updateHeroDiagram() {
   // Screen-space angles: 0°=right, 90°=down, 180°=left, 270°=up
   const CARD_W = 230, CARD_H = 72;
   const rays = [
-    [225, 340],  // upper-left   (Software sob medida)
-    [178, 320],  // left          (SaaS por assinatura)
-    [148, 330],  // lower-left   (Sites profissionais)
-    [102, 255],  // mostly down  (Apps)
-    [ 55, 215]   // lower-right  (Dados e automação)
+    [205, 480],  // upper-left   (Software sob medida)
+    [178, 460],  // left          (SaaS por assinatura)
+    [158, 470],  // lower-left   (Sites profissionais)
+    [ 90, 230],  // straight down (Apps)
+    [ 52, 185]   // lower-right  (Dados e automação)
   ];
 
   const cards = [...overlay.querySelectorAll('.hd-card')];
