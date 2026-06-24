@@ -1683,6 +1683,11 @@
   .web-wrap { display: flex; align-items: center; gap: 64px; flex-wrap: wrap; }
   .web-text { flex: 1 1 420px; min-width: 320px; }
   .web-text .section-sub { margin-bottom: 32px; }
+  .web-visual { flex: 1 1 420px; min-width: 320px; max-width: 600px; aspect-ratio: 4 / 3; position: relative; }
+  .web-visual img { position: absolute; height: auto; display: block; }
+  .web-visual .wd-laptop { width: 86%; left: 0; top: 12%; filter: drop-shadow(0 25px 50px rgba(63,169,245,0.25)); }
+  .web-visual .wd-phone { width: 30%; right: 0; bottom: 0; z-index: 2; filter: drop-shadow(0 15px 35px rgba(5,10,20,0.45)); }
+  @media (max-width: 760px) { .web-visual { display: none; } }
   .web-grad {
     background: linear-gradient(90deg, var(--blue), var(--accent));
     -webkit-background-clip: text;
@@ -1878,6 +1883,11 @@
     </div>
 
     <a class="btn-primary" href="#contato">Quero criar meu site →</a>
+  </div>
+
+  <div class="web-visual">
+    <img alt="Plataforma Oz no computador" class="wd-laptop" src="Computador.png"/>
+    <img alt="App Oz.Barber em um iPhone" class="wd-phone" src="Celular.png"/>
   </div>
 </div>
 
