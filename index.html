@@ -1034,7 +1034,7 @@
   /* ===== CATALOG V2 ===== */
   .cat-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: 1fr;
     gap: 24px;
     margin-top: 32px;
   }
@@ -1044,7 +1044,7 @@
     border: 1px solid var(--border);
     background: var(--panel);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     transition: transform 0.25s, box-shadow 0.25s;
   }
   .cat-card:hover {
@@ -1052,11 +1052,18 @@
     box-shadow: 0 16px 52px rgba(63,169,245,0.18);
   }
   .cat-card-top {
-    padding: 26px 24px 22px;
+    flex: 0 0 280px;
+    padding: 26px 24px;
     position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 8px;
+  }
+  .cat-card-right { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  @media (max-width: 820px) {
+    .cat-card { flex-direction: column; }
+    .cat-card-top { flex: none; }
   }
   .cat-badge-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
   .cat-status-live {
@@ -1074,7 +1081,7 @@
     font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
     padding: 3px 10px; border-radius: 20px; border: 1px solid var(--border);
   }
-  .cat-icon { font-size: 2.5rem; line-height: 1; margin: 6px 0 4px; }
+  .cat-icon { font-size: 2.5rem; line-height: 1; margin: 6px 0 4px; display: flex; justify-content: center; }
   .cat-brand {
     font-family: 'Orbitron', sans-serif;
     font-size: 1.05rem; font-weight: 700; color: #fff;
@@ -2026,29 +2033,29 @@
           <span style="font-size:0.72rem;color:rgba(255,255,255,0.38);letter-spacing:0.04em;">B2B · SaaS</span>
         </div>
         <div class="cat-icon" style="margin:10px 0 6px;">
-          <img alt="Oz.Barber" height="270" src="ozbarber-logo.png" style="width:90px;height:90px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(63,169,245,0.4));" width="270"/>
+          <img alt="Oz.Barber" height="270" src="ozbarber-logo.png" style="width:130px;height:130px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(63,169,245,0.4));" width="270"/>
         </div>
-        <div class="cat-brand">Oz.Barber</div>
-        <div class="cat-sub-tag">Sistema pronto para uso e 100% personalizável</div>
+        <div class="cat-sub-tag">Sistema completo para gestão de barbearias.</div>
       </div>
-      <div class="cat-card-body">
-        <p class="cat-pitch">Adapte logo, cores, serviços, produtos e barbeiros ao seu negócio. Comece hoje mesmo com tudo configurado e sua barbearia operando no digital.</p>
-        <ul class="cat-features">
-          <li>Gestão de atendimentos, vendas de serviços e produtos</li>
-          <li>Comissões automáticas por barbeiro</li>
-          <li>Caixa e faturamento em tempo real</li>
-          <li>Dashboard gerencial com relatórios</li>
-          <li>Cadastro de clientes e histórico</li>
-          <li>Acesso completo via web e mobile — de qualquer lugar</li>
-        </ul>
-      </div>
-      <div class="cat-card-footer">
-        <div style="display:flex;gap:8px;margin-bottom:12px;">
-          <span style="flex:1;text-align:center;background:rgba(63,169,245,0.1);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:0.75rem;color:var(--blue);font-weight:600;">🌐 Web</span>
-          <span style="flex:1;text-align:center;background:rgba(63,169,245,0.1);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:0.75rem;color:var(--blue);font-weight:600;">📱 Mobile</span>
-          <span style="flex:1;text-align:center;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);border-radius:6px;padding:6px 10px;font-size:0.75rem;color:var(--accent);font-weight:600;">24/7</span>
+      <div class="cat-card-right">
+        <div class="cat-card-body">
+          <p class="cat-pitch">Com o Oz.Barber, sua barbearia controla agendamentos, atendimentos, serviços, produtos, comissões, caixa, clientes, estoque e relatórios em uma única plataforma moderna, segura e personalizada com a identidade do seu negócio.</p>
+          <ul class="cat-features">
+            <li>Sistema com a sua cara, 100% personalizável</li>
+            <li>Acesso pelo celular, tablet ou computador</li>
+            <li>Relatórios com a marca da sua barbearia</li>
+            <li>Mais controle, organização e gestão</li>
+          </ul>
         </div>
-        <a class="cat-btn-primary" href="https://ozbarber-oztech.vercel.app/">Conhecer Oz.Barber →</a>
+        <div class="cat-card-footer">
+          <div style="display:flex;gap:8px;margin-bottom:12px;">
+            <span style="flex:1;text-align:center;background:rgba(63,169,245,0.1);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:0.72rem;color:var(--blue);font-weight:600;">Pronto para uso</span>
+            <span style="flex:1;text-align:center;background:rgba(63,169,245,0.1);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:0.72rem;color:var(--blue);font-weight:600;">100% personalizável</span>
+            <span style="flex:1;text-align:center;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);border-radius:6px;padding:6px 10px;font-size:0.72rem;color:var(--accent);font-weight:600;">Web + Mobile</span>
+            <span style="flex:1;text-align:center;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);border-radius:6px;padding:6px 10px;font-size:0.72rem;color:var(--accent);font-weight:600;">Relatórios personalizados</span>
+          </div>
+          <a class="cat-btn-primary" href="https://ozbarber-oztech.vercel.app/">Conhecer Oz.Barber →</a>
+        </div>
       </div>
     </div>
     <!-- Oz.Wash -->
@@ -2064,24 +2071,26 @@
         <div class="cat-brand">Oz.Wash</div>
         <div class="cat-sub-tag">Gestão inteligente para lava-rápidos</div>
       </div>
-      <div class="cat-card-body">
-        <p class="cat-pitch">Chega de papel e planilha. Reúna tudo o que seu lava-rápido precisa em um só lugar — simples, rápido e acessível de qualquer dispositivo.</p>
-        <ul class="cat-features">
-          <li>Clientes, veículos e ordens de serviço</li>
-          <li>Financeiro completo e faturamento em tempo real</li>
-          <li>Dashboard com indicadores inteligentes</li>
-          <li>Personalize com a identidade do seu negócio</li>
-          <li>Funciona em celular, tablet e computador</li>
-          <li>Acesso seguro por e-mail — dados só seus</li>
-        </ul>
-      </div>
-      <div class="cat-card-footer">
-        <div style="display:flex;gap:8px;margin-bottom:12px;">
-          <span style="flex:1;text-align:center;background:rgba(63,169,245,0.1);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:0.75rem;color:var(--blue);font-weight:600;">🌐 Web</span>
-          <span style="flex:1;text-align:center;background:rgba(63,169,245,0.1);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:0.75rem;color:var(--blue);font-weight:600;">📱 Mobile</span>
-          <span style="flex:1;text-align:center;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);border-radius:6px;padding:6px 10px;font-size:0.75rem;color:var(--accent);font-weight:600;">24/7</span>
+      <div class="cat-card-right">
+        <div class="cat-card-body">
+          <p class="cat-pitch">Chega de papel e planilha. Reúna tudo o que seu lava-rápido precisa em um só lugar — simples, rápido e acessível de qualquer dispositivo.</p>
+          <ul class="cat-features">
+            <li>Clientes, veículos e ordens de serviço</li>
+            <li>Financeiro completo e faturamento em tempo real</li>
+            <li>Dashboard com indicadores inteligentes</li>
+            <li>Personalize com a identidade do seu negócio</li>
+            <li>Funciona em celular, tablet e computador</li>
+            <li>Acesso seguro por e-mail — dados só seus</li>
+          </ul>
         </div>
-        <a class="cat-btn-primary" href="https://oz-wash.vercel.app/" target="_blank" rel="noopener">Conhecer Oz.Wash →</a>
+        <div class="cat-card-footer">
+          <div style="display:flex;gap:8px;margin-bottom:12px;">
+            <span style="flex:1;text-align:center;background:rgba(63,169,245,0.1);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:0.75rem;color:var(--blue);font-weight:600;">🌐 Web</span>
+            <span style="flex:1;text-align:center;background:rgba(63,169,245,0.1);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:0.75rem;color:var(--blue);font-weight:600;">📱 Mobile</span>
+            <span style="flex:1;text-align:center;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);border-radius:6px;padding:6px 10px;font-size:0.75rem;color:var(--accent);font-weight:600;">24/7</span>
+          </div>
+          <a class="cat-btn-primary" href="https://oz-wash.vercel.app/" target="_blank" rel="noopener">Conhecer Oz.Wash →</a>
+        </div>
       </div>
     </div>
   </div>
@@ -2103,18 +2112,20 @@
         <div class="cat-brand">Oz.Finance</div>
         <div class="cat-sub-tag">Organize sua vida financeira com clareza</div>
       </div>
-      <div class="cat-card-body">
-        <p class="cat-pitch">Controle total das suas finanças em um só lugar. Acompanhe receitas, despesas, metas e investimentos de forma simples e visual.</p>
-        <ul class="cat-features">
-          <li>Controle de receitas e despesas</li>
-          <li>Categorização automática de gastos</li>
-          <li>Metas e planejamento financeiro</li>
-          <li>Gráficos e relatórios visuais</li>
-          <li>Funciona no celular e no computador</li>
-        </ul>
-      </div>
-      <div class="cat-card-footer">
-        <a class="cat-btn-primary" href="https://oztechsmartcontrol.github.io/Gestao-Financeira-" target="_blank" rel="noopener">Acessar Agora →</a>
+      <div class="cat-card-right">
+        <div class="cat-card-body">
+          <p class="cat-pitch">Controle total das suas finanças em um só lugar. Acompanhe receitas, despesas, metas e investimentos de forma simples e visual.</p>
+          <ul class="cat-features">
+            <li>Controle de receitas e despesas</li>
+            <li>Categorização automática de gastos</li>
+            <li>Metas e planejamento financeiro</li>
+            <li>Gráficos e relatórios visuais</li>
+            <li>Funciona no celular e no computador</li>
+          </ul>
+        </div>
+        <div class="cat-card-footer">
+          <a class="cat-btn-primary" href="https://oztechsmartcontrol.github.io/Gestao-Financeira-" target="_blank" rel="noopener">Acessar Agora →</a>
+        </div>
       </div>
     </div>
   </div>
