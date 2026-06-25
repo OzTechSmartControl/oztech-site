@@ -97,6 +97,34 @@
     transition: background 0.2s, color 0.2s !important;
   }
   .nav-cta:hover { background: var(--blue) !important; color: var(--bg) !important; }
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 28px;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: rgba(63,169,245,0.06);
+  }
+  .lang-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--muted);
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 2px 4px;
+    transition: color 0.2s;
+  }
+  .lang-btn:hover { color: var(--text); }
+  .lang-btn.active { color: var(--blue); }
+  .lang-sep { color: var(--border); font-size: 0.78rem; }
+  @media (max-width: 900px) {
+    .lang-switch { margin-left: 12px; }
+  }
 
   /* HERO */
   .hero {
@@ -1797,7 +1825,12 @@
 <img alt="OzTech Logo" height="512" onerror="this.style.display='none'" src="Logo_-_OzTech_SmartControl.png" width="512"/>
 <span>OzTech <small>SmartControl</small></span>
 </a>
-<ul><li><a href="#websites">Websites</a></li><li><a href="#catalogo">Catálogo</a></li><li><a href="#sobre">Sobre</a></li><li><a href="#planos">Planos</a></li><li><a href="#como-funciona">Como funciona</a></li><li><a class="nav-cta" href="#contato">Contato</a></li></ul>
+<ul><li><a data-i18n="nav.websites" href="#websites">Websites</a></li><li><a data-i18n="nav.catalog" href="#catalogo">Catálogo</a></li><li><a data-i18n="nav.about" href="#sobre">Sobre</a></li><li><a data-i18n="nav.plans" href="#planos">Planos</a></li><li><a data-i18n="nav.how" href="#como-funciona">Como funciona</a></li><li><a class="nav-cta" data-i18n="nav.contact" href="#contato">Contato</a></li></ul>
+<div class="lang-switch" id="lang-switch">
+  <button class="lang-btn" data-lang="en" onclick="applyLang('en')">EN</button>
+  <span class="lang-sep">|</span>
+  <button class="lang-btn active" data-lang="pt" onclick="applyLang('pt')">PT</button>
+</div>
 </nav>
 <!-- HERO -->
 <section class="hero">
@@ -1805,12 +1838,12 @@
 <div class="hero-bg-circle c2"></div>
 <div class="hero-bg-circle c3"></div>
 <div class="hero-content">
-  <div class="hero-badge">Automação, SaaS e Sistemas Sob Medida</div>
-  <h1>Sua visão. <span>Nossa tecnologia</span>.</h1>
-  <p>Desenvolvemos sistemas, automações e soluções digitais sob medida para transformar ideias em realidade.</p>
+  <div class="hero-badge" data-i18n="hero.badge">Automação, SaaS e Sistemas Sob Medida</div>
+  <h1 data-i18n="hero.title">Sua visão. <span>Nossa tecnologia</span>.</h1>
+  <p data-i18n="hero.subtitle">Desenvolvemos sistemas, automações e soluções digitais sob medida para transformar ideias em realidade.</p>
   <div class="hero-actions">
-    <a class="btn-primary" href="#contato">Solicitar orçamento</a>
-    <a class="btn-outline" href="#catalogo">Conhecer soluções</a>
+    <a class="btn-primary" data-i18n="hero.cta1" href="#contato">Solicitar orçamento</a>
+    <a class="btn-outline" data-i18n="hero.cta2" href="#catalogo">Conhecer soluções</a>
   </div>
 </div>
 <div class="hero-visual">
@@ -1820,36 +1853,36 @@
 
 <!-- STATS -->
 <div class="stats-bar">
-  <div class="stat-item"><span class="stat-num">Web e Mobile</span><span class="stat-label">Acesse de qualquer lugar, em qualquer dispositivo, com segurança e praticidade.</span></div>
-  <div class="stat-item"><span class="stat-num">Licença por Assinatura</span><span class="stat-label">Planos flexíveis e escaláveis. Pague apenas pelo que usa e cancele quando quiser.</span></div>
-  <div class="stat-item"><span class="stat-num">100% Personalizável</span><span class="stat-label">Seu sistema com a cara da sua empresa. Cores, logo, domínio e identidade visual.</span></div>
-  <div class="stat-item"><span class="stat-num">Suporte Especializado</span><span class="stat-label">Time pronto para te atender e acompanhar o crescimento do seu negócio.</span></div>
+  <div class="stat-item"><span class="stat-num" data-i18n="stats.1.num">Web e Mobile</span><span class="stat-label" data-i18n="stats.1.label">Acesse de qualquer lugar, em qualquer dispositivo, com segurança e praticidade.</span></div>
+  <div class="stat-item"><span class="stat-num" data-i18n="stats.2.num">Licença por Assinatura</span><span class="stat-label" data-i18n="stats.2.label">Planos flexíveis e escaláveis. Pague apenas pelo que usa e cancele quando quiser.</span></div>
+  <div class="stat-item"><span class="stat-num" data-i18n="stats.3.num">100% Personalizável</span><span class="stat-label" data-i18n="stats.3.label">Seu sistema com a cara da sua empresa. Cores, logo, domínio e identidade visual.</span></div>
+  <div class="stat-item"><span class="stat-num" data-i18n="stats.4.num">Suporte Especializado</span><span class="stat-label" data-i18n="stats.4.label">Time pronto para te atender e acompanhar o crescimento do seu negócio.</span></div>
 </div>
 </div>
 <div class="prob-header">
-<h2 class="section-title" style="text-align:center;">Sua operação está crescendo,<br><span style="color:var(--blue)">mas os processos continuam manuais?</span></h2>
-  <p class="section-sub" style="text-align:center; max-width:600px; margin:16px auto 48px;">A falta de automação pode gerar retrabalho, erros e perda de tempo.<br>Nossas soluções transformam processos manuais em fluxos inteligentes.</p>
+<h2 class="section-title" data-i18n="prob.title" style="text-align:center;">Sua operação está crescendo,<br><span style="color:var(--blue)">mas os processos continuam manuais?</span></h2>
+  <p class="section-sub" data-i18n="prob.subtitle" style="text-align:center; max-width:600px; margin:16px auto 48px;">A falta de automação pode gerar retrabalho, erros e perda de tempo.<br>Nossas soluções transformam processos manuais em fluxos inteligentes.</p>
 </div>
 <div class="services-grid problem-grid">
   <div class="service-card prob-card">
-    <h3>Processos lentos</h3>
-    <p>Tarefas manuais consomem tempo e reduzem a produtividade da sua equipe.</p>
-    <div class="prob-check"><span class="prob-check-icon" style="color:#818cf8;">✔</span> Aumente a velocidade e ganhe mais tempo.</div>
+    <h3 data-i18n="prob.1.title">Processos lentos</h3>
+    <p data-i18n="prob.1.text">Tarefas manuais consomem tempo e reduzem a produtividade da sua equipe.</p>
+    <div class="prob-check"><span class="prob-check-icon" style="color:#818cf8;">✔</span> <span data-i18n="prob.1.check">Aumente a velocidade e ganhe mais tempo.</span></div>
   </div>
   <div class="service-card prob-card">
-    <h3>Falta de padronização</h3>
-    <p>Cada pessoa faz de um jeito, resultando em falhas e informações inconsistentes.</p>
-    <div class="prob-check"><span class="prob-check-icon" style="color:#f472b6;">✔</span> Padronize processos e reduza erros operacionais.</div>
+    <h3 data-i18n="prob.2.title">Falta de padronização</h3>
+    <p data-i18n="prob.2.text">Cada pessoa faz de um jeito, resultando em falhas e informações inconsistentes.</p>
+    <div class="prob-check"><span class="prob-check-icon" style="color:#f472b6;">✔</span> <span data-i18n="prob.2.check">Padronize processos e reduza erros operacionais.</span></div>
   </div>
   <div class="service-card prob-card">
-    <h3>Informações desconectadas</h3>
-    <p>Dados espalhados em planilhas e sistemas que não se comunicam entre si.</p>
-    <div class="prob-check"><span class="prob-check-icon" style="color:#34d399;">✔</span> Centralize dados e tenha visão completa do seu negócio.</div>
+    <h3 data-i18n="prob.3.title">Informações desconectadas</h3>
+    <p data-i18n="prob.3.text">Dados espalhados em planilhas e sistemas que não se comunicam entre si.</p>
+    <div class="prob-check"><span class="prob-check-icon" style="color:#34d399;">✔</span> <span data-i18n="prob.3.check">Centralize dados e tenha visão completa do seu negócio.</span></div>
   </div>
   <div class="service-card prob-card">
-    <h3>Tomadas reativas</h3>
-    <p>Sem dados em tempo real, as decisões são tomadas com atraso e sem segurança.</p>
-    <div class="prob-check"><span class="prob-check-icon" style="color:#60a5fa;">✔</span> Tenha informações em tempo real para decidir melhor.</div>
+    <h3 data-i18n="prob.4.title">Tomadas reativas</h3>
+    <p data-i18n="prob.4.text">Sem dados em tempo real, as decisões são tomadas com atraso e sem segurança.</p>
+    <div class="prob-check"><span class="prob-check-icon" style="color:#60a5fa;">✔</span> <span data-i18n="prob.4.check">Tenha informações em tempo real para decidir melhor.</span></div>
   </div>
 </div>
 
@@ -1857,17 +1890,17 @@
 <!-- O QUE FAZEMOS -->
 <section id="o-que-fazemos" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
 <div style="text-align:center; margin-bottom:48px;">
-  <h2 class="section-title">O que fazemos</h2>
-  <p class="section-sub" style="max-width:660px; margin:0 auto;">Temos sistemas prontos totalmente adaptáveis ao seu negócio e também desenvolvemos soluções sob medida para empresas e profissionais.</p>
+  <h2 class="section-title" data-i18n="swhat.title">O que fazemos</h2>
+  <p class="section-sub" data-i18n="swhat.subtitle" style="max-width:660px; margin:0 auto;">Temos sistemas prontos totalmente adaptáveis ao seu negócio e também desenvolvemos soluções sob medida para empresas e profissionais.</p>
 </div>
 <div class="swhat-grid">
-  <div class="swhat-card"><div class="swhat-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div><h4>Sistemas Web</h4><p>Plataformas completas com painel administrativo e acesso de qualquer dispositivo.</p></div>
-  <div class="swhat-card"><div class="swhat-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div><h4>Automação de Processos</h4><p>Elimine tarefas repetitivas com fluxos automáticos que trabalham por você.</p></div>
-  <div class="swhat-card"><div class="swhat-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="7.5" y1="17" x2="7.5" y2="13"/><line x1="12" y1="17" x2="12" y2="11"/><line x1="16.5" y1="17" x2="16.5" y2="14.5"/></svg></div><h4>Dashboards Inteligentes</h4><p>Visualize KPIs e indicadores da sua operação em tempo real, numa tela clara e moderna.</p></div>
-  <div class="swhat-card"><div class="swhat-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M6.5 19a4.5 4.5 0 0 1-.6-8.96 6 6 0 0 1 11.4-2.1A5 5 0 0 1 17.5 19H6.5Z"/></svg></div><h4>SaaS Personalizado</h4><p>Sistemas em nuvem prontos para usar, escaláveis e adaptados à sua marca e operação.</p></div>
-  <div class="swhat-card"><div class="swhat-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h4l2 2.5h9A1.5 1.5 0 0 1 21 9v8.5A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/></svg></div><h4>CRM e ERP</h4><p>Centralize clientes, vendas, estoque e processos em um sistema integrado.</p></div>
-  <div class="swhat-card"><div class="swhat-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M9.5 14.5 14.5 9.5"/><path d="M11 6.5l1.2-1.2a3.2 3.2 0 0 1 4.5 4.5L15.5 11"/><path d="M13 17.5l-1.2 1.2a3.2 3.2 0 0 1-4.5-4.5L8.5 13"/></svg></div><h4>Integrações API</h4><p>Conectamos sistemas e ferramentas para eliminar retrabalho e unificar seus dados.</p></div>
-  <div class="swhat-card"><div class="swhat-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><rect x="5" y="9" width="14" height="11" rx="3"/><line x1="12" y1="9" x2="12" y2="5.5"/><circle cx="12" cy="4.3" r="1.1" fill="currentColor" stroke="none"/><circle cx="9" cy="14" r="1.15" fill="currentColor" stroke="none"/><circle cx="15" cy="14" r="1.15" fill="currentColor" stroke="none"/><line x1="9" y1="17.3" x2="15" y2="17.3"/><line x1="3.5" y1="13" x2="5" y2="13"/><line x1="19" y1="13" x2="20.5" y2="13"/></svg></div><h4>IA e Chatbots</h4><p>Atendimento inteligente e automação conversacional com inteligência artificial.</p></div>
+  <div class="swhat-card"><div class="swhat-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div><h4 data-i18n="swhat.1.title">Sistemas Web</h4><p data-i18n="swhat.1.text">Plataformas completas com painel administrativo e acesso de qualquer dispositivo.</p></div>
+  <div class="swhat-card"><div class="swhat-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div><h4 data-i18n="swhat.2.title">Automação de Processos</h4><p data-i18n="swhat.2.text">Elimine tarefas repetitivas com fluxos automáticos que trabalham por você.</p></div>
+  <div class="swhat-card"><div class="swhat-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="7.5" y1="17" x2="7.5" y2="13"/><line x1="12" y1="17" x2="12" y2="11"/><line x1="16.5" y1="17" x2="16.5" y2="14.5"/></svg></div><h4 data-i18n="swhat.3.title">Dashboards Inteligentes</h4><p data-i18n="swhat.3.text">Visualize KPIs e indicadores da sua operação em tempo real, numa tela clara e moderna.</p></div>
+  <div class="swhat-card"><div class="swhat-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M6.5 19a4.5 4.5 0 0 1-.6-8.96 6 6 0 0 1 11.4-2.1A5 5 0 0 1 17.5 19H6.5Z"/></svg></div><h4 data-i18n="swhat.4.title">SaaS Personalizado</h4><p data-i18n="swhat.4.text">Sistemas em nuvem prontos para usar, escaláveis e adaptados à sua marca e operação.</p></div>
+  <div class="swhat-card"><div class="swhat-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h4l2 2.5h9A1.5 1.5 0 0 1 21 9v8.5A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5z"/></svg></div><h4 data-i18n="swhat.5.title">CRM e ERP</h4><p data-i18n="swhat.5.text">Centralize clientes, vendas, estoque e processos em um sistema integrado.</p></div>
+  <div class="swhat-card"><div class="swhat-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M9.5 14.5 14.5 9.5"/><path d="M11 6.5l1.2-1.2a3.2 3.2 0 0 1 4.5 4.5L15.5 11"/><path d="M13 17.5l-1.2 1.2a3.2 3.2 0 0 1-4.5-4.5L8.5 13"/></svg></div><h4 data-i18n="swhat.6.title">Integrações API</h4><p data-i18n="swhat.6.text">Conectamos sistemas e ferramentas para eliminar retrabalho e unificar seus dados.</p></div>
+  <div class="swhat-card"><div class="swhat-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><rect x="5" y="9" width="14" height="11" rx="3"/><line x1="12" y1="9" x2="12" y2="5.5"/><circle cx="12" cy="4.3" r="1.1" fill="currentColor" stroke="none"/><circle cx="9" cy="14" r="1.15" fill="currentColor" stroke="none"/><circle cx="15" cy="14" r="1.15" fill="currentColor" stroke="none"/><line x1="9" y1="17.3" x2="15" y2="17.3"/><line x1="3.5" y1="13" x2="5" y2="13"/><line x1="19" y1="13" x2="20.5" y2="13"/></svg></div><h4 data-i18n="swhat.7.title">IA e Chatbots</h4><p data-i18n="swhat.7.text">Atendimento inteligente e automação conversacional com inteligência artificial.</p></div>
 </div>
 </section>
 
@@ -1875,32 +1908,32 @@
 <section id="websites" style="overflow:hidden;">
 <div class="web-wrap">
   <div class="web-text">
-    <div class="section-tag">Desenvolvimento Web</div>
-    <h2 class="section-title">Sites modernos, rápidos e<br/><span class="web-grad">100% responsivos</span></h2>
-    <p class="section-sub">Criamos websites profissionais, institucionais e comerciais que fortalecem sua presença digital, valorizam sua marca e ajudam a converter visitantes em clientes.</p>
+    <div class="section-tag" data-i18n="web.tag">Desenvolvimento Web</div>
+    <h2 class="section-title" data-i18n="web.title">Sites modernos, rápidos e<br/><span class="web-grad">100% responsivos</span></h2>
+    <p class="section-sub" data-i18n="web.subtitle">Criamos websites profissionais, institucionais e comerciais que fortalecem sua presença digital, valorizam sua marca e ajudam a converter visitantes em clientes.</p>
 
     <div class="web-badges">
-      <div class="web-badge"><div class="web-badge-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24" width="15" height="15"><rect x="2" y="3" width="14" height="10" rx="1.5"/><line x1="6" y1="16" x2="12" y2="16"/><rect x="13" y="9" width="9" height="13" rx="1.5"/></svg></div>100% Responsivo</div>
-      <div class="web-badge"><div class="web-badge-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24" width="15" height="15"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>Alto Desempenho</div>
-      <div class="web-badge"><div class="web-badge-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24" width="15" height="15"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3z"/><path d="M9 12l2.2 2.2L15.5 9.5"/></svg></div>Seguro e Confiável</div>
+      <div class="web-badge"><div class="web-badge-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24" width="15" height="15"><rect x="2" y="3" width="14" height="10" rx="1.5"/><line x1="6" y1="16" x2="12" y2="16"/><rect x="13" y="9" width="9" height="13" rx="1.5"/></svg></div><span data-i18n="web.badge1">100% Responsivo</span></div>
+      <div class="web-badge"><div class="web-badge-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24" width="15" height="15"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div><span data-i18n="web.badge2">Alto Desempenho</span></div>
+      <div class="web-badge"><div class="web-badge-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24" width="15" height="15"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3z"/><path d="M9 12l2.2 2.2L15.5 9.5"/></svg></div><span data-i18n="web.badge3">Seguro e Confiável</span></div>
     </div>
 
     <div class="web-audience">
       <div class="web-aud-item">
         <div class="web-aud-icon" style="background:rgba(63,169,245,0.12);border-color:rgba(63,169,245,0.35);color:var(--blue);"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c0-4 3.4-7 7.5-7s7.5 3 7.5 7"/></svg></div>
-        <div><strong>Para Pessoas</strong><p>Portfólios, páginas pessoais e sites profissionais com visual moderno, fácil navegação e manutenção simples.</p></div>
+        <div><strong data-i18n="web.aud1.title">Para Pessoas</strong><p data-i18n="web.aud1.text">Portfólios, páginas pessoais e sites profissionais com visual moderno, fácil navegação e manutenção simples.</p></div>
       </div>
       <div class="web-aud-item">
         <div class="web-aud-icon" style="background:rgba(0,229,255,0.10);border-color:rgba(0,229,255,0.35);color:var(--accent);"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22" height="22"><polyline points="3,17 9,11 13,15 21,7"/><polyline points="15,7 21,7 21,13"/></svg></div>
-        <div><strong>Para Negócios</strong><p>Sites estratégicos para apresentar serviços, atrair clientes e aumentar sua presença no ambiente digital.</p></div>
+        <div><strong data-i18n="web.aud2.title">Para Negócios</strong><p data-i18n="web.aud2.text">Sites estratégicos para apresentar serviços, atrair clientes e aumentar sua presença no ambiente digital.</p></div>
       </div>
       <div class="web-aud-item">
         <div class="web-aud-icon" style="background:rgba(167,139,250,0.12);border-color:rgba(167,139,250,0.35);color:#a78bfa;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="22" height="22"><rect x="4" y="3" width="16" height="18" rx="1"/><line x1="8.5" y1="8" x2="8.5" y2="8.01"/><line x1="15.5" y1="8" x2="15.5" y2="8.01"/><line x1="8.5" y1="13" x2="8.5" y2="13.01"/><line x1="15.5" y1="13" x2="15.5" y2="13.01"/><rect x="9.5" y="16.5" width="5" height="4.5"/></svg></div>
-        <div><strong>Para Empresas</strong><p>Soluções robustas, seguras e escaláveis para fortalecer a marca e acompanhar o crescimento do negócio.</p></div>
+        <div><strong data-i18n="web.aud3.title">Para Empresas</strong><p data-i18n="web.aud3.text">Soluções robustas, seguras e escaláveis para fortalecer a marca e acompanhar o crescimento do negócio.</p></div>
       </div>
     </div>
 
-    <a class="btn-primary" href="#contato">Quero criar meu site →</a>
+    <a class="btn-primary" data-i18n="web.cta" href="#contato">Quero criar meu site →</a>
   </div>
 
   <div class="web-visual">
@@ -1911,59 +1944,59 @@
 
 <!-- POR QUE TER UM SITE PROFISSIONAL -->
 <div class="web-why">
-  <div class="web-why-tag">Por que ter um site profissional?</div>
+  <div class="web-why-tag" data-i18n="web.why.tag">Por que ter um site profissional?</div>
   <div class="web-why-grid">
-    <div class="web-why-item"><div class="web-why-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="26" height="26"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div><h4>Presença 24/7</h4><p>Seu negócio disponível todos os dias, a toda hora.</p></div>
-    <div class="web-why-item"><div class="web-why-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="26" height="26"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></div><h4>Mais Credibilidade</h4><p>Transmita confiança e profissionalismo para seus clientes.</p></div>
-    <div class="web-why-item"><div class="web-why-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="26" height="26"><circle cx="16.5" cy="8.5" r="2.6"/><path d="M11.3 19c0-2.9 2.3-4.8 5.2-4.8s5.2 1.9 5.2 4.8"/><circle cx="8.5" cy="8" r="3.3"/><path d="M2 19c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/></svg></div><h4>Mais Clientes</h4><p>Atraia, conquiste e fidelize clientes de forma constante.</p></div>
-    <div class="web-why-item"><div class="web-why-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="26" height="26"><line x1="4" y1="21" x2="4" y2="16"/><line x1="9.5" y1="21" x2="9.5" y2="12"/><line x1="15" y1="21" x2="15" y2="8"/><path d="M3 12 L20 4"/><path d="M14.5 4 L20 4 L20 9.5"/></svg></div><h4>Mais Resultados</h4><p>Sites estratégicos que geram conversões e impulsionam vendas.</p></div>
+    <div class="web-why-item"><div class="web-why-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="26" height="26"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div><h4 data-i18n="web.why1.title">Presença 24/7</h4><p data-i18n="web.why1.text">Seu negócio disponível todos os dias, a toda hora.</p></div>
+    <div class="web-why-item"><div class="web-why-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="26" height="26"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></div><h4 data-i18n="web.why2.title">Mais Credibilidade</h4><p data-i18n="web.why2.text">Transmita confiança e profissionalismo para seus clientes.</p></div>
+    <div class="web-why-item"><div class="web-why-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="26" height="26"><circle cx="16.5" cy="8.5" r="2.6"/><path d="M11.3 19c0-2.9 2.3-4.8 5.2-4.8s5.2 1.9 5.2 4.8"/><circle cx="8.5" cy="8" r="3.3"/><path d="M2 19c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/></svg></div><h4 data-i18n="web.why3.title">Mais Clientes</h4><p data-i18n="web.why3.text">Atraia, conquiste e fidelize clientes de forma constante.</p></div>
+    <div class="web-why-item"><div class="web-why-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="26" height="26"><line x1="4" y1="21" x2="4" y2="16"/><line x1="9.5" y1="21" x2="9.5" y2="12"/><line x1="15" y1="21" x2="15" y2="8"/><path d="M3 12 L20 4"/><path d="M14.5 4 L20 4 L20 9.5"/></svg></div><h4 data-i18n="web.why4.title">Mais Resultados</h4><p data-i18n="web.why4.text">Sites estratégicos que geram conversões e impulsionam vendas.</p></div>
   </div>
 </div>
 
 <!-- NOSSOS CLIENTES -->
 <div class="web-clients">
-  <div class="web-clients-divider"><span></span><strong>Nossos Clientes</strong><span></span></div>
+  <div class="web-clients-divider"><span></span><strong data-i18n="web.clients.tag">Nossos Clientes</strong><span></span></div>
   <div class="web-clients-viewport">
     <div class="web-clients-track">
-      <div class="client-card"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><line x1="6.5" y1="12" x2="17.5" y2="12"/><rect x="2.5" y="9" width="3" height="6" rx="1"/><rect x="18.5" y="9" width="3" height="6" rx="1"/><rect x="5.5" y="7" width="2" height="10" rx="1"/><rect x="16.5" y="7" width="2" height="10" rx="1"/></svg></div><h5>Academias</h5><p>Divulgue planos, horários e conquiste mais alunos.</p></div>
-      <div class="client-card"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div><h5>Consultórios Clínicos</h5><p>Agendamentos, serviços e informações sempre acessíveis.</p></div>
-      <div class="client-card"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M4 20 14 4l6 16z"/><line x1="9" y1="20" x2="13" y2="12"/></svg></div><h5>Arquitetos</h5><p>Mostre seus projetos e seu portfólio com estilo e profissionalismo.</p></div>
-      <div class="client-card"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 11.5a1.5 1.5 0 01-1.5 1.5H7.7a1.5 1.5 0 01-1.5-1.5z"/><path d="M8.5 8V6a3.5 3.5 0 017 0v2"/></svg></div><h5>Lojas</h5><p>Apresente seus produtos e aumente suas vendas online.</p></div>
-      <div class="client-card"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1"/><line x1="8.5" y1="8" x2="8.5" y2="8.01"/><line x1="15.5" y1="8" x2="15.5" y2="8.01"/><line x1="8.5" y1="13" x2="8.5" y2="13.01"/><line x1="15.5" y1="13" x2="15.5" y2="13.01"/><rect x="9.5" y="16.5" width="5" height="4.5"/></svg></div><h5>Empresas</h5><p>Fortaleça sua marca e gere mais oportunidades de negócio.</p></div>
-      <div class="client-card"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c0-4 3.4-7 7.5-7s7.5 3 7.5 7"/></svg></div><h5>Sites Pessoais Profissionais</h5><p>Destaque suas habilidades e conquiste novas oportunidades.</p></div>
-      <div class="client-card"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.2"/><circle cx="6" cy="18" r="2.2"/><line x1="7.8" y1="7.6" x2="20" y2="18"/><line x1="7.8" y1="16.4" x2="20" y2="6"/></svg></div><h5>Barbearias</h5><p>Agendamentos, serviços e conexão com seus clientes.</p></div>
-      <div class="client-card"><div class="cc-icon" style="color:#f5a623;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M12 3 21 19H3z"/><circle cx="12" cy="10" r="0.9" fill="currentColor" stroke="none"/><circle cx="9.5" cy="14" r="0.9" fill="currentColor" stroke="none"/><circle cx="14.5" cy="14" r="0.9" fill="currentColor" stroke="none"/></svg></div><h5>Pizzarias</h5><p>Cardápio online e mais pedidos pelo seu site.</p></div>
-      <div class="client-card"><div class="cc-icon" style="color:#34d399;"><svg fill="currentColor" stroke="none" viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="5" ry="4"/><ellipse cx="5.5" cy="9.5" rx="2.2" ry="2.8"/><ellipse cx="18.5" cy="9.5" rx="2.2" ry="2.8"/><ellipse cx="9" cy="5.5" rx="1.8" ry="2.3"/><ellipse cx="15" cy="5.5" rx="1.8" ry="2.3"/></svg></div><h5>Petshops</h5><p>Produtos, serviços e cuidados para o melhor amigo.</p></div>
-      <div class="client-card"><div class="cc-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="18" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></div><h5>E muito mais...</h5><p>Soluções para todo tipo de negócio e segmento.</p></div>
+      <div class="client-card"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><line x1="6.5" y1="12" x2="17.5" y2="12"/><rect x="2.5" y="9" width="3" height="6" rx="1"/><rect x="18.5" y="9" width="3" height="6" rx="1"/><rect x="5.5" y="7" width="2" height="10" rx="1"/><rect x="16.5" y="7" width="2" height="10" rx="1"/></svg></div><h5 data-i18n="cc.1.title">Academias</h5><p data-i18n="cc.1.text">Divulgue planos, horários e conquiste mais alunos.</p></div>
+      <div class="client-card"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div><h5 data-i18n="cc.2.title">Consultórios Clínicos</h5><p data-i18n="cc.2.text">Agendamentos, serviços e informações sempre acessíveis.</p></div>
+      <div class="client-card"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M4 20 14 4l6 16z"/><line x1="9" y1="20" x2="13" y2="12"/></svg></div><h5 data-i18n="cc.3.title">Arquitetos</h5><p data-i18n="cc.3.text">Mostre seus projetos e seu portfólio com estilo e profissionalismo.</p></div>
+      <div class="client-card"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 11.5a1.5 1.5 0 01-1.5 1.5H7.7a1.5 1.5 0 01-1.5-1.5z"/><path d="M8.5 8V6a3.5 3.5 0 017 0v2"/></svg></div><h5 data-i18n="cc.4.title">Lojas</h5><p data-i18n="cc.4.text">Apresente seus produtos e aumente suas vendas online.</p></div>
+      <div class="client-card"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1"/><line x1="8.5" y1="8" x2="8.5" y2="8.01"/><line x1="15.5" y1="8" x2="15.5" y2="8.01"/><line x1="8.5" y1="13" x2="8.5" y2="13.01"/><line x1="15.5" y1="13" x2="15.5" y2="13.01"/><rect x="9.5" y="16.5" width="5" height="4.5"/></svg></div><h5 data-i18n="cc.5.title">Empresas</h5><p data-i18n="cc.5.text">Fortaleça sua marca e gere mais oportunidades de negócio.</p></div>
+      <div class="client-card"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c0-4 3.4-7 7.5-7s7.5 3 7.5 7"/></svg></div><h5 data-i18n="cc.6.title">Sites Pessoais Profissionais</h5><p data-i18n="cc.6.text">Destaque suas habilidades e conquiste novas oportunidades.</p></div>
+      <div class="client-card"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.2"/><circle cx="6" cy="18" r="2.2"/><line x1="7.8" y1="7.6" x2="20" y2="18"/><line x1="7.8" y1="16.4" x2="20" y2="6"/></svg></div><h5 data-i18n="cc.7.title">Barbearias</h5><p data-i18n="cc.7.text">Agendamentos, serviços e conexão com seus clientes.</p></div>
+      <div class="client-card"><div class="cc-icon" style="color:#f5a623;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M12 3 21 19H3z"/><circle cx="12" cy="10" r="0.9" fill="currentColor" stroke="none"/><circle cx="9.5" cy="14" r="0.9" fill="currentColor" stroke="none"/><circle cx="14.5" cy="14" r="0.9" fill="currentColor" stroke="none"/></svg></div><h5 data-i18n="cc.8.title">Pizzarias</h5><p data-i18n="cc.8.text">Cardápio online e mais pedidos pelo seu site.</p></div>
+      <div class="client-card"><div class="cc-icon" style="color:#34d399;"><svg fill="currentColor" stroke="none" viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="5" ry="4"/><ellipse cx="5.5" cy="9.5" rx="2.2" ry="2.8"/><ellipse cx="18.5" cy="9.5" rx="2.2" ry="2.8"/><ellipse cx="9" cy="5.5" rx="1.8" ry="2.3"/><ellipse cx="15" cy="5.5" rx="1.8" ry="2.3"/></svg></div><h5 data-i18n="cc.9.title">Petshops</h5><p data-i18n="cc.9.text">Produtos, serviços e cuidados para o melhor amigo.</p></div>
+      <div class="client-card"><div class="cc-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="18" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></div><h5 data-i18n="cc.10.title">E muito mais...</h5><p data-i18n="cc.10.text">Soluções para todo tipo de negócio e segmento.</p></div>
 
-      <div class="client-card" aria-hidden="true"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><line x1="6.5" y1="12" x2="17.5" y2="12"/><rect x="2.5" y="9" width="3" height="6" rx="1"/><rect x="18.5" y="9" width="3" height="6" rx="1"/><rect x="5.5" y="7" width="2" height="10" rx="1"/><rect x="16.5" y="7" width="2" height="10" rx="1"/></svg></div><h5>Academias</h5><p>Divulgue planos, horários e conquiste mais alunos.</p></div>
-      <div class="client-card" aria-hidden="true"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div><h5>Consultórios Clínicos</h5><p>Agendamentos, serviços e informações sempre acessíveis.</p></div>
-      <div class="client-card" aria-hidden="true"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M4 20 14 4l6 16z"/><line x1="9" y1="20" x2="13" y2="12"/></svg></div><h5>Arquitetos</h5><p>Mostre seus projetos e seu portfólio com estilo e profissionalismo.</p></div>
-      <div class="client-card" aria-hidden="true"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 11.5a1.5 1.5 0 01-1.5 1.5H7.7a1.5 1.5 0 01-1.5-1.5z"/><path d="M8.5 8V6a3.5 3.5 0 017 0v2"/></svg></div><h5>Lojas</h5><p>Apresente seus produtos e aumente suas vendas online.</p></div>
-      <div class="client-card" aria-hidden="true"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1"/><line x1="8.5" y1="8" x2="8.5" y2="8.01"/><line x1="15.5" y1="8" x2="15.5" y2="8.01"/><line x1="8.5" y1="13" x2="8.5" y2="13.01"/><line x1="15.5" y1="13" x2="15.5" y2="13.01"/><rect x="9.5" y="16.5" width="5" height="4.5"/></svg></div><h5>Empresas</h5><p>Fortaleça sua marca e gere mais oportunidades de negócio.</p></div>
-      <div class="client-card" aria-hidden="true"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c0-4 3.4-7 7.5-7s7.5 3 7.5 7"/></svg></div><h5>Sites Pessoais Profissionais</h5><p>Destaque suas habilidades e conquiste novas oportunidades.</p></div>
-      <div class="client-card" aria-hidden="true"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.2"/><circle cx="6" cy="18" r="2.2"/><line x1="7.8" y1="7.6" x2="20" y2="18"/><line x1="7.8" y1="16.4" x2="20" y2="6"/></svg></div><h5>Barbearias</h5><p>Agendamentos, serviços e conexão com seus clientes.</p></div>
-      <div class="client-card" aria-hidden="true"><div class="cc-icon" style="color:#f5a623;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M12 3 21 19H3z"/><circle cx="12" cy="10" r="0.9" fill="currentColor" stroke="none"/><circle cx="9.5" cy="14" r="0.9" fill="currentColor" stroke="none"/><circle cx="14.5" cy="14" r="0.9" fill="currentColor" stroke="none"/></svg></div><h5>Pizzarias</h5><p>Cardápio online e mais pedidos pelo seu site.</p></div>
-      <div class="client-card" aria-hidden="true"><div class="cc-icon" style="color:#34d399;"><svg fill="currentColor" stroke="none" viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="5" ry="4"/><ellipse cx="5.5" cy="9.5" rx="2.2" ry="2.8"/><ellipse cx="18.5" cy="9.5" rx="2.2" ry="2.8"/><ellipse cx="9" cy="5.5" rx="1.8" ry="2.3"/><ellipse cx="15" cy="5.5" rx="1.8" ry="2.3"/></svg></div><h5>Petshops</h5><p>Produtos, serviços e cuidados para o melhor amigo.</p></div>
-      <div class="client-card" aria-hidden="true"><div class="cc-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="18" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></div><h5>E muito mais...</h5><p>Soluções para todo tipo de negócio e segmento.</p></div>
+      <div class="client-card" aria-hidden="true"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><line x1="6.5" y1="12" x2="17.5" y2="12"/><rect x="2.5" y="9" width="3" height="6" rx="1"/><rect x="18.5" y="9" width="3" height="6" rx="1"/><rect x="5.5" y="7" width="2" height="10" rx="1"/><rect x="16.5" y="7" width="2" height="10" rx="1"/></svg></div><h5 data-i18n="cc.1.title">Academias</h5><p data-i18n="cc.1.text">Divulgue planos, horários e conquiste mais alunos.</p></div>
+      <div class="client-card" aria-hidden="true"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div><h5 data-i18n="cc.2.title">Consultórios Clínicos</h5><p data-i18n="cc.2.text">Agendamentos, serviços e informações sempre acessíveis.</p></div>
+      <div class="client-card" aria-hidden="true"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M4 20 14 4l6 16z"/><line x1="9" y1="20" x2="13" y2="12"/></svg></div><h5 data-i18n="cc.3.title">Arquitetos</h5><p data-i18n="cc.3.text">Mostre seus projetos e seu portfólio com estilo e profissionalismo.</p></div>
+      <div class="client-card" aria-hidden="true"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 11.5a1.5 1.5 0 01-1.5 1.5H7.7a1.5 1.5 0 01-1.5-1.5z"/><path d="M8.5 8V6a3.5 3.5 0 017 0v2"/></svg></div><h5 data-i18n="cc.4.title">Lojas</h5><p data-i18n="cc.4.text">Apresente seus produtos e aumente suas vendas online.</p></div>
+      <div class="client-card" aria-hidden="true"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1"/><line x1="8.5" y1="8" x2="8.5" y2="8.01"/><line x1="15.5" y1="8" x2="15.5" y2="8.01"/><line x1="8.5" y1="13" x2="8.5" y2="13.01"/><line x1="15.5" y1="13" x2="15.5" y2="13.01"/><rect x="9.5" y="16.5" width="5" height="4.5"/></svg></div><h5 data-i18n="cc.5.title">Empresas</h5><p data-i18n="cc.5.text">Fortaleça sua marca e gere mais oportunidades de negócio.</p></div>
+      <div class="client-card" aria-hidden="true"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c0-4 3.4-7 7.5-7s7.5 3 7.5 7"/></svg></div><h5 data-i18n="cc.6.title">Sites Pessoais Profissionais</h5><p data-i18n="cc.6.text">Destaque suas habilidades e conquiste novas oportunidades.</p></div>
+      <div class="client-card" aria-hidden="true"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.2"/><circle cx="6" cy="18" r="2.2"/><line x1="7.8" y1="7.6" x2="20" y2="18"/><line x1="7.8" y1="16.4" x2="20" y2="6"/></svg></div><h5 data-i18n="cc.7.title">Barbearias</h5><p data-i18n="cc.7.text">Agendamentos, serviços e conexão com seus clientes.</p></div>
+      <div class="client-card" aria-hidden="true"><div class="cc-icon" style="color:#f5a623;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M12 3 21 19H3z"/><circle cx="12" cy="10" r="0.9" fill="currentColor" stroke="none"/><circle cx="9.5" cy="14" r="0.9" fill="currentColor" stroke="none"/><circle cx="14.5" cy="14" r="0.9" fill="currentColor" stroke="none"/></svg></div><h5 data-i18n="cc.8.title">Pizzarias</h5><p data-i18n="cc.8.text">Cardápio online e mais pedidos pelo seu site.</p></div>
+      <div class="client-card" aria-hidden="true"><div class="cc-icon" style="color:#34d399;"><svg fill="currentColor" stroke="none" viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="5" ry="4"/><ellipse cx="5.5" cy="9.5" rx="2.2" ry="2.8"/><ellipse cx="18.5" cy="9.5" rx="2.2" ry="2.8"/><ellipse cx="9" cy="5.5" rx="1.8" ry="2.3"/><ellipse cx="15" cy="5.5" rx="1.8" ry="2.3"/></svg></div><h5 data-i18n="cc.9.title">Petshops</h5><p data-i18n="cc.9.text">Produtos, serviços e cuidados para o melhor amigo.</p></div>
+      <div class="client-card" aria-hidden="true"><div class="cc-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="18" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></div><h5 data-i18n="cc.10.title">E muito mais...</h5><p data-i18n="cc.10.text">Soluções para todo tipo de negócio e segmento.</p></div>
     </div>
   </div>
 </div>
 
 <!-- BOTTOM CTA BAR -->
 <div class="web-bottom-bar">
-  <div class="web-bottom-tag"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="14" height="14" style="vertical-align:-2px;margin-right:4px;"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3z"/><path d="M9 12l2.2 2.2L15.5 9.5"/></svg>Design Moderno • Tecnologia • Performance • Segurança • SEO</div>
-  <div class="web-bottom-cta-text">Vamos criar algo incrível para o seu negócio?</div>
-  <a class="btn-primary" href="#contato">Fale com um especialista →</a>
+  <div class="web-bottom-tag"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="14" height="14" style="vertical-align:-2px;margin-right:4px;"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3z"/><path d="M9 12l2.2 2.2L15.5 9.5"/></svg><span data-i18n="web.bottom.tagline">Design Moderno • Tecnologia • Performance • Segurança • SEO</span></div>
+  <div class="web-bottom-cta-text" data-i18n="web.bottom.cta">Vamos criar algo incrível para o seu negócio?</div>
+  <a class="btn-primary" data-i18n="web.bottom.btn" href="#contato">Fale com um especialista →</a>
 </div>
 </section>
 
 <!-- ABOUT -->
 <section id="sobre" style="background: rgba(13,18,32,0.5); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
 <div class="mvv-section-head">
-  <div class="section-tag" style="justify-content:center;">Sobre a OzTech</div>
-  <h2 class="section-title">Mais do que software:<br/>transformação operacional</h2>
-  <p class="section-sub" style="max-width:680px; margin:0 auto;">A OzTech SmartControl desenvolve soluções digitais para pessoas, negócios e empresas que desejam transformar processos manuais em sistemas inteligentes. Criamos websites, plataformas SaaS, automações e sistemas sob medida com foco em produtividade, controle e crescimento.</p>
+  <div class="section-tag" data-i18n="about.tag" style="justify-content:center;">Sobre a OzTech</div>
+  <h2 class="section-title" data-i18n="about.title">Mais do que software:<br/>transformação operacional</h2>
+  <p class="section-sub" data-i18n="about.subtitle" style="max-width:680px; margin:0 auto;">A OzTech SmartControl desenvolve soluções digitais para pessoas, negócios e empresas que desejam transformar processos manuais em sistemas inteligentes. Criamos websites, plataformas SaaS, automações e sistemas sob medida com foco em produtividade, controle e crescimento.</p>
 </div>
 <div class="mvv-rings">
 
@@ -1974,8 +2007,8 @@
       <div class="mvv-r-main"></div>
       <div class="mvv-r-inner">
         <span class="mvv-r-icon"><svg fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/></svg></span>
-        <h4 class="mvv-r-title">Missão</h4>
-        <p class="mvv-r-text">Transformar operações manuais em sistemas inteligentes, acessíveis e eficientes para empresas de todos os portes.</p>
+        <h4 class="mvv-r-title" data-i18n="about.mission.title">Missão</h4>
+        <p class="mvv-r-text" data-i18n="about.mission.text">Transformar operações manuais em sistemas inteligentes, acessíveis e eficientes para empresas de todos os portes.</p>
       </div>
     </div>
   </div>
@@ -1987,8 +2020,8 @@
       <div class="mvv-r-main" style="animation-delay:1s;"></div>
       <div class="mvv-r-inner">
         <span class="mvv-r-icon"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><rect x="9" y="13.3" width="13" height="3.6" rx="1" transform="rotate(-50 9 15.1)"/><rect x="18.8" y="12.6" width="3" height="5" rx="0.9" transform="rotate(-50 9 15.1)"/><circle cx="9" cy="15.1" r="1.7"/><path d="M9 17.5 L4.5 22 M9 17.5 L9.3 23 M9 17.5 L14 21.3"/></svg></span>
-        <h4 class="mvv-r-title">Visão</h4>
-        <p class="mvv-r-text">Ser referência em automação e SaaS para pequenas e médias empresas brasileiras, tornando tecnologia de qualidade acessível.</p>
+        <h4 class="mvv-r-title" data-i18n="about.vision.title">Visão</h4>
+        <p class="mvv-r-text" data-i18n="about.vision.text">Ser referência em automação e SaaS para pequenas e médias empresas brasileiras, tornando tecnologia de qualidade acessível.</p>
       </div>
     </div>
   </div>
@@ -2000,8 +2033,8 @@
       <div class="mvv-r-main" style="animation-delay:2s;"></div>
       <div class="mvv-r-inner">
         <span class="mvv-r-icon"><svg fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.5 7.1.7-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7-5.4-4.7 7.1-.7z"/></svg></span>
-        <h4 class="mvv-r-title">Valores</h4>
-        <p class="mvv-r-text">Credibilidade, Inovação, Transparência e Comprometimento com resultados concretos e mensuráveis.</p>
+        <h4 class="mvv-r-title" data-i18n="about.values.title">Valores</h4>
+        <p class="mvv-r-text" data-i18n="about.values.text">Credibilidade, Inovação, Transparência e Comprometimento com resultados concretos e mensuráveis.</p>
       </div>
     </div>
   </div>
@@ -2012,14 +2045,14 @@
 <!-- CATALOG -->
 <section id="catalogo" style="background: rgba(13,18,32,0.5); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
 <div style="text-align:center; margin-bottom:44px;">
-  <div class="section-tag" style="justify-content:center;">Catálogo de Soluções</div>
-  <h2 class="section-title">A solução certa para cada necessidade</h2>
-  <p class="section-sub" style="max-width:640px; margin:0 auto;">Produtos prontos para usar hoje ou sistemas criados especialmente para você. Conheça cada solução e clique para saber mais.</p>
+  <div class="section-tag" data-i18n="cat.tag" style="justify-content:center;">Catálogo de Soluções</div>
+  <h2 class="section-title" data-i18n="cat.title">A solução certa para cada necessidade</h2>
+  <p class="section-sub" data-i18n="cat.subtitle" style="max-width:640px; margin:0 auto;">Produtos prontos para usar hoje ou sistemas criados especialmente para você. Conheça cada solução e clique para saber mais.</p>
 </div>
 <div class="catalog-tabs" style="justify-content:center;">
-  <button class="catalog-tab active" onclick="switchTab('pj', this)">🏢 Para Empresas</button>
-  <button class="catalog-tab" onclick="switchTab('pf', this)">👤 Para Você</button>
-  <button class="catalog-tab" onclick="switchTab('custom', this)">⚙️ Sob Medida</button>
+  <button class="catalog-tab active" data-i18n="cat.tab.pj" onclick="switchTab('pj', this)">🏢 Para Empresas</button>
+  <button class="catalog-tab" data-i18n="cat.tab.pf" onclick="switchTab('pf', this)">👤 Para Você</button>
+  <button class="catalog-tab" data-i18n="cat.tab.custom" onclick="switchTab('custom', this)">⚙️ Sob Medida</button>
 </div>
 
 <!-- PJ PANEL -->
@@ -2029,32 +2062,32 @@
     <div class="cat-card">
       <div class="cat-card-top" style="background:linear-gradient(135deg,#071830 0%,#0b3060 100%);">
         <div class="cat-badge-row">
-          <span class="cat-status-live">● Disponível</span>
+          <span class="cat-status-live" data-i18n="cat.available">● Disponível</span>
           <span style="font-size:0.72rem;color:rgba(255,255,255,0.38);letter-spacing:0.04em;">B2B · SaaS</span>
         </div>
         <div class="cat-icon" style="margin:10px 0 6px;">
           <img alt="Oz.Barber" height="270" src="ozbarber-logo.png" style="width:130px;height:130px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(63,169,245,0.4));" width="270"/>
         </div>
-        <div class="cat-sub-tag">Sistema completo para gestão de barbearias.</div>
+        <div class="cat-sub-tag" data-i18n="cat.barber.subtag">Sistema completo para gestão de barbearias.</div>
       </div>
       <div class="cat-card-right">
         <div class="cat-card-body">
-          <p class="cat-pitch">Com o Oz.Barber, sua barbearia controla agendamentos, atendimentos, serviços, produtos, comissões, caixa, clientes, estoque e relatórios em uma única plataforma moderna, segura e personalizada com a identidade do seu negócio.</p>
+          <p class="cat-pitch" data-i18n="cat.barber.pitch">Com o Oz.Barber, sua barbearia controla agendamentos, atendimentos, serviços, produtos, comissões, caixa, clientes, estoque e relatórios em uma única plataforma moderna, segura e personalizada com a identidade do seu negócio.</p>
           <ul class="cat-features">
-            <li>Sistema com a sua cara, 100% personalizável</li>
-            <li>Acesso pelo celular, tablet ou computador</li>
-            <li>Relatórios com a marca da sua barbearia</li>
-            <li>Mais controle, organização e gestão</li>
+            <li data-i18n="cat.barber.f1">Sistema com a sua cara, 100% personalizável</li>
+            <li data-i18n="cat.barber.f2">Acesso pelo celular, tablet ou computador</li>
+            <li data-i18n="cat.barber.f3">Relatórios com a marca da sua barbearia</li>
+            <li data-i18n="cat.barber.f4">Mais controle, organização e gestão</li>
           </ul>
         </div>
         <div class="cat-card-footer">
           <div style="display:flex;gap:8px;margin-bottom:12px;">
-            <span style="flex:1;text-align:center;background:rgba(63,169,245,0.1);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:0.72rem;color:var(--blue);font-weight:600;">Pronto para uso</span>
-            <span style="flex:1;text-align:center;background:rgba(63,169,245,0.1);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:0.72rem;color:var(--blue);font-weight:600;">100% personalizável</span>
-            <span style="flex:1;text-align:center;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);border-radius:6px;padding:6px 10px;font-size:0.72rem;color:var(--accent);font-weight:600;">Web + Mobile</span>
-            <span style="flex:1;text-align:center;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);border-radius:6px;padding:6px 10px;font-size:0.72rem;color:var(--accent);font-weight:600;">Relatórios personalizados</span>
+            <span style="flex:1;text-align:center;background:rgba(63,169,245,0.1);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:0.72rem;color:var(--blue);font-weight:600;" data-i18n="cat.barber.p1">Pronto para uso</span>
+            <span style="flex:1;text-align:center;background:rgba(63,169,245,0.1);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:0.72rem;color:var(--blue);font-weight:600;" data-i18n="cat.barber.p2">100% personalizável</span>
+            <span style="flex:1;text-align:center;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);border-radius:6px;padding:6px 10px;font-size:0.72rem;color:var(--accent);font-weight:600;" data-i18n="cat.barber.p3">Web + Mobile</span>
+            <span style="flex:1;text-align:center;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);border-radius:6px;padding:6px 10px;font-size:0.72rem;color:var(--accent);font-weight:600;" data-i18n="cat.barber.p4">Relatórios personalizados</span>
           </div>
-          <a class="cat-btn-primary" href="https://ozbarber-oztech.vercel.app/">Conhecer Oz.Barber →</a>
+          <a class="cat-btn-primary" data-i18n="cat.barber.btn" href="https://ozbarber-oztech.vercel.app/">Conhecer Oz.Barber →</a>
         </div>
       </div>
     </div>
@@ -2062,34 +2095,34 @@
     <div class="cat-card">
       <div class="cat-card-top" style="background:linear-gradient(135deg,#041826 0%,#062d40 100%);">
         <div class="cat-badge-row">
-          <span class="cat-status-live">● Disponível</span>
+          <span class="cat-status-live" data-i18n="cat.available">● Disponível</span>
           <span style="font-size:0.72rem;color:rgba(255,255,255,0.38);letter-spacing:0.04em;">B2B · SaaS</span>
         </div>
         <div class="cat-icon" style="margin:10px 0 6px;">
           <img alt="Oz.Wash" height="270" src="ozwash-logo.png" style="width:90px;height:90px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(63,169,245,0.4));" width="270"/>
         </div>
         <div class="cat-brand">Oz.Wash</div>
-        <div class="cat-sub-tag">Gestão inteligente para lava-rápidos</div>
+        <div class="cat-sub-tag" data-i18n="cat.wash.subtag">Gestão inteligente para lava-rápidos</div>
       </div>
       <div class="cat-card-right">
         <div class="cat-card-body">
-          <p class="cat-pitch">Chega de papel e planilha. Reúna tudo o que seu lava-rápido precisa em um só lugar — simples, rápido e acessível de qualquer dispositivo.</p>
+          <p class="cat-pitch" data-i18n="cat.wash.pitch">Chega de papel e planilha. Reúna tudo o que seu lava-rápido precisa em um só lugar — simples, rápido e acessível de qualquer dispositivo.</p>
           <ul class="cat-features">
-            <li>Clientes, veículos e ordens de serviço</li>
-            <li>Financeiro completo e faturamento em tempo real</li>
-            <li>Dashboard com indicadores inteligentes</li>
-            <li>Personalize com a identidade do seu negócio</li>
-            <li>Funciona em celular, tablet e computador</li>
-            <li>Acesso seguro por e-mail — dados só seus</li>
+            <li data-i18n="cat.wash.f1">Clientes, veículos e ordens de serviço</li>
+            <li data-i18n="cat.wash.f2">Financeiro completo e faturamento em tempo real</li>
+            <li data-i18n="cat.wash.f3">Dashboard com indicadores inteligentes</li>
+            <li data-i18n="cat.wash.f4">Personalize com a identidade do seu negócio</li>
+            <li data-i18n="cat.wash.f5">Funciona em celular, tablet e computador</li>
+            <li data-i18n="cat.wash.f6">Acesso seguro por e-mail — dados só seus</li>
           </ul>
         </div>
         <div class="cat-card-footer">
           <div style="display:flex;gap:8px;margin-bottom:12px;">
-            <span style="flex:1;text-align:center;background:rgba(63,169,245,0.1);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:0.75rem;color:var(--blue);font-weight:600;">🌐 Web</span>
-            <span style="flex:1;text-align:center;background:rgba(63,169,245,0.1);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:0.75rem;color:var(--blue);font-weight:600;">📱 Mobile</span>
+            <span style="flex:1;text-align:center;background:rgba(63,169,245,0.1);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:0.75rem;color:var(--blue);font-weight:600;">🌐 <span data-i18n="cat.web">Web</span></span>
+            <span style="flex:1;text-align:center;background:rgba(63,169,245,0.1);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:0.75rem;color:var(--blue);font-weight:600;">📱 <span data-i18n="cat.mobile">Mobile</span></span>
             <span style="flex:1;text-align:center;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);border-radius:6px;padding:6px 10px;font-size:0.75rem;color:var(--accent);font-weight:600;">24/7</span>
           </div>
-          <a class="cat-btn-primary" href="https://oz-wash.vercel.app/" target="_blank" rel="noopener">Conhecer Oz.Wash →</a>
+          <a class="cat-btn-primary" data-i18n="cat.wash.btn" href="https://oz-wash.vercel.app/" target="_blank" rel="noopener">Conhecer Oz.Wash →</a>
         </div>
       </div>
     </div>
@@ -2103,28 +2136,28 @@
     <div class="cat-card">
       <div class="cat-card-top" style="background:linear-gradient(135deg,#071a0c 0%,#0a3a18 100%);">
         <div class="cat-badge-row">
-          <span class="cat-status-live">● Disponível</span>
+          <span class="cat-status-live" data-i18n="cat.available">● Disponível</span>
           <span style="font-size:0.72rem;color:rgba(255,255,255,0.38);letter-spacing:0.04em;">B2C · Web App</span>
         </div>
         <div class="cat-icon" style="margin:10px 0 6px;">
           <img alt="Oz.Finance" height="270" src="ozfinance-logo.png" style="width:90px;height:90px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(63,169,245,0.4));" width="270"/>
         </div>
         <div class="cat-brand">Oz.Finance</div>
-        <div class="cat-sub-tag">Organize sua vida financeira com clareza</div>
+        <div class="cat-sub-tag" data-i18n="cat.finance.subtag">Organize sua vida financeira com clareza</div>
       </div>
       <div class="cat-card-right">
         <div class="cat-card-body">
-          <p class="cat-pitch">Controle total das suas finanças em um só lugar. Acompanhe receitas, despesas, metas e investimentos de forma simples e visual.</p>
+          <p class="cat-pitch" data-i18n="cat.finance.pitch">Controle total das suas finanças em um só lugar. Acompanhe receitas, despesas, metas e investimentos de forma simples e visual.</p>
           <ul class="cat-features">
-            <li>Controle de receitas e despesas</li>
-            <li>Categorização automática de gastos</li>
-            <li>Metas e planejamento financeiro</li>
-            <li>Gráficos e relatórios visuais</li>
-            <li>Funciona no celular e no computador</li>
+            <li data-i18n="cat.finance.f1">Controle de receitas e despesas</li>
+            <li data-i18n="cat.finance.f2">Categorização automática de gastos</li>
+            <li data-i18n="cat.finance.f3">Metas e planejamento financeiro</li>
+            <li data-i18n="cat.finance.f4">Gráficos e relatórios visuais</li>
+            <li data-i18n="cat.finance.f5">Funciona no celular e no computador</li>
           </ul>
         </div>
         <div class="cat-card-footer">
-          <a class="cat-btn-primary" href="https://oztechsmartcontrol.github.io/Gestao-Financeira-" target="_blank" rel="noopener">Acessar Agora →</a>
+          <a class="cat-btn-primary" data-i18n="cat.finance.btn" href="https://oztechsmartcontrol.github.io/Gestao-Financeira-" target="_blank" rel="noopener">Acessar Agora →</a>
         </div>
       </div>
     </div>
@@ -2135,21 +2168,21 @@
 <div class="catalog-panel" id="panel-custom">
   <div class="cdev-wrap">
     <div class="cdev-intro">
-      <h3>Desenvolvimento Sob Medida</h3>
-      <p>Cada operação é única. A OzTech desenvolve sistemas personalizados do zero — sem funcionalidades desnecessárias, sem limitações de produto pronto. Do levantamento de requisitos à entrega final, tudo adaptado ao seu contexto e orçamento.</p>
-      <p style="margin-top:14px; color:var(--muted); font-size:0.88rem;">Atendemos startups, profissionais autônomos e empresas que precisam digitalizar ou escalar suas operações com tecnologia própria.</p>
+      <h3 data-i18n="cat.custom.title">Desenvolvimento Sob Medida</h3>
+      <p data-i18n="cat.custom.text1">Cada operação é única. A OzTech desenvolve sistemas personalizados do zero — sem funcionalidades desnecessárias, sem limitações de produto pronto. Do levantamento de requisitos à entrega final, tudo adaptado ao seu contexto e orçamento.</p>
+      <p data-i18n="cat.custom.text2" style="margin-top:14px; color:var(--muted); font-size:0.88rem;">Atendemos startups, profissionais autônomos e empresas que precisam digitalizar ou escalar suas operações com tecnologia própria.</p>
     </div>
     <div class="cdev-types">
-      <div class="cdev-type"><div class="ct-icon">🌐</div><h4>Plataformas Web</h4><p>Sistemas completos com painel admin, área do cliente e integrações.</p></div>
-      <div class="cdev-type"><div class="ct-icon">📊</div><h4>Dashboards &amp; BI</h4><p>Painéis de controle com KPIs, gráficos e alertas operacionais.</p></div>
-      <div class="cdev-type"><div class="ct-icon">🔗</div><h4>Integrações &amp; APIs</h4><p>Conectamos ERPs, CRMs e ferramentas para eliminar retrabalho.</p></div>
-      <div class="cdev-type"><div class="ct-icon">🏪</div><h4>Portais &amp; E-commerce</h4><p>Lojas, marketplaces e portais de vendas personalizados.</p></div>
-      <div class="cdev-type"><div class="ct-icon">📱</div><h4>Apps Responsivos</h4><p>Interfaces que funcionam perfeitamente no celular e no desktop.</p></div>
-      <div class="cdev-type"><div class="ct-icon">🤖</div><h4>Automações</h4><p>Fluxos automáticos que eliminam tarefas repetitivas da sua equipe.</p></div>
+      <div class="cdev-type"><div class="ct-icon">🌐</div><h4 data-i18n="cat.custom.1.title">Plataformas Web</h4><p data-i18n="cat.custom.1.text">Sistemas completos com painel admin, área do cliente e integrações.</p></div>
+      <div class="cdev-type"><div class="ct-icon">📊</div><h4 data-i18n="cat.custom.2.title">Dashboards &amp; BI</h4><p data-i18n="cat.custom.2.text">Painéis de controle com KPIs, gráficos e alertas operacionais.</p></div>
+      <div class="cdev-type"><div class="ct-icon">🔗</div><h4 data-i18n="cat.custom.3.title">Integrações &amp; APIs</h4><p data-i18n="cat.custom.3.text">Conectamos ERPs, CRMs e ferramentas para eliminar retrabalho.</p></div>
+      <div class="cdev-type"><div class="ct-icon">🏪</div><h4 data-i18n="cat.custom.4.title">Portais &amp; E-commerce</h4><p data-i18n="cat.custom.4.text">Lojas, marketplaces e portais de vendas personalizados.</p></div>
+      <div class="cdev-type"><div class="ct-icon">📱</div><h4 data-i18n="cat.custom.5.title">Apps Responsivos</h4><p data-i18n="cat.custom.5.text">Interfaces que funcionam perfeitamente no celular e no desktop.</p></div>
+      <div class="cdev-type"><div class="ct-icon">🤖</div><h4 data-i18n="cat.custom.6.title">Automações</h4><p data-i18n="cat.custom.6.text">Fluxos automáticos que eliminam tarefas repetitivas da sua equipe.</p></div>
     </div>
     <div style="text-align:center;">
-      <a class="btn-primary" href="#contato" style="display:inline-block;">Solicitar Orçamento Gratuito</a>
-      <p style="color:var(--muted); font-size:0.82rem; margin-top:12px;">Respondemos em até 24h com uma proposta personalizada.</p>
+      <a class="btn-primary" data-i18n="cat.custom.cta" href="#contato" style="display:inline-block;">Solicitar Orçamento Gratuito</a>
+      <p data-i18n="cat.custom.ctaSub" style="color:var(--muted); font-size:0.82rem; margin-top:12px;">Respondemos em até 24h com uma proposta personalizada.</p>
     </div>
   </div>
 </div>
@@ -2182,144 +2215,144 @@ document.addEventListener('DOMContentLoaded', function() {
 </section>
 <!-- PLANS -->
 <section id="planos">
-<div class="section-tag">Modelos de Contratação</div>
-<h2 class="section-title">Escolha o modelo ideal<br/>para o seu negócio</h2>
-<p class="section-sub">Oferecemos dois modelos de trabalho para atender diferentes necessidades e estágios de maturidade tecnológica.</p>
+<div class="section-tag" data-i18n="plans.tag">Modelos de Contratação</div>
+<h2 class="section-title" data-i18n="plans.title">Escolha o modelo ideal<br/>para o seu negócio</h2>
+<p class="section-sub" data-i18n="plans.subtitle">Oferecemos três modelos de trabalho para atender diferentes necessidades e estágios de maturidade tecnológica.</p>
 <div class="plans-grid">
 <div class="plan-card">
-<h3>Projeto Personalizado</h3>
-<p class="plan-desc">Ideal para demandas específicas com escopo bem definido. Você paga pelo projeto completo.</p>
+<h3 data-i18n="plans.1.title">Projeto Personalizado</h3>
+<p class="plan-desc" data-i18n="plans.1.desc">Ideal para demandas específicas com escopo bem definido. Você paga pelo projeto completo.</p>
 <ul class="plan-features">
-<li>Levantamento de requisitos completo</li>
-<li>Desenvolvimento sob medida</li>
-<li>Prazo e custo definidos</li>
-<li>Entrega com documentação</li>
-<li>Suporte pós-entrega incluso</li>
-<li>Código-fonte entregue ao cliente</li>
+<li data-i18n="plans.1.f1">Levantamento de requisitos completo</li>
+<li data-i18n="plans.1.f2">Desenvolvimento sob medida</li>
+<li data-i18n="plans.1.f3">Prazo e custo definidos</li>
+<li data-i18n="plans.1.f4">Entrega com documentação</li>
+<li data-i18n="plans.1.f5">Suporte pós-entrega incluso</li>
+<li data-i18n="plans.1.f6">Código-fonte entregue ao cliente</li>
 </ul>
-<a class="btn-outline" href="#contato" style="display:block; text-align:center;">Solicitar Orçamento</a>
+<a class="btn-outline" data-i18n="plans.1.btn" href="#contato" style="display:block; text-align:center;">Solicitar Orçamento</a>
 </div>
 <div class="plan-card featured">
-<div class="plan-badge">Mais Flexível</div>
-<h3>Assinatura SaaS</h3>
-<p class="plan-desc">Acesso a ferramentas e plataformas via mensalidade. Escale quando precisar, sem grandes investimentos iniciais.</p>
+<div class="plan-badge" data-i18n="plans.2.badge">Mais Flexível</div>
+<h3 data-i18n="plans.2.title">Assinatura SaaS</h3>
+<p class="plan-desc" data-i18n="plans.2.desc">Acesso a ferramentas e plataformas via mensalidade. Escale quando precisar, sem grandes investimentos iniciais.</p>
 <ul class="plan-features">
-<li>Acesso imediato à plataforma</li>
-<li>Atualizações automáticas</li>
-<li>Infraestrutura gerenciada</li>
-<li>Suporte contínuo incluso</li>
-<li>Planos flexíveis por usuários/uso</li>
-<li>Cancelamento sem multa</li>
+<li data-i18n="plans.2.f1">Acesso imediato à plataforma</li>
+<li data-i18n="plans.2.f2">Atualizações automáticas</li>
+<li data-i18n="plans.2.f3">Infraestrutura gerenciada</li>
+<li data-i18n="plans.2.f4">Suporte contínuo incluso</li>
+<li data-i18n="plans.2.f5">Planos flexíveis por usuários/uso</li>
+<li data-i18n="plans.2.f6">Cancelamento sem multa</li>
 </ul>
-<a class="btn-primary" href="#contato" style="display:block; text-align:center;">Conhecer Planos</a>
+<a class="btn-primary" data-i18n="plans.2.btn" href="#contato" style="display:block; text-align:center;">Conhecer Planos</a>
 </div>
 <div class="plan-card">
-<h3>Consultoria Técnica</h3>
-<p class="plan-desc">Para empresas que precisam de orientação estratégica antes de iniciar um projeto tecnológico.</p>
+<h3 data-i18n="plans.3.title">Consultoria Técnica</h3>
+<p class="plan-desc" data-i18n="plans.3.desc">Para empresas que precisam de orientação estratégica antes de iniciar um projeto tecnológico.</p>
 <ul class="plan-features">
-<li>Diagnóstico tecnológico</li>
-<li>Mapeamento de processos</li>
-<li>Recomendação de soluções</li>
-<li>Planejamento de roadmap</li>
-<li>Análise de viabilidade</li>
-<li>Relatório executivo detalhado</li>
+<li data-i18n="plans.3.f1">Diagnóstico tecnológico</li>
+<li data-i18n="plans.3.f2">Mapeamento de processos</li>
+<li data-i18n="plans.3.f3">Recomendação de soluções</li>
+<li data-i18n="plans.3.f4">Planejamento de roadmap</li>
+<li data-i18n="plans.3.f5">Análise de viabilidade</li>
+<li data-i18n="plans.3.f6">Relatório executivo detalhado</li>
 </ul>
-<a class="btn-outline" href="#contato" style="display:block; text-align:center;">Agendar Consulta</a>
+<a class="btn-outline" data-i18n="plans.3.btn" href="#contato" style="display:block; text-align:center;">Agendar Consulta</a>
 </div>
 </div>
 </section>
 <!-- HOW IT WORKS -->
 <section id="como-funciona" style="background: rgba(13,18,32,0.5); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
 <div style="text-align: center;">
-<div class="section-tag" style="justify-content: center;">Processo</div>
-<h2 class="section-title">Como trabalhamos</h2>
-<p class="section-sub" style="margin: 0 auto 0;">Um processo simples, transparente e eficiente do primeiro contato à entrega final.</p>
+<div class="section-tag" data-i18n="how.tag" style="justify-content: center;">Processo</div>
+<h2 class="section-title" data-i18n="how.title">Como trabalhamos</h2>
+<p class="section-sub" data-i18n="how.subtitle" style="margin: 0 auto 0;">Um processo simples, transparente e eficiente do primeiro contato à entrega final.</p>
 </div>
 <div class="steps" id="steps-track">
 <div class="step">
 <div class="step-num">01</div>
-<h4>Diagnóstico</h4>
-<p>Entendemos sua necessidade, contexto e objetivos de negócio em uma conversa inicial.</p>
+<h4 data-i18n="how.1.title">Diagnóstico</h4>
+<p data-i18n="how.1.text">Entendemos sua necessidade, contexto e objetivos de negócio em uma conversa inicial.</p>
 </div>
 <div class="step">
 <div class="step-num">02</div>
-<h4>Proposta</h4>
-<p>Apresentamos a solução ideal com escopo, prazo e investimento claros e detalhados.</p>
+<h4 data-i18n="how.2.title">Proposta</h4>
+<p data-i18n="how.2.text">Apresentamos a solução ideal com escopo, prazo e investimento claros e detalhados.</p>
 </div>
 <div class="step">
 <div class="step-num">03</div>
-<h4>Desenvolvimento</h4>
-<p>Construímos com metodologia ágil, com entregas parciais e feedbacks constantes.</p>
+<h4 data-i18n="how.3.title">Desenvolvimento</h4>
+<p data-i18n="how.3.text">Construímos com metodologia ágil, com entregas parciais e feedbacks constantes.</p>
 </div>
 <div class="step">
 <div class="step-num">04</div>
-<h4>Entrega &amp; Suporte</h4>
-<p>Implantamos a solução e acompanhamos sua evolução continuamente.</p>
+<h4 data-i18n="how.4.title">Entrega &amp; Suporte</h4>
+<p data-i18n="how.4.text">Implantamos a solução e acompanhamos sua evolução continuamente.</p>
 </div>
 </div>
 </section>
 <!-- CONTACT -->
 <section id="contato">
-<div class="section-tag">Contato</div>
-<h2 class="section-title">Vamos automatizar sua operação?</h2>
+<div class="section-tag" data-i18n="contact.tag">Contato</div>
+<h2 class="section-title" data-i18n="contact.title">Vamos automatizar sua operação?</h2>
 <div class="contact-wrap">
 <div>
-<p style="color:var(--muted); font-size:0.95rem; line-height:1.75; margin-bottom:40px;">Preencha o formulário e nossa equipe entrará em contato em até 24 horas para entender melhor suas necessidades.</p>
+<p data-i18n="contact.subtitle" style="color:var(--muted); font-size:0.95rem; line-height:1.75; margin-bottom:40px;">Preencha o formulário e nossa equipe entrará em contato em até 24 horas para entender melhor suas necessidades.</p>
 <div class="contact-info">
 
   <div class="contact-info-item">
     <div class="ci-icon">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44"><rect x="3" y="8" width="38" height="28" rx="3" fill="none" stroke="#3fa9f5" stroke-width="2.2"/><polyline points="3,8 22,24 41,8" fill="none" stroke="#3fa9f5" stroke-width="2.2" stroke-linejoin="round"/></svg>
     </div>
-    <div><div class="ci-label">E-mail</div><div class="ci-value">contato@oztechsmartcontrol.com.br</div></div>
+    <div><div class="ci-label" data-i18n="contact.email.label">E-mail</div><div class="ci-value">contato@oztechsmartcontrol.com.br</div></div>
   </div>
 
   <div class="contact-info-item">
     <div class="ci-icon">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44"><defs><radialGradient id="ig2" cx="28%" cy="95%" r="120%"><stop offset="0%" stop-color="#fcaf45"/><stop offset="40%" stop-color="#f56040"/><stop offset="70%" stop-color="#e1306c"/><stop offset="100%" stop-color="#405de6"/></radialGradient></defs><rect x="3" y="3" width="38" height="38" rx="9" fill="none" stroke="url(#ig2)" stroke-width="2.5"/><circle cx="22" cy="22" r="7.5" fill="none" stroke="url(#ig2)" stroke-width="2.5"/><circle cx="32" cy="12" r="2.2" fill="#e1306c"/></svg>
     </div>
-    <div><div class="ci-label">Instagram</div><div class="ci-value"><a href="https://instagram.com/OzTech.io" rel="noopener" style="color:var(--blue);text-decoration:none;" target="_blank">@OzTech.io</a></div></div>
+    <div><div class="ci-label" data-i18n="contact.ig.label">Instagram</div><div class="ci-value"><a href="https://instagram.com/OzTech.io" rel="noopener" style="color:var(--blue);text-decoration:none;" target="_blank">@OzTech.io</a></div></div>
   </div>
 
   <div class="contact-info-item">
     <div class="ci-icon">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44"><path d="M22 4C12.06 4 4 12.06 4 22c0 3.24.87 6.28 2.38 8.9L4 40l9.34-2.34A17.86 17.86 0 0022 40c9.94 0 18-8.06 18-18S31.94 4 22 4zm8.8 24.7c-.36 1.01-2.12 1.94-2.91 2.02-.78.08-1.52.36-5.1-1.06-4.28-1.71-7.03-6.1-7.24-6.38-.21-.28-1.68-2.24-1.68-4.28 0-2.03 1.06-3.03 1.45-3.45.36-.39.8-.49 1.07-.49l.77.01c.24 0 .58-.09.91.7.36.84 1.22 2.98 1.26 3.19.13.21.06.49-.09.7l-.52.69c-.17.18-.35.39-.15.75.21.36.91 1.49 1.95 2.41 1.34 1.19 2.46 1.56 2.82 1.74.36.18.57.15.78-.09l1.04-1.22c.26-.31.49-.21.83-.13l2.6 1.23c.72.36.72.36.83.7z" fill="#25D366"/></svg>
     </div>
-    <div><div class="ci-label">WhatsApp</div><div class="ci-value"><a href="https://wa.me/5500000000000" rel="noopener" style="color:#25D366;text-decoration:none;" target="_blank">(00) 00000-0000</a></div></div>
+    <div><div class="ci-label" data-i18n="contact.wa.label">WhatsApp</div><div class="ci-value"><a href="https://wa.me/5500000000000" rel="noopener" style="color:#25D366;text-decoration:none;" target="_blank">(00) 00000-0000</a></div></div>
   </div>
 
 </div>
 </div>
 <div class="contact-form">
 <div class="form-group">
-<label>Seu nome</label>
-<input placeholder="Nome completo" type="text"/>
+<label data-i18n="contact.form.name">Seu nome</label>
+<input data-i18n-placeholder="contact.form.namePh" placeholder="Nome completo" type="text"/>
 </div>
 <div class="form-group">
-<label>E-mail</label>
-<input placeholder="seu@email.com" type="email"/>
+<label data-i18n="contact.form.email">E-mail</label>
+<input data-i18n-placeholder="contact.form.emailPh" placeholder="seu@email.com" type="email"/>
 </div>
 <div class="form-group">
-<label>Empresa</label>
-<input placeholder="Nome da empresa" type="text"/>
+<label data-i18n="contact.form.company">Empresa</label>
+<input data-i18n-placeholder="contact.form.companyPh" placeholder="Nome da empresa" type="text"/>
 </div>
 <div class="form-group">
-<label>Tipo de serviço</label>
+<label data-i18n="contact.form.service">Tipo de serviço</label>
 <select>
-<option value="">Selecione uma opção</option>
-<option>Desenvolvimento de software</option>
-<option>Assinatura SaaS</option>
-<option>Integração de sistemas</option>
-<option>Dashboard / BI</option>
-<option>Consultoria técnica</option>
-<option>Outro</option>
+<option data-i18n="contact.form.opt0" value="">Selecione uma opção</option>
+<option data-i18n="contact.form.opt1">Desenvolvimento de software</option>
+<option data-i18n="contact.form.opt2">Assinatura SaaS</option>
+<option data-i18n="contact.form.opt3">Integração de sistemas</option>
+<option data-i18n="contact.form.opt4">Dashboard / BI</option>
+<option data-i18n="contact.form.opt5">Consultoria técnica</option>
+<option data-i18n="contact.form.opt6">Outro</option>
 </select>
 </div>
 <div class="form-group">
-<label>Mensagem</label>
-<textarea placeholder="Descreva brevemente sua necessidade..."></textarea>
+<label data-i18n="contact.form.message">Mensagem</label>
+<textarea data-i18n-placeholder="contact.form.messagePh" placeholder="Descreva brevemente sua necessidade..."></textarea>
 </div>
-<button class="btn-primary" style="width:100%; padding:16px;">Enviar Mensagem</button>
+<button class="btn-primary" data-i18n="contact.form.submit" style="width:100%; padding:16px;">Enviar Mensagem</button>
 </div>
 </div>
 </section>
@@ -2329,20 +2362,20 @@ document.addEventListener('DOMContentLoaded', function() {
 <img alt="OzTech" height="512" onerror="this.style.display='none'" src="Logo_-_OzTech_SmartControl.png" width="512"/>
 <span>OzTech <small>SmartControl</small></span>
 </div>
-<p>© 2026 OzTech SmartControl. Todos os direitos reservados.</p>
+<p data-i18n="footer.copyright">© 2026 OzTech SmartControl. Todos os direitos reservados.</p>
 <div class="footer-links">
-<a href="#solucoes">Soluções</a>
+<a data-i18n="footer.link1" href="#solucoes">Soluções</a>
 <a href="https://ozbarber-oztech.vercel.app/">Oz.Barber</a>
-<a href="#sobre">Sobre</a>
-<a href="#planos">Planos</a>
-<a href="#contato">Contato</a>
+<a data-i18n="footer.link2" href="#sobre">Sobre</a>
+<a data-i18n="footer.link3" href="#planos">Planos</a>
+<a data-i18n="footer.link4" href="#contato">Contato</a>
 </div>
 </footer>
 <!-- ===== ZE OVERLAY (position:fixed cobre 100% da viewport) ===== -->
 <div id="ze-overlay">
 <!-- ===== ZE FAB ===== -->
 <div id="ze-fab-container">
-<button aria-label="Abrir chat Zé" id="ze-fab" onclick="zeToggle()">
+<button aria-label="Abrir chat Zé" data-i18n-aria="ze.aria.open" id="ze-fab" onclick="zeToggle()">
 <div id="ze-badge"></div>
 <img alt="Zé" height="900" src="Ze_OTech_02_sem_fundo.png" style="width:62px;height:62px;border-radius:50%;object-fit:cover;object-position:top center;" width="720"/>
 </button>
@@ -2351,20 +2384,20 @@ document.addEventListener('DOMContentLoaded', function() {
 <div id="ze-figure">
 <img alt="Zé" height="900" id="ze-figure-img" src="Ze_OTech_02_sem_fundo.png" style="display:block;" width="720"/>
 </div>
-<div aria-label="Zé - Assistente OzTech" id="ze-window" role="dialog">
+<div aria-label="Zé - Assistente OzTech" data-i18n-aria="ze.aria.window" id="ze-window" role="dialog">
 <div id="ze-header">
 <div id="ze-avatar"><img alt="Zé" height="900" src="Ze_OTech_02_sem_fundo.png" style="width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:top center;" width="720"/></div>
 <div id="ze-header-info">
 <strong>Zé</strong>
-<span>● Assistente OzTech · Online</span>
+<span data-i18n="ze.status">● Assistente OzTech · Online</span>
 </div>
-<button aria-label="Fechar" id="ze-close" onclick="zeToggle()">✕</button>
+<button aria-label="Fechar" data-i18n-aria="ze.aria.close" id="ze-close" onclick="zeToggle()">✕</button>
 </div>
 <div id="ze-messages"></div>
 <div id="ze-quick-btns"></div>
 <div id="ze-input-row">
-<input autocomplete="off" id="ze-input" onkeydown="if(event.key==='Enter') zeSend()" placeholder="Digite sua mensagem..." type="text"/>
-<button aria-label="Enviar" id="ze-send" onclick="zeSend()">
+<input autocomplete="off" data-i18n-placeholder="ze.inputPh" id="ze-input" onkeydown="if(event.key==='Enter') zeSend()" placeholder="Digite sua mensagem..." type="text"/>
+<button aria-label="Enviar" data-i18n-aria="ze.aria.send" id="ze-send" onclick="zeSend()">
 <svg viewbox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"></path></svg>
 </button>
 </div>
@@ -2372,7 +2405,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </div><!-- /#ze-overlay -->
 <script>
 // ===== ZE =====
-const ZE_SYSTEM = `Você é a Zé, Inteligência Virtual da da OzTech SmartControl — empresa brasileira de desenvolvimento de software sob medida.
+const ZE_SYSTEM = {
+  pt: `Você é a Zé, Inteligência Virtual da da OzTech SmartControl — empresa brasileira de desenvolvimento de software sob medida.
 
 SOBRE A EMPRESA:
 - Nome: OzTech SmartControl
@@ -2407,7 +2441,44 @@ REGRAS DE COMPORTAMENTO:
 - Respostas curtas (3-5 linhas) salvo quando necessário detalhar
 - Não invente funcionalidades ou preços não informados acima
 - Quando não souber, direcione para contato humano
-- Use emojis com moderação`;
+- Use emojis com moderação`,
+  en: `You are Zé, the Virtual Intelligence of OzTech SmartControl — a Brazilian custom software development company.
+
+ABOUT THE COMPANY:
+- Name: OzTech SmartControl
+- Mission: Make accessible technology that simplifies and adds value to clients' businesses
+- Engagement models: Custom projects (fixed scope) and SaaS subscriptions
+- Contact: contato@oztechsmartcontrol.com.br | Instagram: @OzTech.io
+
+SOLUTIONS AVAILABLE NOW:
+1. Oz.Finance (individuals) — income, expense, goal tracking and reports. Access: https://oztechsmartcontrol.github.io/Gestao-Financeira-
+
+COMING SOON (individuals): Smart Schedule & Routine
+COMING SOON (businesses): Corporate solutions (business financial management, process automation, dashboards, integrations)
+
+SERVICES:
+- Custom software development
+- Integrations & APIs
+- Dashboards & BI
+- Mobile & Web apps
+- Technical consulting
+- Support & Maintenance
+
+YOUR RESPONSIBILITIES:
+1. Answer questions about the company and its services clearly
+2. Direct users to ready-made solutions when they fit the need
+3. For needs not covered by ready-made solutions, suggest commercial contact via email or Instagram
+4. At the end of relevant conversations, ask for name and email for follow-up
+5. Be proactive: ask about the client's needs to guide them better
+
+BEHAVIOR RULES:
+- ALWAYS respond in English
+- Be objective, friendly and professional
+- Keep replies short (3-5 lines) unless more detail is needed
+- Don't invent features or prices not provided above
+- When unsure, direct the user to human contact
+- Use emojis sparingly`
+};
 
 let zeHistory = [];
 let zeOpen = false;
@@ -2419,9 +2490,14 @@ function zeToggle() {
   document.getElementById('ze-figure').classList.toggle('open', zeOpen);
   document.getElementById('ze-badge').style.display = zeOpen ? 'none' : 'block';
   if (zeOpen && zeHistory.length === 0) {
-    setTimeout(() => zeBotMsg("Olá! 👋 Sou o **Zé**, assistente virtual da OzTech SmartControl.\n\nComo posso te ajudar hoje? Pode me contar sua necessidade ou escolher uma das opções abaixo:", [
-      "Ver soluções disponíveis", "Quero um software sob medida", "Suporte técnico", "Falar com a equipe"
-    ]), 400);
+    const lang = window.OZ_LANG === 'en' ? 'en' : 'pt';
+    const greeting = lang === 'en'
+      ? "Hi! 👋 I'm **Zé**, OzTech SmartControl's virtual assistant.\n\nHow can I help you today? Tell me what you need or choose one of the options below:"
+      : "Olá! 👋 Sou o **Zé**, assistente virtual da OzTech SmartControl.\n\nComo posso te ajudar hoje? Pode me contar sua necessidade ou escolher uma das opções abaixo:";
+    const options = lang === 'en'
+      ? ["View available solutions", "I need custom software", "Technical support", "Talk to the team"]
+      : ["Ver soluções disponíveis", "Quero um software sob medida", "Suporte técnico", "Falar com a equipe"];
+    setTimeout(() => zeBotMsg(greeting, options), 400);
   }
 }
 
@@ -2483,6 +2559,8 @@ async function zeCallAPI() {
   msgs.appendChild(typing);
   msgs.scrollTop = msgs.scrollHeight;
 
+  const lang = window.OZ_LANG === 'en' ? 'en' : 'pt';
+
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -2490,14 +2568,17 @@ async function zeCallAPI() {
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1000,
-        system: ZE_SYSTEM,
+        system: ZE_SYSTEM[lang],
         messages: zeHistory
       })
     });
     const data = await res.json();
     typing.remove();
 
-    const reply = data.content && data.content[0] ? data.content[0].text : 'Desculpe, ocorreu um erro. Tente novamente ou entre em contato pelo e-mail contato@oztechsmartcontrol.com.br 😊';
+    const fallback = lang === 'en'
+      ? 'Sorry, something went wrong. Please try again or contact us at contato@oztechsmartcontrol.com.br 😊'
+      : 'Desculpe, ocorreu um erro. Tente novamente ou entre em contato pelo e-mail contato@oztechsmartcontrol.com.br 😊';
+    const reply = data.content && data.content[0] ? data.content[0].text : fallback;
     zeHistory.push({ role: 'assistant', content: reply });
 
     const div = document.createElement('div');
@@ -2512,39 +2593,50 @@ async function zeCallAPI() {
 
     // Suggest quick replies based on context
     const lower = reply.toLowerCase();
-    const btns = [];
-    if (lower.includes('gestão financeira') || lower.includes('solução')) btns.push('Acessar Oz.Finance');
-    if (lower.includes('contato') || lower.includes('e-mail') || lower.includes('equipe')) btns.push('📧 Enviar e-mail');
-    if (lower.includes('instagram')) btns.push('📸 Instagram');
-    if (!zeCollected && zeHistory.length >= 4) btns.push('Deixar meu contato');
-    if (btns.length) {
-      btns.forEach(label => {
+    const ZE_QUICK_LABELS = {
+      pt: { ozfinance: 'Acessar Oz.Finance', email: '📧 Enviar e-mail', instagram: '📸 Instagram', collect: 'Deixar meu contato' },
+      en: { ozfinance: 'Access Oz.Finance', email: '📧 Send email', instagram: '📸 Instagram', collect: 'Leave my contact info' }
+    };
+    const financeKw = lang === 'en' ? ['financial management', 'solution'] : ['gestão financeira', 'solução'];
+    const contactKw = lang === 'en' ? ['contact', 'email', 'team'] : ['contato', 'e-mail', 'equipe'];
+    const keys = [];
+    if (financeKw.some(k => lower.includes(k))) keys.push('ozfinance');
+    if (contactKw.some(k => lower.includes(k))) keys.push('email');
+    if (lower.includes('instagram')) keys.push('instagram');
+    if (!zeCollected && zeHistory.length >= 4) keys.push('collect');
+    if (keys.length) {
+      keys.forEach(key => {
         const btn = document.createElement('button');
         btn.className = 'ze-quick';
-        btn.textContent = label;
-        btn.onclick = () => zeQuickAction(label);
+        btn.textContent = ZE_QUICK_LABELS[lang][key];
+        btn.onclick = () => zeQuickAction(key);
         qbtns.appendChild(btn);
       });
     }
   } catch(e) {
     typing.remove();
-    zeBotMsg('Ops! Houve um problema de conexão. Entre em contato pelo e-mail **contato@oztechsmartcontrol.com.br** ou Instagram **@OzTech.io** 😊');
+    const msg = lang === 'en'
+      ? 'Oops! There was a connection problem. Please contact us by email at **contato@oztechsmartcontrol.com.br** or Instagram **@OzTech.io** 😊'
+      : 'Ops! Houve um problema de conexão. Entre em contato pelo e-mail **contato@oztechsmartcontrol.com.br** ou Instagram **@OzTech.io** 😊';
+    zeBotMsg(msg);
   }
 }
 
-function zeQuickAction(label) {
-  if (label === '📧 Enviar e-mail') {
+function zeQuickAction(key) {
+  const lang = window.OZ_LANG === 'en' ? 'en' : 'pt';
+  if (key === 'email') {
     window.location.href = 'mailto:contato@oztechsmartcontrol.com.br';
-  } else if (label === '📸 Instagram') {
+  } else if (key === 'instagram') {
     window.open('https://instagram.com/OzTech.io', '_blank');
-  } else if (label === 'Acessar Oz.Finance') {
+  } else if (key === 'ozfinance') {
     window.open('https://oztechsmartcontrol.github.io/Gestao-Financeira-', '_blank');
-  } else if (label === 'Deixar meu contato') {
+  } else if (key === 'collect') {
     zeCollected = true;
     document.getElementById('ze-quick-btns').innerHTML = '';
-    zeBotMsg('Ótimo! 😊 Por favor, me informe seu **nome** e **e-mail** para que nossa equipe entre em contato com você.');
-  } else {
-    zeUserMsg(label);
+    const msg = lang === 'en'
+      ? "Great! 😊 Please share your **name** and **email** so our team can get in touch with you."
+      : 'Ótimo! 😊 Por favor, me informe seu **nome** e **e-mail** para que nossa equipe entre em contato com você.';
+    zeBotMsg(msg);
   }
 }
 
@@ -2597,6 +2689,274 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 revealEls.forEach(el => observer.observe(el));
 
+</script>
+<script>
+const I18N = {
+  pt: {
+    "nav.websites":"Websites","nav.catalog":"Catálogo","nav.about":"Sobre","nav.plans":"Planos","nav.how":"Como funciona","nav.contact":"Contato",
+    "hero.badge":"Automação, SaaS e Sistemas Sob Medida",
+    "hero.title":"Sua visão. <span>Nossa tecnologia</span>.",
+    "hero.subtitle":"Desenvolvemos sistemas, automações e soluções digitais sob medida para transformar ideias em realidade.",
+    "hero.cta1":"Solicitar orçamento","hero.cta2":"Conhecer soluções",
+    "stats.1.num":"Web e Mobile","stats.1.label":"Acesse de qualquer lugar, em qualquer dispositivo, com segurança e praticidade.",
+    "stats.2.num":"Licença por Assinatura","stats.2.label":"Planos flexíveis e escaláveis. Pague apenas pelo que usa e cancele quando quiser.",
+    "stats.3.num":"100% Personalizável","stats.3.label":"Seu sistema com a cara da sua empresa. Cores, logo, domínio e identidade visual.",
+    "stats.4.num":"Suporte Especializado","stats.4.label":"Time pronto para te atender e acompanhar o crescimento do seu negócio.",
+    "prob.title":"Sua operação está crescendo,<br><span style=\"color:var(--blue)\">mas os processos continuam manuais?</span>",
+    "prob.subtitle":"A falta de automação pode gerar retrabalho, erros e perda de tempo.<br>Nossas soluções transformam processos manuais em fluxos inteligentes.",
+    "prob.1.title":"Processos lentos","prob.1.text":"Tarefas manuais consomem tempo e reduzem a produtividade da sua equipe.","prob.1.check":"Aumente a velocidade e ganhe mais tempo.",
+    "prob.2.title":"Falta de padronização","prob.2.text":"Cada pessoa faz de um jeito, resultando em falhas e informações inconsistentes.","prob.2.check":"Padronize processos e reduza erros operacionais.",
+    "prob.3.title":"Informações desconectadas","prob.3.text":"Dados espalhados em planilhas e sistemas que não se comunicam entre si.","prob.3.check":"Centralize dados e tenha visão completa do seu negócio.",
+    "prob.4.title":"Tomadas reativas","prob.4.text":"Sem dados em tempo real, as decisões são tomadas com atraso e sem segurança.","prob.4.check":"Tenha informações em tempo real para decidir melhor.",
+    "swhat.title":"O que fazemos","swhat.subtitle":"Temos sistemas prontos totalmente adaptáveis ao seu negócio e também desenvolvemos soluções sob medida para empresas e profissionais.",
+    "swhat.1.title":"Sistemas Web","swhat.1.text":"Plataformas completas com painel administrativo e acesso de qualquer dispositivo.",
+    "swhat.2.title":"Automação de Processos","swhat.2.text":"Elimine tarefas repetitivas com fluxos automáticos que trabalham por você.",
+    "swhat.3.title":"Dashboards Inteligentes","swhat.3.text":"Visualize KPIs e indicadores da sua operação em tempo real, numa tela clara e moderna.",
+    "swhat.4.title":"SaaS Personalizado","swhat.4.text":"Sistemas em nuvem prontos para usar, escaláveis e adaptados à sua marca e operação.",
+    "swhat.5.title":"CRM e ERP","swhat.5.text":"Centralize clientes, vendas, estoque e processos em um sistema integrado.",
+    "swhat.6.title":"Integrações API","swhat.6.text":"Conectamos sistemas e ferramentas para eliminar retrabalho e unificar seus dados.",
+    "swhat.7.title":"IA e Chatbots","swhat.7.text":"Atendimento inteligente e automação conversacional com inteligência artificial.",
+    "web.tag":"Desenvolvimento Web",
+    "web.title":"Sites modernos, rápidos e<br/><span class=\"web-grad\">100% responsivos</span>",
+    "web.subtitle":"Criamos websites profissionais, institucionais e comerciais que fortalecem sua presença digital, valorizam sua marca e ajudam a converter visitantes em clientes.",
+    "web.badge1":"100% Responsivo","web.badge2":"Alto Desempenho","web.badge3":"Seguro e Confiável",
+    "web.aud1.title":"Para Pessoas","web.aud1.text":"Portfólios, páginas pessoais e sites profissionais com visual moderno, fácil navegação e manutenção simples.",
+    "web.aud2.title":"Para Negócios","web.aud2.text":"Sites estratégicos para apresentar serviços, atrair clientes e aumentar sua presença no ambiente digital.",
+    "web.aud3.title":"Para Empresas","web.aud3.text":"Soluções robustas, seguras e escaláveis para fortalecer a marca e acompanhar o crescimento do negócio.",
+    "web.cta":"Quero criar meu site →",
+    "web.why.tag":"Por que ter um site profissional?",
+    "web.why1.title":"Presença 24/7","web.why1.text":"Seu negócio disponível todos os dias, a toda hora.",
+    "web.why2.title":"Mais Credibilidade","web.why2.text":"Transmita confiança e profissionalismo para seus clientes.",
+    "web.why3.title":"Mais Clientes","web.why3.text":"Atraia, conquiste e fidelize clientes de forma constante.",
+    "web.why4.title":"Mais Resultados","web.why4.text":"Sites estratégicos que geram conversões e impulsionam vendas.",
+    "web.clients.tag":"Nossos Clientes",
+    "cc.1.title":"Academias","cc.1.text":"Divulgue planos, horários e conquiste mais alunos.",
+    "cc.2.title":"Consultórios Clínicos","cc.2.text":"Agendamentos, serviços e informações sempre acessíveis.",
+    "cc.3.title":"Arquitetos","cc.3.text":"Mostre seus projetos e seu portfólio com estilo e profissionalismo.",
+    "cc.4.title":"Lojas","cc.4.text":"Apresente seus produtos e aumente suas vendas online.",
+    "cc.5.title":"Empresas","cc.5.text":"Fortaleça sua marca e gere mais oportunidades de negócio.",
+    "cc.6.title":"Sites Pessoais Profissionais","cc.6.text":"Destaque suas habilidades e conquiste novas oportunidades.",
+    "cc.7.title":"Barbearias","cc.7.text":"Agendamentos, serviços e conexão com seus clientes.",
+    "cc.8.title":"Pizzarias","cc.8.text":"Cardápio online e mais pedidos pelo seu site.",
+    "cc.9.title":"Petshops","cc.9.text":"Produtos, serviços e cuidados para o melhor amigo.",
+    "cc.10.title":"E muito mais...","cc.10.text":"Soluções para todo tipo de negócio e segmento.",
+    "web.bottom.tagline":"Design Moderno • Tecnologia • Performance • Segurança • SEO",
+    "web.bottom.cta":"Vamos criar algo incrível para o seu negócio?","web.bottom.btn":"Fale com um especialista →",
+    "about.tag":"Sobre a OzTech",
+    "about.title":"Mais do que software:<br/>transformação operacional",
+    "about.subtitle":"A OzTech SmartControl desenvolve soluções digitais para pessoas, negócios e empresas que desejam transformar processos manuais em sistemas inteligentes. Criamos websites, plataformas SaaS, automações e sistemas sob medida com foco em produtividade, controle e crescimento.",
+    "about.mission.title":"Missão","about.mission.text":"Transformar operações manuais em sistemas inteligentes, acessíveis e eficientes para empresas de todos os portes.",
+    "about.vision.title":"Visão","about.vision.text":"Ser referência em automação e SaaS para pequenas e médias empresas brasileiras, tornando tecnologia de qualidade acessível.",
+    "about.values.title":"Valores","about.values.text":"Credibilidade, Inovação, Transparência e Comprometimento com resultados concretos e mensuráveis.",
+    "cat.tag":"Catálogo de Soluções","cat.title":"A solução certa para cada necessidade",
+    "cat.subtitle":"Produtos prontos para usar hoje ou sistemas criados especialmente para você. Conheça cada solução e clique para saber mais.",
+    "cat.tab.pj":"🏢 Para Empresas","cat.tab.pf":"👤 Para Você","cat.tab.custom":"⚙️ Sob Medida",
+    "cat.available":"● Disponível",
+    "cat.barber.subtag":"Sistema completo para gestão de barbearias.",
+    "cat.barber.pitch":"Com o Oz.Barber, sua barbearia controla agendamentos, atendimentos, serviços, produtos, comissões, caixa, clientes, estoque e relatórios em uma única plataforma moderna, segura e personalizada com a identidade do seu negócio.",
+    "cat.barber.f1":"Sistema com a sua cara, 100% personalizável","cat.barber.f2":"Acesso pelo celular, tablet ou computador","cat.barber.f3":"Relatórios com a marca da sua barbearia","cat.barber.f4":"Mais controle, organização e gestão",
+    "cat.barber.p1":"Pronto para uso","cat.barber.p2":"100% personalizável","cat.barber.p3":"Web + Mobile","cat.barber.p4":"Relatórios personalizados",
+    "cat.barber.btn":"Conhecer Oz.Barber →",
+    "cat.wash.subtag":"Gestão inteligente para lava-rápidos",
+    "cat.wash.pitch":"Chega de papel e planilha. Reúna tudo o que seu lava-rápido precisa em um só lugar — simples, rápido e acessível de qualquer dispositivo.",
+    "cat.wash.f1":"Clientes, veículos e ordens de serviço","cat.wash.f2":"Financeiro completo e faturamento em tempo real","cat.wash.f3":"Dashboard com indicadores inteligentes","cat.wash.f4":"Personalize com a identidade do seu negócio","cat.wash.f5":"Funciona em celular, tablet e computador","cat.wash.f6":"Acesso seguro por e-mail — dados só seus",
+    "cat.web":"Web","cat.mobile":"Mobile","cat.wash.btn":"Conhecer Oz.Wash →",
+    "cat.finance.subtag":"Organize sua vida financeira com clareza",
+    "cat.finance.pitch":"Controle total das suas finanças em um só lugar. Acompanhe receitas, despesas, metas e investimentos de forma simples e visual.",
+    "cat.finance.f1":"Controle de receitas e despesas","cat.finance.f2":"Categorização automática de gastos","cat.finance.f3":"Metas e planejamento financeiro","cat.finance.f4":"Gráficos e relatórios visuais","cat.finance.f5":"Funciona no celular e no computador",
+    "cat.finance.btn":"Acessar Agora →",
+    "cat.custom.title":"Desenvolvimento Sob Medida",
+    "cat.custom.text1":"Cada operação é única. A OzTech desenvolve sistemas personalizados do zero — sem funcionalidades desnecessárias, sem limitações de produto pronto. Do levantamento de requisitos à entrega final, tudo adaptado ao seu contexto e orçamento.",
+    "cat.custom.text2":"Atendemos startups, profissionais autônomos e empresas que precisam digitalizar ou escalar suas operações com tecnologia própria.",
+    "cat.custom.1.title":"Plataformas Web","cat.custom.1.text":"Sistemas completos com painel admin, área do cliente e integrações.",
+    "cat.custom.2.title":"Dashboards & BI","cat.custom.2.text":"Painéis de controle com KPIs, gráficos e alertas operacionais.",
+    "cat.custom.3.title":"Integrações & APIs","cat.custom.3.text":"Conectamos ERPs, CRMs e ferramentas para eliminar retrabalho.",
+    "cat.custom.4.title":"Portais & E-commerce","cat.custom.4.text":"Lojas, marketplaces e portais de vendas personalizados.",
+    "cat.custom.5.title":"Apps Responsivos","cat.custom.5.text":"Interfaces que funcionam perfeitamente no celular e no desktop.",
+    "cat.custom.6.title":"Automações","cat.custom.6.text":"Fluxos automáticos que eliminam tarefas repetitivas da sua equipe.",
+    "cat.custom.cta":"Solicitar Orçamento Gratuito","cat.custom.ctaSub":"Respondemos em até 24h com uma proposta personalizada.",
+    "plans.tag":"Modelos de Contratação","plans.title":"Escolha o modelo ideal<br/>para o seu negócio",
+    "plans.subtitle":"Oferecemos três modelos de trabalho para atender diferentes necessidades e estágios de maturidade tecnológica.",
+    "plans.1.title":"Projeto Personalizado","plans.1.desc":"Ideal para demandas específicas com escopo bem definido. Você paga pelo projeto completo.",
+    "plans.1.f1":"Levantamento de requisitos completo","plans.1.f2":"Desenvolvimento sob medida","plans.1.f3":"Prazo e custo definidos","plans.1.f4":"Entrega com documentação","plans.1.f5":"Suporte pós-entrega incluso","plans.1.f6":"Código-fonte entregue ao cliente",
+    "plans.1.btn":"Solicitar Orçamento",
+    "plans.2.badge":"Mais Flexível","plans.2.title":"Assinatura SaaS","plans.2.desc":"Acesso a ferramentas e plataformas via mensalidade. Escale quando precisar, sem grandes investimentos iniciais.",
+    "plans.2.f1":"Acesso imediato à plataforma","plans.2.f2":"Atualizações automáticas","plans.2.f3":"Infraestrutura gerenciada","plans.2.f4":"Suporte contínuo incluso","plans.2.f5":"Planos flexíveis por usuários/uso","plans.2.f6":"Cancelamento sem multa",
+    "plans.2.btn":"Conhecer Planos",
+    "plans.3.title":"Consultoria Técnica","plans.3.desc":"Para empresas que precisam de orientação estratégica antes de iniciar um projeto tecnológico.",
+    "plans.3.f1":"Diagnóstico tecnológico","plans.3.f2":"Mapeamento de processos","plans.3.f3":"Recomendação de soluções","plans.3.f4":"Planejamento de roadmap","plans.3.f5":"Análise de viabilidade","plans.3.f6":"Relatório executivo detalhado",
+    "plans.3.btn":"Agendar Consulta",
+    "how.tag":"Processo","how.title":"Como trabalhamos","how.subtitle":"Um processo simples, transparente e eficiente do primeiro contato à entrega final.",
+    "how.1.title":"Diagnóstico","how.1.text":"Entendemos sua necessidade, contexto e objetivos de negócio em uma conversa inicial.",
+    "how.2.title":"Proposta","how.2.text":"Apresentamos a solução ideal com escopo, prazo e investimento claros e detalhados.",
+    "how.3.title":"Desenvolvimento","how.3.text":"Construímos com metodologia ágil, com entregas parciais e feedbacks constantes.",
+    "how.4.title":"Entrega & Suporte","how.4.text":"Implantamos a solução e acompanhamos sua evolução continuamente.",
+    "contact.tag":"Contato","contact.title":"Vamos automatizar sua operação?",
+    "contact.subtitle":"Preencha o formulário e nossa equipe entrará em contato em até 24 horas para entender melhor suas necessidades.",
+    "contact.email.label":"E-mail","contact.ig.label":"Instagram","contact.wa.label":"WhatsApp",
+    "contact.form.name":"Seu nome","contact.form.namePh":"Nome completo",
+    "contact.form.email":"E-mail","contact.form.emailPh":"seu@email.com",
+    "contact.form.company":"Empresa","contact.form.companyPh":"Nome da empresa",
+    "contact.form.service":"Tipo de serviço",
+    "contact.form.opt0":"Selecione uma opção","contact.form.opt1":"Desenvolvimento de software","contact.form.opt2":"Assinatura SaaS","contact.form.opt3":"Integração de sistemas","contact.form.opt4":"Dashboard / BI","contact.form.opt5":"Consultoria técnica","contact.form.opt6":"Outro",
+    "contact.form.message":"Mensagem","contact.form.messagePh":"Descreva brevemente sua necessidade...",
+    "contact.form.submit":"Enviar Mensagem",
+    "footer.copyright":"© 2026 OzTech SmartControl. Todos os direitos reservados.",
+    "footer.link1":"Soluções","footer.link2":"Sobre","footer.link3":"Planos","footer.link4":"Contato",
+    "ze.status":"● Assistente OzTech · Online","ze.inputPh":"Digite sua mensagem...",
+    "ze.aria.open":"Abrir chat Zé","ze.aria.window":"Zé - Assistente OzTech","ze.aria.close":"Fechar","ze.aria.send":"Enviar"
+  },
+  en: {
+    "nav.websites":"Websites","nav.catalog":"Catalog","nav.about":"About","nav.plans":"Plans","nav.how":"How it works","nav.contact":"Contact",
+    "hero.badge":"Automation, SaaS and Custom Systems",
+    "hero.title":"Your vision. <span>Our technology</span>.",
+    "hero.subtitle":"We build custom systems, automations and digital solutions to turn ideas into reality.",
+    "hero.cta1":"Request a quote","hero.cta2":"Explore solutions",
+    "stats.1.num":"Web & Mobile","stats.1.label":"Access from anywhere, on any device, with security and convenience.",
+    "stats.2.num":"Subscription License","stats.2.label":"Flexible, scalable plans. Pay only for what you use and cancel anytime.",
+    "stats.3.num":"100% Customizable","stats.3.label":"Your system, your brand. Colors, logo, domain and visual identity.",
+    "stats.4.num":"Specialized Support","stats.4.label":"A team ready to assist you and support your business growth.",
+    "prob.title":"Your operation is growing,<br><span style=\"color:var(--blue)\">but are the processes still manual?</span>",
+    "prob.subtitle":"Lack of automation can cause rework, errors and wasted time.<br>Our solutions turn manual processes into intelligent workflows.",
+    "prob.1.title":"Slow processes","prob.1.text":"Manual tasks consume time and reduce your team's productivity.","prob.1.check":"Increase speed and gain more time.",
+    "prob.2.title":"Lack of standardization","prob.2.text":"Everyone does it their own way, leading to mistakes and inconsistent information.","prob.2.check":"Standardize processes and reduce operational errors.",
+    "prob.3.title":"Disconnected information","prob.3.text":"Data scattered across spreadsheets and systems that don't talk to each other.","prob.3.check":"Centralize data and get a complete view of your business.",
+    "prob.4.title":"Reactive decisions","prob.4.text":"Without real-time data, decisions are made late and without confidence.","prob.4.check":"Get real-time information to make better decisions.",
+    "swhat.title":"What we do","swhat.subtitle":"We have ready-to-use systems fully adaptable to your business, and we also build custom solutions for companies and professionals.",
+    "swhat.1.title":"Web Systems","swhat.1.text":"Complete platforms with an admin panel and access from any device.",
+    "swhat.2.title":"Process Automation","swhat.2.text":"Eliminate repetitive tasks with automated workflows that work for you.",
+    "swhat.3.title":"Smart Dashboards","swhat.3.text":"Visualize your operation's KPIs and metrics in real time, on a clear, modern screen.",
+    "swhat.4.title":"Custom SaaS","swhat.4.text":"Ready-to-use cloud systems, scalable and tailored to your brand and operation.",
+    "swhat.5.title":"CRM & ERP","swhat.5.text":"Centralize customers, sales, inventory and processes in one integrated system.",
+    "swhat.6.title":"API Integrations","swhat.6.text":"We connect systems and tools to eliminate rework and unify your data.",
+    "swhat.7.title":"AI & Chatbots","swhat.7.text":"Smart support and conversational automation powered by artificial intelligence.",
+    "web.tag":"Web Development",
+    "web.title":"Modern, fast websites,<br/><span class=\"web-grad\">100% responsive</span>",
+    "web.subtitle":"We build professional, institutional and commercial websites that strengthen your digital presence, elevate your brand and help convert visitors into customers.",
+    "web.badge1":"100% Responsive","web.badge2":"High Performance","web.badge3":"Secure & Reliable",
+    "web.aud1.title":"For Individuals","web.aud1.text":"Portfolios, personal pages and professional websites with a modern look, easy navigation and simple maintenance.",
+    "web.aud2.title":"For Businesses","web.aud2.text":"Strategic websites to showcase services, attract customers and grow your presence in the digital world.",
+    "web.aud3.title":"For Companies","web.aud3.text":"Robust, secure and scalable solutions to strengthen your brand and support business growth.",
+    "web.cta":"I want my website →",
+    "web.why.tag":"Why have a professional website?",
+    "web.why1.title":"24/7 Presence","web.why1.text":"Your business available every day, around the clock.",
+    "web.why2.title":"More Credibility","web.why2.text":"Convey trust and professionalism to your customers.",
+    "web.why3.title":"More Customers","web.why3.text":"Attract, win and retain customers consistently.",
+    "web.why4.title":"More Results","web.why4.text":"Strategic websites that drive conversions and boost sales.",
+    "web.clients.tag":"Our Clients",
+    "cc.1.title":"Gyms","cc.1.text":"Promote plans, schedules and attract more members.",
+    "cc.2.title":"Medical Clinics","cc.2.text":"Appointments, services and information always accessible.",
+    "cc.3.title":"Architects","cc.3.text":"Showcase your projects and portfolio with style and professionalism.",
+    "cc.4.title":"Stores","cc.4.text":"Showcase your products and increase your online sales.",
+    "cc.5.title":"Companies","cc.5.text":"Strengthen your brand and generate more business opportunities.",
+    "cc.6.title":"Professional Personal Websites","cc.6.text":"Highlight your skills and land new opportunities.",
+    "cc.7.title":"Barbershops","cc.7.text":"Bookings, services and connection with your customers.",
+    "cc.8.title":"Pizzerias","cc.8.text":"Online menu and more orders through your website.",
+    "cc.9.title":"Pet Shops","cc.9.text":"Products, services and care for your best friend.",
+    "cc.10.title":"And much more...","cc.10.text":"Solutions for every type of business and industry.",
+    "web.bottom.tagline":"Modern Design • Technology • Performance • Security • SEO",
+    "web.bottom.cta":"Let's create something amazing for your business?","web.bottom.btn":"Talk to a specialist →",
+    "about.tag":"About OzTech",
+    "about.title":"More than software:<br/>operational transformation",
+    "about.subtitle":"OzTech SmartControl develops digital solutions for individuals, businesses and companies who want to turn manual processes into intelligent systems. We build websites, SaaS platforms, automations and custom systems focused on productivity, control and growth.",
+    "about.mission.title":"Mission","about.mission.text":"Turn manual operations into intelligent, accessible and efficient systems for businesses of all sizes.",
+    "about.vision.title":"Vision","about.vision.text":"To be a benchmark in automation and SaaS for Brazilian small and medium businesses, making quality technology accessible.",
+    "about.values.title":"Values","about.values.text":"Credibility, Innovation, Transparency and Commitment to concrete, measurable results.",
+    "cat.tag":"Solutions Catalog","cat.title":"The right solution for every need",
+    "cat.subtitle":"Ready-to-use products today, or systems built especially for you. Explore each solution and click to learn more.",
+    "cat.tab.pj":"🏢 For Companies","cat.tab.pf":"👤 For You","cat.tab.custom":"⚙️ Custom-built",
+    "cat.available":"● Available",
+    "cat.barber.subtag":"Complete management system for barbershops.",
+    "cat.barber.pitch":"With Oz.Barber, your barbershop manages bookings, appointments, services, products, commissions, cash flow, customers, inventory and reports — all in one modern, secure platform customized with your brand identity.",
+    "cat.barber.f1":"A system that's truly yours, 100% customizable","cat.barber.f2":"Access from phone, tablet or computer","cat.barber.f3":"Reports branded with your barbershop's identity","cat.barber.f4":"More control, organization and management",
+    "cat.barber.p1":"Ready to use","cat.barber.p2":"100% customizable","cat.barber.p3":"Web + Mobile","cat.barber.p4":"Custom reports",
+    "cat.barber.btn":"Discover Oz.Barber →",
+    "cat.wash.subtag":"Smart management for car washes",
+    "cat.wash.pitch":"No more paper and spreadsheets. Bring everything your car wash needs into one place — simple, fast and accessible from any device.",
+    "cat.wash.f1":"Customers, vehicles and service orders","cat.wash.f2":"Complete finances and real-time billing","cat.wash.f3":"Dashboard with smart metrics","cat.wash.f4":"Customize it with your business identity","cat.wash.f5":"Works on phone, tablet and computer","cat.wash.f6":"Secure email access — your data, only yours",
+    "cat.web":"Web","cat.mobile":"Mobile","cat.wash.btn":"Discover Oz.Wash →",
+    "cat.finance.subtag":"Organize your finances with clarity",
+    "cat.finance.pitch":"Total control of your finances in one place. Track income, expenses, goals and investments in a simple, visual way.",
+    "cat.finance.f1":"Income and expense tracking","cat.finance.f2":"Automatic expense categorization","cat.finance.f3":"Goals and financial planning","cat.finance.f4":"Visual charts and reports","cat.finance.f5":"Works on phone and computer",
+    "cat.finance.btn":"Access Now →",
+    "cat.custom.title":"Custom Development",
+    "cat.custom.text1":"Every operation is unique. OzTech builds custom systems from the ground up — no unnecessary features, no off-the-shelf limitations. From requirements gathering to final delivery, everything tailored to your context and budget.",
+    "cat.custom.text2":"We work with startups, freelancers and companies that need to digitize or scale their operations with their own technology.",
+    "cat.custom.1.title":"Web Platforms","cat.custom.1.text":"Complete systems with admin panel, customer area and integrations.",
+    "cat.custom.2.title":"Dashboards & BI","cat.custom.2.text":"Control panels with KPIs, charts and operational alerts.",
+    "cat.custom.3.title":"Integrations & APIs","cat.custom.3.text":"We connect ERPs, CRMs and tools to eliminate rework.",
+    "cat.custom.4.title":"Portals & E-commerce","cat.custom.4.text":"Custom stores, marketplaces and sales portals.",
+    "cat.custom.5.title":"Responsive Apps","cat.custom.5.text":"Interfaces that work perfectly on mobile and desktop.",
+    "cat.custom.6.title":"Automations","cat.custom.6.text":"Automated workflows that eliminate repetitive tasks for your team.",
+    "cat.custom.cta":"Request a Free Quote","cat.custom.ctaSub":"We respond within 24h with a personalized proposal.",
+    "plans.tag":"Engagement Models","plans.title":"Choose the ideal model<br/>for your business",
+    "plans.subtitle":"We offer three working models to meet different needs and stages of technology maturity.",
+    "plans.1.title":"Custom Project","plans.1.desc":"Ideal for specific needs with a well-defined scope. You pay for the complete project.",
+    "plans.1.f1":"Complete requirements gathering","plans.1.f2":"Custom-built development","plans.1.f3":"Defined timeline and cost","plans.1.f4":"Delivery with documentation","plans.1.f5":"Post-delivery support included","plans.1.f6":"Source code delivered to the client",
+    "plans.1.btn":"Request a Quote",
+    "plans.2.badge":"Most Flexible","plans.2.title":"SaaS Subscription","plans.2.desc":"Access tools and platforms through a monthly fee. Scale whenever you need, without large upfront investments.",
+    "plans.2.f1":"Immediate access to the platform","plans.2.f2":"Automatic updates","plans.2.f3":"Managed infrastructure","plans.2.f4":"Ongoing support included","plans.2.f5":"Flexible plans by users/usage","plans.2.f6":"Cancel anytime, no fees",
+    "plans.2.btn":"View Plans",
+    "plans.3.title":"Technical Consulting","plans.3.desc":"For companies that need strategic guidance before starting a technology project.",
+    "plans.3.f1":"Technology assessment","plans.3.f2":"Process mapping","plans.3.f3":"Solution recommendations","plans.3.f4":"Roadmap planning","plans.3.f5":"Feasibility analysis","plans.3.f6":"Detailed executive report",
+    "plans.3.btn":"Schedule a Consultation",
+    "how.tag":"Process","how.title":"How we work","how.subtitle":"A simple, transparent and efficient process from first contact to final delivery.",
+    "how.1.title":"Diagnosis","how.1.text":"We understand your needs, context and business goals in an initial conversation.",
+    "how.2.title":"Proposal","how.2.text":"We present the ideal solution with clear, detailed scope, timeline and investment.",
+    "how.3.title":"Development","how.3.text":"We build using agile methodology, with partial deliveries and constant feedback.",
+    "how.4.title":"Delivery & Support","how.4.text":"We deploy the solution and continuously monitor its progress.",
+    "contact.tag":"Contact","contact.title":"Let's automate your operation?",
+    "contact.subtitle":"Fill out the form and our team will get in touch within 24 hours to better understand your needs.",
+    "contact.email.label":"Email","contact.ig.label":"Instagram","contact.wa.label":"WhatsApp",
+    "contact.form.name":"Your name","contact.form.namePh":"Full name",
+    "contact.form.email":"Email","contact.form.emailPh":"your@email.com",
+    "contact.form.company":"Company","contact.form.companyPh":"Company name",
+    "contact.form.service":"Service type",
+    "contact.form.opt0":"Select an option","contact.form.opt1":"Software development","contact.form.opt2":"SaaS subscription","contact.form.opt3":"System integration","contact.form.opt4":"Dashboard / BI","contact.form.opt5":"Technical consulting","contact.form.opt6":"Other",
+    "contact.form.message":"Message","contact.form.messagePh":"Briefly describe your needs...",
+    "contact.form.submit":"Send Message",
+    "footer.copyright":"© 2026 OzTech SmartControl. All rights reserved.",
+    "footer.link1":"Solutions","footer.link2":"About","footer.link3":"Plans","footer.link4":"Contact",
+    "ze.status":"● OzTech Assistant · Online","ze.inputPh":"Type your message...",
+    "ze.aria.open":"Open Zé chat","ze.aria.window":"Zé - OzTech Assistant","ze.aria.close":"Close","ze.aria.send":"Send"
+  }
+};
+
+function applyLang(lang){
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    const txt = I18N[lang][key];
+    if (txt !== undefined) el.innerHTML = txt;
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    const txt = I18N[lang][key];
+    if (txt !== undefined) el.setAttribute("placeholder", txt);
+  });
+  document.querySelectorAll("[data-i18n-aria]").forEach(el => {
+    const key = el.getAttribute("data-i18n-aria");
+    const txt = I18N[lang][key];
+    if (txt !== undefined) el.setAttribute("aria-label", txt);
+  });
+  document.documentElement.lang = lang === "en" ? "en" : "pt-BR";
+  document.querySelectorAll(".lang-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+  });
+  localStorage.setItem("oz-lang", lang);
+  window.OZ_LANG = lang;
+}
+
+(function initLang(){
+  const saved = localStorage.getItem("oz-lang");
+  const lang = saved === "en" ? "en" : "pt";
+  window.OZ_LANG = lang;
+  if (lang === "en") applyLang("en");
+  else {
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.classList.toggle("active", btn.getAttribute("data-lang") === "pt");
+    });
+  }
+})();
 </script>
 </body>
 </html>
