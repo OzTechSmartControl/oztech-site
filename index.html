@@ -35,7 +35,7 @@
     --hex: #1e2a40;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body {
     background: var(--bg);
     color: var(--text);
@@ -1696,6 +1696,14 @@
     box-sizing: border-box !important;
     overflow: hidden !important;
   }
+  @media (max-width: 768px) {
+    .problem-grid { grid-template-columns: 1fr !important; }
+  }
+
+  /* Stats-bar: 2x2 grid on mobile so cards have room for their labels */
+  @media (max-width: 600px) {
+    .stats-bar { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  }
   .prob-card, .service-card {
     min-width: 0 !important;
     width: 100% !important;
@@ -1730,7 +1738,7 @@
   .web-wrap { display: flex; align-items: center; gap: 64px; flex-wrap: wrap; }
   .web-text { flex: 1 1 420px; min-width: 320px; }
   .web-text .section-sub { margin-bottom: 32px; }
-  .web-visual { flex: 1 1 420px; min-width: 320px; max-width: 600px; aspect-ratio: 4 / 3; position: relative; }
+  .web-visual { flex: 6 1 420px; min-width: 320px; max-width: 820px; aspect-ratio: 4 / 3; position: relative; }
   .web-visual img { position: absolute; height: auto; display: block; }
   .web-visual .wd-laptop { width: 86%; left: 0; top: 12%; filter: drop-shadow(0 25px 50px rgba(63,169,245,0.25)); }
   .web-visual .wd-phone { width: 30%; right: 0; bottom: 0; z-index: 2; filter: drop-shadow(0 15px 35px rgba(5,10,20,0.45)); }
