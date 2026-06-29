@@ -1730,6 +1730,9 @@
     gap: 18px !important;
   }
   .swhat-card { width: 195px !important; flex-shrink: 0 !important; }
+  @media (max-width: 600px) {
+    .swhat-card { width: calc(50% - 9px) !important; }
+  }
 
   /* Spacing between stats-bar and problemas section */
   .prob-header { padding-top: 56px !important; }
