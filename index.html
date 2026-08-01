@@ -1553,12 +1553,12 @@
   /* ── Scroll reveal ── */
   .reveal {
     opacity: 0;
-    transform: translateY(32px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transform: translateY(32px) scale(0.98);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.16,1,.3,1);
   }
   .reveal.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 
   .hero p  { font-size: 0.9rem; }
@@ -1824,6 +1824,50 @@
     .web-badge { font-size: 0.72rem; padding: 6px 12px 6px 6px; }
     .web-bottom-bar { flex-direction: column; text-align: center; padding: 24px 20px; }
     .client-card { width: 145px; }
+  }
+
+  /* ===================================================================
+     FX SYSTEM — camada de interação futurista (tilt, scan, glitch)
+     =================================================================== */
+
+  /* 3D tilt + spotlight que segue o cursor */
+  .fx-tilt { position: relative; transition: transform 0.15s ease-out; will-change: transform; }
+  .fx-tilt::after {
+    content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    background: radial-gradient(280px circle at var(--fx-x, 50%) var(--fx-y, 50%), rgba(0,229,255,0.14), transparent 62%);
+    opacity: 0; transition: opacity 0.3s; z-index: 1;
+  }
+  .fx-tilt:hover::after { opacity: 1; }
+
+  /* Linha do section-tag "desenhando" ao revelar */
+  .section-tag::before { transition: width 0.7s ease 0.15s; }
+  .reveal .section-tag::before { width: 0; }
+  .reveal.visible .section-tag::before { width: 28px; }
+
+  /* Pulso no selo "Disponível" */
+  .cat-status-live { animation: fx-live-pulse 2.4s ease-in-out infinite; }
+  @keyframes fx-live-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,220,80,0.35); }
+    50%      { box-shadow: 0 0 0 4px rgba(0,220,80,0); }
+  }
+
+  /* Glitch RGB sutil no logo ao passar o mouse */
+  .nav-logo span { display: inline-block; }
+  .nav-logo:hover span { animation: fx-glitch 0.4s steps(2, end) 1; }
+  @keyframes fx-glitch {
+    0%   { text-shadow: none; transform: translate(0,0); }
+    20%  { text-shadow: -2px 0 #00e5ff, 2px 0 #ff2b6b; transform: translate(-1px,0); }
+    40%  { text-shadow: 2px 0 #00e5ff, -2px 0 #ff2b6b; transform: translate(1px,0); }
+    60%  { text-shadow: -1px 0 #00e5ff, 1px 0 #ff2b6b; transform: translate(-1px,0); }
+    100% { text-shadow: none; transform: translate(0,0); }
+  }
+
+  .btn-primary, .btn-outline, .cat-btn-primary { transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s, color 0.18s; }
+
+  @media (prefers-reduced-motion: reduce), (hover: none) {
+    .cat-status-live { animation: none !important; }
+    .nav-logo:hover span { animation: none !important; }
+    .fx-tilt:hover::after { opacity: 0 !important; }
   }
 </style>
 <meta content="Criamos sites profissionais, sistemas sob medida, automações e plataformas SaaS (Oz.Barber, Oz.Beauty, Oz.Wash, Oz.Finance) para simplificar processos, melhorar a gestão e gerar mais resultados." name="description"/><script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
@@ -2166,7 +2210,7 @@
             <span style="flex:1;text-align:center;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);border-radius:6px;padding:6px 10px;font-size:0.72rem;color:var(--accent);font-weight:600;" data-i18n="cat.beauty.p3">Web + Mobile</span>
             <span style="flex:1;text-align:center;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);border-radius:6px;padding:6px 10px;font-size:0.72rem;color:var(--accent);font-weight:600;" data-i18n="cat.beauty.p4">Relatórios personalizados</span>
           </div>
-          <a class="cat-btn-primary" data-i18n="cat.beauty.btn" href="https://ozbeauty.oztechsmartcontrol.com.br/" target="_blank" rel="noopener">Conhecer Oz.Beauty →</a>
+          <a class="cat-btn-primary" data-i18n="cat.beauty.btn" href="https://oz-beauty.oztechsmartcontrol.com.br/" target="_blank" rel="noopener">Conhecer Oz.Beauty →</a>
         </div>
       </div>
     </div>
@@ -3010,6 +3054,81 @@ function applyLang(lang){
       btn.classList.toggle("active", btn.getAttribute("data-lang") === "pt");
     });
   }
+})();
+</script>
+<script>
+// ===== FX SYSTEM — camada de interação futurista =====
+(function(){
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (reduceMotion) return;
+
+  // ---- Botões magnéticos ----
+  if (canHover) {
+    document.querySelectorAll('.btn-primary, .btn-outline, .cat-btn-primary').forEach((btn) => {
+      btn.addEventListener('mousemove', (e) => {
+        const r = btn.getBoundingClientRect();
+        const relX = e.clientX - r.left - r.width / 2;
+        const relY = e.clientY - r.top - r.height / 2;
+        btn.style.transform = `translate(${relX * 0.16}px, ${relY * 0.35}px)`;
+      });
+      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+    });
+  }
+
+  // ---- Tilt 3D + spotlight nos cards ----
+  if (canHover) {
+    document.querySelectorAll('.cat-card, .swhat-card, .plan-card, .prob-card').forEach((card) => {
+      card.classList.add('fx-tilt');
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        const rotY = (px - 0.5) * 6;
+        const rotX = (0.5 - py) * 6;
+        card.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
+        card.style.setProperty('--fx-x', `${px * 100}%`);
+        card.style.setProperty('--fx-y', `${py * 100}%`);
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+  }
+
+  // ---- Efeito de texto "decodificando" ----
+  const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#%&*+=<>/\\';
+  function scrambleInto(el) {
+    if (!el || el.dataset.fxDone) return;
+    el.dataset.fxDone = '1';
+    const final = el.textContent;
+    const len = final.length;
+    const totalFrames = 16;
+    let frame = 0;
+    (function tick(){
+      let out = '';
+      for (let i = 0; i < len; i++) {
+        const ch = final[i];
+        if (ch === ' ') { out += ' '; continue; }
+        const revealFrame = (i / len) * totalFrames;
+        out += frame >= revealFrame ? ch : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+      }
+      el.textContent = out;
+      frame++;
+      if (frame <= totalFrames) setTimeout(tick, 16);
+      else el.textContent = final;
+    })();
+  }
+
+  setTimeout(() => scrambleInto(document.querySelector('.hero-badge')), 300);
+
+  const tagObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        scrambleInto(entry.target);
+        tagObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.section-tag').forEach((tag) => tagObserver.observe(tag));
 })();
 </script>
 </body>
