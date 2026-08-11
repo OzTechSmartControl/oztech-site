@@ -2493,80 +2493,25 @@ document.addEventListener('DOMContentLoaded', function() {
 </div><!-- /#ze-overlay -->
 <script>
 // ===== ZE =====
-const ZE_SYSTEM = {
-  pt: `Você é a Zé, Inteligência Virtual da da OzTech SmartControl — empresa brasileira de desenvolvimento de software sob medida.
+// O conteúdo/prompt do Zé agora vive no oztech-ia-service (mesmo backend
+// que já atende o WhatsApp institucional) — uma única fonte de verdade,
+// em vez de duplicar aqui. Este widget só manda a mensagem do visitante
+// pro endpoint público /api/web-chat/message e mostra a resposta.
+const ZE_API_URL = 'https://assistente.oztechsmartcontrol.com.br/api/web-chat/message';
 
-SOBRE A EMPRESA:
-- Nome: OzTech SmartControl
-- Missão: Facilitar e agregar valor aos negócios dos clientes por meio de tecnologia acessível
-- Modelos de contratação: Projetos sob medida (escopo fixo) e Assinaturas SaaS
-- Contato: contato@oztechsmartcontrol.com.br | Instagram: @OzTech.io
-
-SOLUÇÕES DISPONÍVEIS AGORA:
-1. Oz.Finance (PF) — controle de receitas, despesas, metas e relatórios. Acesso: https://oztechsmartcontrol.github.io/Gestao-Financeira-
-
-EM BREVE (PF): Agenda & Rotina Inteligente
-EM BREVE (PJ): Soluções corporativas (gestão financeira empresarial, automação de processos, dashboards, integrações)
-
-SERVIÇOS:
-- Desenvolvimento de software sob medida
-- Integrações & APIs
-- Dashboards & BI
-- Apps Mobile & Web
-- Consultoria técnica
-- Suporte & Manutenção
-
-SUAS RESPONSABILIDADES:
-1. Responder dúvidas sobre a empresa e seus serviços com clareza
-2. Direcionar para soluções prontas quando houver aderência à necessidade
-3. Para necessidades não cobertas pelas soluções prontas, sugerir contato comercial via e-mail ou Instagram
-4. Ao final de atendimentos relevantes, solicitar nome e e-mail para follow-up
-5. Ser proativo: pergunte sobre a necessidade do cliente para direcionar melhor
-
-REGRAS DE COMPORTAMENTO:
-- Responda SEMPRE em português do Brasil
-- Seja objetivo, amigável e profissional
-- Respostas curtas (3-5 linhas) salvo quando necessário detalhar
-- Não invente funcionalidades ou preços não informados acima
-- Quando não souber, direcione para contato humano
-- Use emojis com moderação`,
-  en: `You are Zé, the Virtual Intelligence of OzTech SmartControl — a Brazilian custom software development company.
-
-ABOUT THE COMPANY:
-- Name: OzTech SmartControl
-- Mission: Make accessible technology that simplifies and adds value to clients' businesses
-- Engagement models: Custom projects (fixed scope) and SaaS subscriptions
-- Contact: contato@oztechsmartcontrol.com.br | Instagram: @OzTech.io
-
-SOLUTIONS AVAILABLE NOW:
-1. Oz.Finance (individuals) — income, expense, goal tracking and reports. Access: https://oztechsmartcontrol.github.io/Gestao-Financeira-
-
-COMING SOON (individuals): Smart Schedule & Routine
-COMING SOON (businesses): Corporate solutions (business financial management, process automation, dashboards, integrations)
-
-SERVICES:
-- Custom software development
-- Integrations & APIs
-- Dashboards & BI
-- Mobile & Web apps
-- Technical consulting
-- Support & Maintenance
-
-YOUR RESPONSIBILITIES:
-1. Answer questions about the company and its services clearly
-2. Direct users to ready-made solutions when they fit the need
-3. For needs not covered by ready-made solutions, suggest commercial contact via email or Instagram
-4. At the end of relevant conversations, ask for name and email for follow-up
-5. Be proactive: ask about the client's needs to guide them better
-
-BEHAVIOR RULES:
-- ALWAYS respond in English
-- Be objective, friendly and professional
-- Keep replies short (3-5 lines) unless more detail is needed
-- Don't invent features or prices not provided above
-- When unsure, direct the user to human contact
-- Use emojis sparingly`
-};
+function zeSessionId() {
+  let id = localStorage.getItem('oz_ze_session_id');
+  if (!id) {
+    id = crypto.randomUUID
+      ? crypto.randomUUID()
+      : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+          const r = Math.random() * 16 | 0;
+          return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+    localStorage.setItem('oz_ze_session_id', id);
+  }
+  return id;
+}
 
 let zeHistory = [];
 let zeOpen = false;
@@ -2650,15 +2595,11 @@ async function zeCallAPI() {
   const lang = window.OZ_LANG === 'en' ? 'en' : 'pt';
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const lastUserMsg = zeHistory.length ? zeHistory[zeHistory.length - 1].content : '';
+    const res = await fetch(ZE_API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: ZE_SYSTEM[lang],
-        messages: zeHistory
-      })
+      body: JSON.stringify({ session_id: zeSessionId(), message: lastUserMsg })
     });
     const data = await res.json();
     typing.remove();
@@ -2666,7 +2607,7 @@ async function zeCallAPI() {
     const fallback = lang === 'en'
       ? 'Sorry, something went wrong. Please try again or contact us at contato@oztechsmartcontrol.com.br 😊'
       : 'Desculpe, ocorreu um erro. Tente novamente ou entre em contato pelo e-mail contato@oztechsmartcontrol.com.br 😊';
-    const reply = data.content && data.content[0] ? data.content[0].text : fallback;
+    const reply = res.ok && data.reply ? data.reply : fallback;
     zeHistory.push({ role: 'assistant', content: reply });
 
     const div = document.createElement('div');
