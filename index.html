@@ -1830,6 +1830,17 @@
      FX SYSTEM — camada de interação futurista (tilt, scan, glitch)
      =================================================================== */
 
+  /* Gradient shimmer no título do hero */
+  .hero h1.gs-shimmer {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-color: var(--gs-base, #fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero h1.gs-shimmer span { color: inherit; }
+
   /* 3D tilt + spotlight que segue o cursor */
   .fx-tilt { position: relative; transition: transform 0.15s ease-out; will-change: transform; }
   .fx-tilt::after {
@@ -3070,6 +3081,90 @@ function applyLang(lang){
     });
   }, { threshold: 0.4 });
   document.querySelectorAll('.section-tag').forEach((tag) => tagObserver.observe(tag));
+})();
+</script>
+<script>
+// ===== Gradient shimmer no título do hero =====
+(function(){
+  const el = document.querySelector('.hero h1');
+  if (!el || typeof window.CSS === 'undefined' || typeof CSS.supports !== 'function') return;
+  const supportsClip = CSS.supports('background-clip', 'text') || CSS.supports('-webkit-background-clip', 'text');
+  if (!supportsClip) return;
+
+  const STOPS = [
+    { p: 0,    c: '#ffffff' },
+    { p: 0.35, c: '#bfe4ff' },
+    { p: 0.5,  c: '#00e5ff' },
+    { p: 0.68, c: '#3fa9f5' },
+    { p: 1,    c: '#ffffff' },
+  ];
+  const ANGLE = 105;
+  const CORE_RATIO = 0.44;
+  const SPREAD_MID_RATIO = 0.72;
+  const SPREAD_PER_CHAR = 3;
+  const MAX_SPREAD = 48;
+  const BASE_FONT = 14;
+  const DURATION_MS = 2200;
+  const PAUSE_MS = 1200;
+
+  function buildGradient(){
+    const first = STOPS[0].c, last = STOPS[STOPS.length - 1].c;
+    const supportsMix = CSS.supports('color', 'color-mix(in oklab, red, blue)');
+    const core = STOPS.map((s) => {
+      const f = (s.p - 0.5) * 2 * CORE_RATIO;
+      return `${s.c} calc(50% + var(--gs-spread-mid) * ${f.toFixed(4)})`;
+    }).join(', ');
+    const edgeFirst = supportsMix ? `color-mix(in oklab, var(--gs-base) 42%, ${first})` : first;
+    const edgeLast = supportsMix ? `color-mix(in oklab, var(--gs-base) 42%, ${last})` : last;
+    return [
+      `linear-gradient(${ANGLE}deg`,
+      `var(--gs-base) calc(50% - var(--gs-spread))`,
+      `${edgeFirst} calc(50% - var(--gs-spread-mid))`,
+      core,
+      `${edgeLast} calc(50% + var(--gs-spread-mid))`,
+      `var(--gs-base) calc(50% + var(--gs-spread)))`,
+    ].join(', ');
+  }
+
+  el.classList.add('gs-shimmer');
+  el.style.setProperty('--gs-base', '#ffffff');
+  el.style.backgroundImage = buildGradient();
+
+  const charCount = Math.max(el.textContent.trim().length, 10);
+
+  function measure(){
+    const width = el.getBoundingClientRect().width || 300;
+    const fontSize = parseFloat(getComputedStyle(el).fontSize) || BASE_FONT;
+    const scale = fontSize / BASE_FONT;
+    const spreadPx = Math.min(charCount * SPREAD_PER_CHAR * scale, MAX_SPREAD * scale);
+    el.style.setProperty('--gs-spread', `${spreadPx}px`);
+    el.style.setProperty('--gs-spread-mid', `${spreadPx * SPREAD_MID_RATIO}px`);
+    const layerWidth = Math.max(1, width + spreadPx * 2);
+    el.style.backgroundSize = `${layerWidth}px 100%`;
+    return { start: -spreadPx - layerWidth / 2, end: width + spreadPx - layerWidth / 2 };
+  }
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || typeof el.animate !== 'function') { measure(); return; }
+
+  let cancelled = false;
+  let pauseTimer;
+  let prevAnim = null;
+  function sweep(){
+    if (cancelled) return;
+    const { start, end } = measure();
+    const anim = el.animate(
+      [{ backgroundPositionX: `${start}px` }, { backgroundPositionX: `${end}px` }],
+      { duration: DURATION_MS, easing: 'cubic-bezier(0.45,0,0.55,1)', fill: 'forwards' }
+    );
+    // Cancel the previous (finished) sweep only after the next one takes over
+    // the property — otherwise finished fill:forwards animations pile up.
+    prevAnim?.cancel();
+    prevAnim = anim;
+    anim.onfinish = () => { pauseTimer = setTimeout(sweep, PAUSE_MS); };
+  }
+  sweep();
+  window.addEventListener('beforeunload', () => { cancelled = true; clearTimeout(pauseTimer); });
 })();
 </script>
 </body>
