@@ -983,6 +983,25 @@
   }
   .ze-quick:hover { background: rgba(63,169,245,0.18); color: #fff; }
 
+  .ze-actions {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin-top: 10px;
+  }
+  /* .ze-bubble a (acima) já define color/text-decoration pra links soltos
+     no texto da IA — precisa de mais especificidade aqui pra não herdar o
+     azul sublinhado nesses botões. */
+  .ze-bubble a.ze-action-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: linear-gradient(135deg,#1a5a9e,#2a7fd4);
+    border: none; border-radius: 20px;
+    color: #fff; font-size: 0.76rem; font-weight: 600;
+    padding: 7px 14px;
+    text-decoration: none;
+    font-family: 'Exo 2', sans-serif;
+    transition: opacity 0.15s;
+  }
+  .ze-bubble a.ze-action-btn:hover { opacity: 0.85; }
+
   #ze-input-row {
     display: flex; gap: 8px; align-items: center;
     padding: 12px 14px 16px;
@@ -2619,6 +2638,7 @@ async function zeCallAPI() {
       ? 'Sorry, something went wrong. Please try again or contact us at contato@oztechsmartcontrol.com.br 😊'
       : 'Desculpe, ocorreu um erro. Tente novamente ou entre em contato pelo e-mail contato@oztechsmartcontrol.com.br 😊';
     const reply = res.ok && data.reply ? data.reply : fallback;
+    const actions = res.ok && Array.isArray(data.actions) ? data.actions : [];
     zeHistory.push({ role: 'assistant', content: reply });
 
     const div = document.createElement('div');
@@ -2629,6 +2649,27 @@ async function zeCallAPI() {
       .replace(/\n/g, '<br>');
     div.innerHTML = `<div class="ze-bubble">${formatted}</div>`;
     msgs.appendChild(div);
+
+    // 'actions' só vem preenchido quando o backend acabou de gerar um
+    // protocolo de atendimento humano — botões pra falar com a OzTech na
+    // hora, ficam presos a esta mensagem específica (não somem ao trocar
+    // de assunto, diferente das sugestões rápidas em #ze-quick-btns).
+    if (actions.length) {
+      const ZE_ACTION_ICON = { whatsapp: '💬', email: '📧', phone: '📞' };
+      const bubble = div.querySelector('.ze-bubble');
+      const actionsRow = document.createElement('div');
+      actionsRow.className = 'ze-actions';
+      actions.forEach(action => {
+        const link = document.createElement('a');
+        link.className = 'ze-action-btn';
+        link.href = action.href;
+        if (action.type === 'whatsapp') { link.target = '_blank'; link.rel = 'noopener'; }
+        link.textContent = `${ZE_ACTION_ICON[action.type] || ''} ${action.label}`.trim();
+        actionsRow.appendChild(link);
+      });
+      bubble.appendChild(actionsRow);
+    }
+
     msgs.scrollTop = msgs.scrollHeight;
 
     // Suggest quick replies based on context
