@@ -1185,6 +1185,7 @@
   .cdev-type .ct-icon { font-size: 1.9rem; margin-bottom: 10px; }
   .cdev-type h4 { font-family: 'Orbitron', sans-serif; font-size: 0.78rem; color: #fff; margin-bottom: 7px; }
   .cdev-type p { font-size: 0.79rem; color: var(--muted); line-height: 1.55; }
+
   /* Portfolio V2 */
   .port-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
   .port-card {
@@ -1899,7 +1900,7 @@
 <img alt="OzTech Logo" height="512" onerror="this.style.display='none'" src="Logo_-_OzTech_SmartControl.png" width="512"/>
 <span>OzTech <small>SmartControl</small></span>
 </a>
-<ul><li><a data-i18n="nav.websites" href="#websites">Websites</a></li><li><a data-i18n="nav.catalog" href="#catalogo">Catálogo</a></li><li><a data-i18n="nav.about" href="#sobre">Sobre</a></li><li><a data-i18n="nav.plans" href="#planos">Planos</a></li><li><a data-i18n="nav.how" href="#como-funciona">Como funciona</a></li><li><a class="nav-cta" data-i18n="nav.contact" href="#contato">Contato</a></li></ul>
+<ul><li><a data-i18n="nav.websites" href="#websites">Websites</a></li><li><a data-i18n="nav.catalog" href="#catalogo">Catálogo</a></li><li><a data-i18n="nav.store" href="loja.html">Loja de Sites</a></li><li><a data-i18n="nav.about" href="#sobre">Sobre</a></li><li><a data-i18n="nav.plans" href="#planos">Planos</a></li><li><a data-i18n="nav.how" href="#como-funciona">Como funciona</a></li><li><a class="nav-cta" data-i18n="nav.contact" href="#contato">Contato</a></li></ul>
 <div class="lang-switch" id="lang-switch">
   <button class="lang-btn" data-lang="en" onclick="applyLang('en')">EN</button>
   <span class="lang-sep">|</span>
@@ -2127,6 +2128,7 @@
   <button class="catalog-tab active" data-i18n="cat.tab.pj" onclick="switchTab('pj', this)">🏢 Para Empresas</button>
   <button class="catalog-tab" data-i18n="cat.tab.pf" onclick="switchTab('pf', this)">👤 Para Você</button>
   <button class="catalog-tab" data-i18n="cat.tab.custom" onclick="switchTab('custom', this)">⚙️ Sob Medida</button>
+  <a class="catalog-tab" data-i18n="cat.tab.sites" href="loja.html">🌐 Sites Prontos</a>
 </div>
 
 <!-- PJ PANEL -->
@@ -2763,7 +2765,7 @@ revealEls.forEach(el => observer.observe(el));
 <script>
 const I18N = {
   pt: {
-    "nav.websites":"Websites","nav.catalog":"Catálogo","nav.about":"Sobre","nav.plans":"Planos","nav.how":"Como funciona","nav.contact":"Contato",
+    "nav.websites":"Websites","nav.catalog":"Catálogo","nav.store":"Loja de Sites","nav.about":"Sobre","nav.plans":"Planos","nav.how":"Como funciona","nav.contact":"Contato",
     "hero.badge":"Automação, SaaS e Sistemas Sob Medida",
     "hero.title":"Sua visão. <span>Nossa tecnologia</span>.",
     "hero.subtitle":"Desenvolvemos sistemas, automações e soluções digitais sob medida para transformar ideias em realidade.",
@@ -2820,7 +2822,7 @@ const I18N = {
     "about.values.title":"Valores","about.values.text":"Credibilidade, Inovação, Transparência e Comprometimento com resultados concretos e mensuráveis.",
     "cat.tag":"Catálogo de Soluções","cat.title":"A solução certa para cada necessidade",
     "cat.subtitle":"Produtos prontos para usar hoje ou sistemas criados especialmente para você. Conheça cada solução e clique para saber mais.",
-    "cat.tab.pj":"🏢 Para Empresas","cat.tab.pf":"👤 Para Você","cat.tab.custom":"⚙️ Sob Medida",
+    "cat.tab.pj":"🏢 Para Empresas","cat.tab.pf":"👤 Para Você","cat.tab.custom":"⚙️ Sob Medida","cat.tab.sites":"🌐 Sites Prontos",
     "cat.available":"● Disponível",
     "cat.barber.subtag":"Sistema completo para gestão de barbearias.",
     "cat.barber.pitch":"Com o Oz.Barber, sua barbearia controla agendamentos, atendimentos, serviços, produtos, comissões, caixa, clientes, estoque e relatórios em uma única plataforma moderna, segura e personalizada com a identidade do seu negócio.",
@@ -2882,7 +2884,7 @@ const I18N = {
     "ze.aria.open":"Abrir chat Zé","ze.aria.window":"Zé - Assistente OzTech","ze.aria.close":"Fechar","ze.aria.send":"Enviar"
   },
   en: {
-    "nav.websites":"Websites","nav.catalog":"Catalog","nav.about":"About","nav.plans":"Plans","nav.how":"How it works","nav.contact":"Contact",
+    "nav.websites":"Websites","nav.catalog":"Catalog","nav.store":"Site Store","nav.about":"About","nav.plans":"Plans","nav.how":"How it works","nav.contact":"Contact",
     "hero.badge":"Automation, SaaS and Custom Systems",
     "hero.title":"Your vision. <span>Our technology</span>.",
     "hero.subtitle":"We build custom systems, automations and digital solutions to turn ideas into reality.",
@@ -2939,7 +2941,7 @@ const I18N = {
     "about.values.title":"Values","about.values.text":"Credibility, Innovation, Transparency and Commitment to concrete, measurable results.",
     "cat.tag":"Solutions Catalog","cat.title":"The right solution for every need",
     "cat.subtitle":"Ready-to-use products today, or systems built especially for you. Explore each solution and click to learn more.",
-    "cat.tab.pj":"🏢 For Companies","cat.tab.pf":"👤 For You","cat.tab.custom":"⚙️ Custom-built",
+    "cat.tab.pj":"🏢 For Companies","cat.tab.pf":"👤 For You","cat.tab.custom":"⚙️ Custom-built","cat.tab.sites":"🌐 Ready Sites",
     "cat.available":"● Available",
     "cat.barber.subtag":"Complete management system for barbershops.",
     "cat.barber.pitch":"With Oz.Barber, your barbershop manages bookings, appointments, services, products, commissions, cash flow, customers, inventory and reports — all in one modern, secure platform customized with your brand identity.",
