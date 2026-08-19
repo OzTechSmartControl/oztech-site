@@ -56,68 +56,95 @@
   .nav-cta:hover { background: var(--blue) !important; color: var(--bg) !important; }
   @media (max-width: 860px) { nav ul { display: none; } }
 
+  /* CONTAINER */
+  .loja-container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+
   /* PAGE HEADER */
-  .loja-header {
-    position: relative; z-index: 2;
-    padding: 150px 5vw 60px; text-align: center;
-    max-width: 760px; margin: 0 auto;
-  }
-  .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); text-decoration: none; font-size: 0.82rem; margin-bottom: 24px; transition: color 0.2s; }
+  .loja-hero { position: relative; z-index: 2; padding: 140px 0 8px; }
+  .loja-hero__inner { max-width: 700px; margin: 0 auto; text-align: center; }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); text-decoration: none; font-size: 0.82rem; margin-bottom: 22px; transition: color 0.2s; }
   .back-link:hover { color: var(--blue); }
   .section-tag {
     font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue);
     margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 10px;
   }
   .section-tag::before, .section-tag::after { content: ''; width: 28px; height: 1px; background: var(--blue); display: inline-block; }
-  .loja-header h1 {
-    font-family: 'Orbitron', sans-serif; font-size: clamp(1.7rem, 4vw, 2.6rem); font-weight: 900;
-    color: #fff; line-height: 1.15; margin-bottom: 18px;
+  .loja-hero h1 {
+    font-family: 'Orbitron', sans-serif; font-size: clamp(1.7rem, 3.4vw, 2.4rem); font-weight: 900;
+    color: #fff; line-height: 1.2; margin-bottom: 12px;
   }
-  .loja-header h1 span { color: var(--blue); }
-  .loja-header p { color: var(--muted); font-size: 0.98rem; line-height: 1.75; }
+  .loja-hero h1 span { color: var(--blue); }
+  .loja-hero p.lead { color: var(--muted); font-size: 0.95rem; line-height: 1.65; margin-bottom: 22px; }
+  .loja-features { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; row-gap: 10px; }
+  .loja-feature { display: flex; align-items: center; gap: 8px; padding: 0 20px; font-size: 0.82rem; color: var(--text); font-weight: 500; }
+  .loja-feature:not(:last-child) { border-right: 1px solid var(--border); }
+  .loja-feature svg { width: 15px; height: 15px; color: var(--blue); flex-shrink: 0; }
+  @media (max-width: 560px) { .loja-feature { border-right: none !important; padding: 0 12px; } }
 
   /* PRODUCT GRID */
-  .loja-main { position: relative; z-index: 2; padding: 0 5vw 110px; max-width: 1200px; margin: 0 auto; }
-  .tpl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+  .loja-main { position: relative; z-index: 2; padding: 28px 0 100px; }
+  .tpl-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+  @media (max-width: 1279px) { .tpl-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 991px)  { .tpl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 599px)  { .tpl-grid { grid-template-columns: 1fr; } }
+
   .tpl-card {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 16px;
     overflow: hidden; display: flex; flex-direction: column; position: relative;
-    transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
-  .tpl-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(63,169,245,0.13); border-color: rgba(63,169,245,0.4); }
-  .tpl-card::after {
-    content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-    background: radial-gradient(280px circle at var(--fx-x, 50%) var(--fx-y, 50%), rgba(0,229,255,0.14), transparent 62%);
-    opacity: 0; transition: opacity 0.3s; z-index: 1;
+  .tpl-card:hover { transform: translateY(-3px); border-color: rgba(63,169,245,0.5); box-shadow: 0 10px 32px rgba(63,169,245,0.15); }
+
+  .tpl-thumb { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background-size: cover; background-position: center; }
+  .tpl-thumb::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,14,26,0) 55%, rgba(10,14,26,0.55) 100%);
+    transition: transform 0.3s ease; z-index: 1;
   }
-  .tpl-card:hover::after { opacity: 1; }
-  .tpl-thumb { position: relative; height: 150px; display: flex; align-items: center; justify-content: center; }
-  .tpl-thumb .tpl-icon { font-size: 3rem; filter: drop-shadow(0 0 16px rgba(0,229,255,0.35)); }
+  .tpl-card:hover .tpl-thumb::before { transform: scale(1.04); }
+
   .tpl-badge-soon {
     position: absolute; top: 14px; left: 14px; z-index: 2;
-    background: rgba(40,26,0,0.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    background: rgba(40,26,0,0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
     color: #ffaa00;
-    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.06em;
     padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(255,170,0,0.4);
   }
   .tpl-badge-live {
     position: absolute; top: 14px; left: 14px; z-index: 2;
-    background: rgba(0,40,15,0.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    background: rgba(0,40,15,0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
     color: #00dc50;
-    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.06em;
     padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(0,220,80,0.4);
   }
-  .tpl-body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
-  .tpl-body h3 { font-family: 'Orbitron', sans-serif; font-size: 1rem; color: #fff; }
-  .tpl-body p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; flex: 1; }
-  .tpl-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 8px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); }
-  .tpl-price { font-size: 0.78rem; color: var(--blue); font-weight: 600; }
-  .tpl-btn { font-size: 0.8rem; font-weight: 700; color: var(--accent); text-decoration: none; white-space: nowrap; }
-  .tpl-btn:hover { text-decoration: underline; }
+
+  .tpl-body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; gap: 8px; }
+  .tpl-title-row { display: flex; align-items: center; gap: 10px; }
+  .tpl-icon-box { width: 32px; height: 32px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .tpl-icon-box svg { width: 17px; height: 17px; color: #fff; }
+  .tpl-body h3 { font-family: 'Orbitron', sans-serif; font-size: 0.94rem; color: #fff; line-height: 1.3; }
+  .tpl-body p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; flex: 1; }
+  .tpl-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.07); }
+  .tpl-price { font-size: 0.76rem; color: var(--blue); font-weight: 600; }
+  .tpl-btn { display: inline-flex; align-items: center; gap: 3px; font-size: 0.78rem; font-weight: 700; color: var(--accent); text-decoration: none; white-space: nowrap; transition: color 0.2s ease, text-shadow 0.2s ease; }
+  .tpl-btn svg { width: 12px; height: 12px; transition: transform 0.2s ease; }
+  .tpl-btn:hover { color: #fff; text-shadow: 0 0 10px rgba(0,229,255,0.6); }
+  .tpl-btn:hover svg { transform: translateX(3px); }
+
+  /* BENEFITS STRIP */
+  .loja-benefits { border-top: 1px solid var(--border); padding: 30px 0; }
+  .loja-benefits__grid { display: flex; flex-wrap: wrap; gap: 22px 0; }
+  .loja-benefit { display: flex; align-items: center; gap: 12px; flex: 1 1 220px; padding: 0 22px; }
+  .loja-benefit:not(:last-child) { border-right: 1px solid var(--border); }
+  .loja-benefit svg { width: 22px; height: 22px; color: var(--blue); flex-shrink: 0; }
+  .loja-benefit strong { display: block; font-family: 'Exo 2', sans-serif; font-size: 0.85rem; color: #fff; font-weight: 600; }
+  .loja-benefit span { display: block; font-size: 0.76rem; color: var(--muted); margin-top: 2px; }
+  @media (max-width: 860px) { .loja-benefit { border-right: none !important; flex: 1 1 45%; } }
+  @media (max-width: 520px) { .loja-benefit { flex: 1 1 100%; padding: 0; } }
 
   /* BOTTOM CTA */
   .loja-cta {
-    margin-top: 56px; padding: 36px 32px; text-align: center;
+    margin-top: 36px; padding: 36px 32px; text-align: center;
     background: var(--panel); border: 1px solid var(--border); border-radius: 16px;
   }
   .loja-cta h2 { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; color: #fff; margin-bottom: 10px; }
@@ -150,8 +177,8 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   @media (max-width: 640px) {
-    .loja-header { padding: 130px 6vw 40px; }
-    .loja-main { padding: 0 6vw 80px; }
+    .loja-hero { padding: 120px 0 8px; }
+    .loja-main { padding: 24px 0 70px; }
     footer { flex-direction: column; text-align: center; }
   }
 </style>
@@ -173,117 +200,164 @@
 </ul>
 </nav>
 
-<header class="loja-header">
-  <a class="back-link" href="index.html">← Voltar ao site principal</a>
-  <div class="section-tag">Loja de Sites Prontos</div>
-  <h1>Modelos prontos para o seu <span>negócio decolar</span></h1>
-  <p>Sites desenvolvidos por nicho, com identidade visual profissional, prontos para receber a cara do seu negócio. Escolha um modelo, veja a demonstração ao vivo e comece a vender online — sem esperar semanas por um site do zero.</p>
+<header class="loja-hero">
+  <div class="loja-container loja-hero__inner">
+    <a class="back-link" href="index.html">← Voltar ao site principal</a>
+    <div class="section-tag">Loja de Sites Prontos</div>
+    <h1>Escolha o modelo ideal para o <span>seu negócio</span></h1>
+    <p class="lead">Modelos prontos, modernos e personalizáveis. Seu site no ar em menos de 24 horas.</p>
+    <div class="loja-features">
+      <span class="loja-feature"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>Personalização completa</span>
+      <span class="loja-feature"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg>Entrega rápida</span>
+      <span class="loja-feature"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect height="6" rx="1.4" width="4" x="2" y="14"/><rect height="6" rx="1.4" width="4" x="18" y="14"/></svg>Suporte especializado</span>
+    </div>
+  </div>
 </header>
 
 <main class="loja-main">
+  <div class="loja-container">
   <div class="tpl-grid">
     <div class="tpl-card">
       <div class="tpl-thumb" style="background:#07222f url('loja-dentistas.jpg') center/cover no-repeat;">
         <span class="tpl-badge-live">● Disponível</span>
       </div>
       <div class="tpl-body">
-        <h3>Site para Dentistas</h3>
+        <div class="tpl-title-row">
+          <span class="tpl-icon-box" style="background:#123a52;"><svg fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 21s-7-4.4-9.5-9C.7 8.4 2.4 4.5 6 4a5 5 0 0 1 6 2 5 5 0 0 1 6-2c3.6.5 5.3 4.4 3.5 8-2.5 4.6-9.5 9-9.5 9Z"/></svg></span>
+          <h3>Site para Dentistas</h3>
+        </div>
         <p>Modelos prontos para clínicas e profissionais de odontologia. Escolha o seu, nós personalizamos para você e tenha seu site no ar em menos de 24 horas.</p>
         <div class="tpl-footer">
           <span class="tpl-price">5 modelos disponíveis</span>
-          <a class="tpl-btn" href="https://sites.oztechsmartcontrol.com.br/odontologia/" target="_blank" rel="noopener">Ver catálogo →</a>
+          <a class="tpl-btn" href="https://sites.oztechsmartcontrol.com.br/odontologia/" target="_blank" rel="noopener">Ver catálogo <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
     <div class="tpl-card">
       <div class="tpl-thumb" style="background:linear-gradient(135deg,#241c07 0%,#634d0d 100%);">
         <span class="tpl-badge-live">● Disponível</span>
-        <div class="tpl-icon">📐</div>
       </div>
       <div class="tpl-body">
-        <h3>Site para Arquitetos</h3>
+        <div class="tpl-title-row">
+          <span class="tpl-icon-box" style="background:#4d3a10;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></span>
+          <h3>Site para Arquitetos</h3>
+        </div>
         <p>Modelos prontos para escritórios e profissionais de arquitetura. Escolha o seu, nós personalizamos para você e tenha seu site no ar em menos de 24 horas.</p>
         <div class="tpl-footer">
           <span class="tpl-price">5 modelos disponíveis</span>
-          <a class="tpl-btn" href="https://sites.oztechsmartcontrol.com.br/arquitetura/" target="_blank" rel="noopener">Ver catálogo →</a>
+          <a class="tpl-btn" href="https://sites.oztechsmartcontrol.com.br/arquitetura/" target="_blank" rel="noopener">Ver catálogo <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
     <div class="tpl-card">
       <div class="tpl-thumb" style="background:linear-gradient(135deg,#1c0724 0%,#4a2d63 100%);">
         <span class="tpl-badge-live">● Disponível</span>
-        <div class="tpl-icon">📷</div>
       </div>
       <div class="tpl-body">
-        <h3>Site para Fotógrafos</h3>
+        <div class="tpl-title-row">
+          <span class="tpl-icon-box" style="background:#3a1f4d;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect height="14" rx="2" width="20" x="2" y="6"/><circle cx="12" cy="13" r="4"/><path d="M8 6l1.5-2h5L16 6"/></svg></span>
+          <h3>Site para Fotógrafos</h3>
+        </div>
         <p>Modelos prontos para fotógrafos e estúdios de fotografia. Escolha o seu, nós personalizamos para você e tenha seu site no ar em menos de 24 horas.</p>
         <div class="tpl-footer">
           <span class="tpl-price">5 modelos disponíveis</span>
-          <a class="tpl-btn" href="https://sites.oztechsmartcontrol.com.br/fotografia/" target="_blank" rel="noopener">Ver catálogo →</a>
+          <a class="tpl-btn" href="https://sites.oztechsmartcontrol.com.br/fotografia/" target="_blank" rel="noopener">Ver catálogo <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
     <div class="tpl-card">
       <div class="tpl-thumb" style="background:linear-gradient(135deg,#0a1f14 0%,#0f4a2a 100%);">
         <span class="tpl-badge-live">● Disponível</span>
-        <div class="tpl-icon">💪</div>
       </div>
       <div class="tpl-body">
-        <h3>Site para Personal Trainer</h3>
+        <div class="tpl-title-row">
+          <span class="tpl-icon-box" style="background:#123a24;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6.5 6.5 4 9m0 0-1.5 1.5L4 12l6 6 1.5-1.5L13 18l2.5-2.5M4 9l3 3M17.5 17.5 20 15m0 0 1.5-1.5L20 12l-6-6-1.5 1.5L11 6l-2.5 2.5M20 15l-3-3M8 8l8 8"/></svg></span>
+          <h3>Site para Personal Trainer</h3>
+        </div>
         <p>Modelos prontos para personal trainers e treinadores esportivos. Escolha o seu, nós personalizamos para você e tenha seu site no ar em menos de 24 horas.</p>
         <div class="tpl-footer">
           <span class="tpl-price">5 modelos disponíveis</span>
-          <a class="tpl-btn" href="https://sites.oztechsmartcontrol.com.br/personal-trainer/" target="_blank" rel="noopener">Ver catálogo →</a>
+          <a class="tpl-btn" href="https://sites.oztechsmartcontrol.com.br/personal-trainer/" target="_blank" rel="noopener">Ver catálogo <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
     <div class="tpl-card">
       <div class="tpl-thumb" style="background:linear-gradient(135deg,#1c0724 0%,#4a0d63 100%);">
         <span class="tpl-badge-soon">● Em breve</span>
-        <div class="tpl-icon">⚖️</div>
       </div>
       <div class="tpl-body">
-        <h3>Site para Advogados</h3>
+        <div class="tpl-title-row">
+          <span class="tpl-icon-box" style="background:#2f1040;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M5 7l3.5 7a3.5 3.5 0 0 1-7 0L5 7Zm14 0-3.5 7a3.5 3.5 0 0 0 7 0L19 7ZM4 7h16"/></svg></span>
+          <h3>Site para Advogados</h3>
+        </div>
         <p>Presença digital séria e confiável, com áreas de atuação e canal direto de contato.</p>
         <div class="tpl-footer">
           <span class="tpl-price">Preço em breve</span>
-          <a class="tpl-btn" data-wa-text="Tenho interesse no site pronto para Advogados." href="#">Tenho interesse →</a>
+          <a class="tpl-btn" data-wa-text="Tenho interesse no site pronto para Advogados." href="#">Tenho interesse <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
     <div class="tpl-card">
       <div class="tpl-thumb" style="background:linear-gradient(135deg,#071a24 0%,#0d3a63 100%);">
         <span class="tpl-badge-soon">● Em breve</span>
-        <div class="tpl-icon">🛒</div>
       </div>
       <div class="tpl-body">
-        <h3>Site para E-commerce</h3>
+        <div class="tpl-title-row">
+          <span class="tpl-icon-box" style="background:#06324a;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.6L21 7H6"/></svg></span>
+          <h3>Site para E-commerce</h3>
+        </div>
         <p>Vitrine online para vender produtos, com catálogo, carrinho e integração de pagamento.</p>
         <div class="tpl-footer">
           <span class="tpl-price">Preço em breve</span>
-          <a class="tpl-btn" data-wa-text="Tenho interesse no site pronto para E-commerce." href="#">Tenho interesse →</a>
+          <a class="tpl-btn" data-wa-text="Tenho interesse no site pronto para E-commerce." href="#">Tenho interesse <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
     <div class="tpl-card">
       <div class="tpl-thumb" style="background:linear-gradient(135deg,#0a1a0f 0%,#164a24 100%);">
-        <div class="tpl-icon">✨</div>
       </div>
       <div class="tpl-body">
-        <h3>Não achou seu nicho?</h3>
+        <div class="tpl-title-row">
+          <span class="tpl-icon-box" style="background:#1c2430;"><svg fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="m12 2 2.6 6.6L21 11l-6.4 2.4L12 20l-2.6-6.6L3 11l6.4-2.4L12 2Z"/></svg></span>
+          <h3>Não achou seu nicho?</h3>
+        </div>
         <p>Estamos ampliando o catálogo toda semana. Conte pra gente qual site você precisa.</p>
         <div class="tpl-footer">
           <span class="tpl-price">Sob consulta</span>
-          <a class="tpl-btn" data-wa-text="Não encontrei o nicho que eu precisava no catálogo de sites prontos. Podemos conversar?" href="#">Tenho interesse →</a>
+          <a class="tpl-btn" data-wa-text="Não encontrei o nicho que eu precisava no catálogo de sites prontos. Podemos conversar?" href="#">Tenho interesse <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
   </div>
+  </div>
 
+  <section class="loja-benefits reveal">
+    <div class="loja-container loja-benefits__grid">
+      <div class="loja-benefit">
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V6Z"/><path d="m9 12 2 2 4-4"/></svg>
+        <div><strong>Seguro e confiável</strong><span>Sites rápidos, seguros e otimizados.</span></div>
+      </div>
+      <div class="loja-benefit">
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect height="20" rx="2" width="12" x="6" y="2"/><path d="M11 18h2"/></svg>
+        <div><strong>Responsivo</strong><span>Perfeito em qualquer dispositivo.</span></div>
+      </div>
+      <div class="loja-benefit">
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>
+        <div><strong>Fácil de gerenciar</strong><span>Painel intuitivo e completo.</span></div>
+      </div>
+      <div class="loja-benefit">
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect height="6" rx="1.4" width="4" x="2" y="14"/><rect height="6" rx="1.4" width="4" x="18" y="14"/></svg>
+        <div><strong>Suporte dedicado</strong><span>Acompanhamento em todas as etapas.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="loja-container">
   <div class="loja-cta reveal">
     <h2>Não achou o nicho ou o preço que precisava?</h2>
     <p>Estamos ampliando o catálogo toda semana. Fale com a gente para saber os valores ou garantir prioridade nos próximos lançamentos.</p>
     <a class="btn-primary" href="index.html#contato">Falar com a OzTech →</a>
+  </div>
   </div>
 </main>
 
@@ -336,24 +410,6 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 revealEls.forEach((el) => observer.observe(el));
-
-// Tilt 3D + spotlight nos cards (desktop only)
-if (window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
-    !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  document.querySelectorAll(".tpl-card").forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
-      const r = card.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width;
-      const py = (e.clientY - r.top) / r.height;
-      const rotY = (px - 0.5) * 6;
-      const rotX = (0.5 - py) * 6;
-      card.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
-      card.style.setProperty("--fx-x", `${px * 100}%`);
-      card.style.setProperty("--fx-y", `${py * 100}%`);
-    });
-    card.addEventListener("mouseleave", () => { card.style.transform = ""; });
-  });
-}
 </script>
 </body>
 </html>
