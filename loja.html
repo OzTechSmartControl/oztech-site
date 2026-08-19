@@ -52,6 +52,7 @@
   nav ul a { color: var(--muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; }
   nav ul a:hover { color: var(--blue); }
   nav ul a.current { color: var(--accent); }
+  nav ul a:focus-visible, .nav-logo:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
   .nav-cta { background: transparent; border: 1px solid var(--blue); color: var(--blue) !important; padding: 8px 20px; border-radius: 4px; transition: background 0.2s, color 0.2s !important; }
   .nav-cta:hover { background: var(--blue) !important; color: var(--bg) !important; }
   @media (max-width: 860px) { nav ul { display: none; } }
@@ -60,30 +61,30 @@
   .loja-container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
 
   /* PAGE HEADER */
-  .loja-hero { position: relative; z-index: 2; padding: 140px 0 8px; }
+  .loja-hero { position: relative; z-index: 2; padding: 128px 0 4px; }
   .loja-hero__inner { max-width: 700px; margin: 0 auto; text-align: center; }
-  .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); text-decoration: none; font-size: 0.82rem; margin-bottom: 22px; transition: color 0.2s; }
-  .back-link:hover { color: var(--blue); }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); text-decoration: none; font-size: 0.78rem; opacity: 0.75; margin-bottom: 16px; transition: color 0.2s, opacity 0.2s; }
+  .back-link:hover { color: var(--blue); opacity: 1; }
   .section-tag {
     font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue);
-    margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 10px;
   }
   .section-tag::before, .section-tag::after { content: ''; width: 28px; height: 1px; background: var(--blue); display: inline-block; }
   .loja-hero h1 {
     font-family: 'Orbitron', sans-serif; font-size: clamp(1.7rem, 3.4vw, 2.4rem); font-weight: 900;
-    color: #fff; line-height: 1.2; margin-bottom: 12px;
+    color: #fff; line-height: 1.2; margin-bottom: 10px;
   }
   .loja-hero h1 span { color: var(--blue); }
-  .loja-hero p.lead { color: var(--muted); font-size: 0.95rem; line-height: 1.65; margin-bottom: 22px; }
-  .loja-features { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; row-gap: 10px; }
+  .loja-hero p.lead { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px; }
+  .loja-features { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; row-gap: 8px; }
   .loja-feature { display: flex; align-items: center; gap: 8px; padding: 0 20px; font-size: 0.82rem; color: var(--text); font-weight: 500; }
   .loja-feature:not(:last-child) { border-right: 1px solid var(--border); }
-  .loja-feature svg { width: 15px; height: 15px; color: var(--blue); flex-shrink: 0; }
+  .loja-feature svg { width: 16px; height: 16px; color: var(--blue); flex-shrink: 0; }
   @media (max-width: 560px) { .loja-feature { border-right: none !important; padding: 0 12px; } }
 
   /* PRODUCT GRID */
-  .loja-main { position: relative; z-index: 2; padding: 28px 0 100px; }
-  .tpl-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+  .loja-main { position: relative; z-index: 2; padding: 20px 0 90px; }
+  .tpl-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
   @media (max-width: 1279px) { .tpl-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   @media (max-width: 991px)  { .tpl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 599px)  { .tpl-grid { grid-template-columns: 1fr; } }
@@ -91,17 +92,17 @@
   .tpl-card {
     background: var(--panel); border: 1px solid var(--border); border-radius: 16px;
     overflow: hidden; display: flex; flex-direction: column; position: relative;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
   }
-  .tpl-card:hover { transform: translateY(-3px); border-color: rgba(63,169,245,0.5); box-shadow: 0 10px 32px rgba(63,169,245,0.15); }
+  .tpl-card:hover { transform: translateY(-4px); border-color: rgba(63,169,245,0.5); box-shadow: 0 12px 34px rgba(63,169,245,0.16); }
 
-  .tpl-thumb { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background-size: cover; background-position: center; }
-  .tpl-thumb::before {
-    content: ''; position: absolute; inset: 0;
+  .tpl-thumb { position: relative; aspect-ratio: 16 / 7; overflow: hidden; background-size: cover; background-position: center; }
+  .tpl-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
+  .tpl-card:hover .tpl-thumb img { transform: scale(1.03); }
+  .tpl-thumb::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
     background: linear-gradient(180deg, rgba(10,14,26,0) 55%, rgba(10,14,26,0.55) 100%);
-    transition: transform 0.3s ease; z-index: 1;
   }
-  .tpl-card:hover .tpl-thumb::before { transform: scale(1.04); }
 
   .tpl-badge-soon {
     position: absolute; top: 14px; left: 14px; z-index: 2;
@@ -118,18 +119,24 @@
     padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(0,220,80,0.4);
   }
 
-  .tpl-body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; gap: 8px; }
+  .tpl-body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; gap: 8px; }
   .tpl-title-row { display: flex; align-items: center; gap: 10px; }
-  .tpl-icon-box { width: 32px; height: 32px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .tpl-icon-box { width: 32px; height: 32px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 14px rgba(63,169,245,0.16); }
   .tpl-icon-box svg { width: 17px; height: 17px; color: #fff; }
-  .tpl-body h3 { font-family: 'Orbitron', sans-serif; font-size: 0.94rem; color: #fff; line-height: 1.3; }
-  .tpl-body p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; flex: 1; }
-  .tpl-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.07); }
-  .tpl-price { font-size: 0.76rem; color: var(--blue); font-weight: 600; }
-  .tpl-btn { display: inline-flex; align-items: center; gap: 3px; font-size: 0.78rem; font-weight: 700; color: var(--accent); text-decoration: none; white-space: nowrap; transition: color 0.2s ease, text-shadow 0.2s ease; }
-  .tpl-btn svg { width: 12px; height: 12px; transition: transform 0.2s ease; }
-  .tpl-btn:hover { color: #fff; text-shadow: 0 0 10px rgba(0,229,255,0.6); }
-  .tpl-btn:hover svg { transform: translateX(3px); }
+  .tpl-body h3 { font-family: 'Orbitron', sans-serif; font-size: 0.92rem; color: #fff; line-height: 1.3; }
+  .tpl-body p { font-size: 0.81rem; color: var(--muted); line-height: 1.55; flex: 1; }
+  .tpl-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.07); }
+  .tpl-price { font-size: 0.74rem; color: var(--blue); font-weight: 600; }
+  .tpl-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 0.74rem; font-weight: 700; color: var(--accent); text-decoration: none; white-space: nowrap;
+    border: 1px solid rgba(0,229,255,0.4); border-radius: 8px; padding: 6px 11px;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .tpl-btn svg { width: 11px; height: 11px; transition: transform 0.2s ease; }
+  .tpl-btn:hover { color: #fff; background: rgba(0,229,255,0.12); border-color: var(--accent); box-shadow: 0 0 14px rgba(0,229,255,0.25); }
+  .tpl-btn:hover svg { transform: translateX(2px); }
+  .tpl-btn:focus-visible, .back-link:focus-visible, .btn-primary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
 
   /* BENEFITS STRIP */
   .loja-benefits { border-top: 1px solid var(--border); padding: 30px 0; }
@@ -177,8 +184,8 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   @media (max-width: 640px) {
-    .loja-hero { padding: 120px 0 8px; }
-    .loja-main { padding: 24px 0 70px; }
+    .loja-hero { padding: 108px 0 4px; }
+    .loja-main { padding: 16px 0 64px; }
     footer { flex-direction: column; text-align: center; }
   }
 </style>
@@ -207,9 +214,9 @@
     <h1>Escolha o modelo ideal para o <span>seu negócio</span></h1>
     <p class="lead">Modelos prontos, modernos e personalizáveis. Seu site no ar em menos de 24 horas.</p>
     <div class="loja-features">
-      <span class="loja-feature"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>Personalização completa</span>
-      <span class="loja-feature"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg>Entrega rápida</span>
-      <span class="loja-feature"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect height="6" rx="1.4" width="4" x="2" y="14"/><rect height="6" rx="1.4" width="4" x="18" y="14"/></svg>Suporte especializado</span>
+      <span class="loja-feature"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>Personalização completa</span>
+      <span class="loja-feature"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg>Entrega rápida</span>
+      <span class="loja-feature"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect height="6" rx="1.4" width="4" x="2" y="14"/><rect height="6" rx="1.4" width="4" x="18" y="14"/></svg>Suporte especializado</span>
     </div>
   </div>
 </header>
@@ -218,130 +225,162 @@
   <div class="loja-container">
   <div class="tpl-grid">
     <div class="tpl-card">
-      <div class="tpl-thumb" style="background:#07222f url('loja-dentistas.jpg') center/cover no-repeat;">
+      <div class="tpl-thumb">
+        <picture>
+          <source srcset="loja-dentistas.webp" type="image/webp"/>
+          <img alt="Consultório odontológico moderno com identidade visual tecnológica" height="562" loading="eager" src="loja-dentistas.jpg" width="900"/>
+        </picture>
         <span class="tpl-badge-live">● Disponível</span>
       </div>
       <div class="tpl-body">
         <div class="tpl-title-row">
-          <span class="tpl-icon-box" style="background:#123a52;"><svg fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 21s-7-4.4-9.5-9C.7 8.4 2.4 4.5 6 4a5 5 0 0 1 6 2 5 5 0 0 1 6-2c3.6.5 5.3 4.4 3.5 8-2.5 4.6-9.5 9-9.5 9Z"/></svg></span>
+          <span class="tpl-icon-box" style="background:#123a52;"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M12 3c-1.1 0-1.7.5-3 .5S6.4 3 5.3 3.8C4.1 4.7 3.5 6.3 3.5 8.2c0 1.6.3 2.7.6 4.3.4 2.1.9 7 2.6 7 1.1 0 1.2-2.3 1.5-3.9.2-1.2.5-2.1 1.8-2.1s1.6.9 1.8 2.1c.3 1.6.4 3.9 1.5 3.9 1.7 0 2.2-4.9 2.6-7 .3-1.6.6-2.7.6-4.3 0-1.9-.6-3.5-1.8-4.4C17.6 3 17 3.5 15 3.5c-1.3 0-1.9-.5-3-.5Z"/></svg></span>
           <h3>Site para Dentistas</h3>
         </div>
-        <p>Modelos prontos para clínicas e profissionais de odontologia. Escolha o seu, nós personalizamos para você e tenha seu site no ar em menos de 24 horas.</p>
+        <p>Modelos profissionais para clínicas e dentistas. Escolha o seu e tenha seu site personalizado no ar em menos de 24 horas.</p>
         <div class="tpl-footer">
           <span class="tpl-price">5 modelos disponíveis</span>
-          <a class="tpl-btn" href="https://sites.oztechsmartcontrol.com.br/odontologia/" target="_blank" rel="noopener">Ver catálogo <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="tpl-btn" href="https://sites.oztechsmartcontrol.com.br/odontologia/" target="_blank" rel="noopener">Ver 5 modelos <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
     <div class="tpl-card">
-      <div class="tpl-thumb" style="background:#241c07 url('loja-arquitetos.jpg') center/cover no-repeat;">
+      <div class="tpl-thumb">
+        <picture>
+          <source srcset="loja-arquitetos.webp" type="image/webp"/>
+          <img alt="Casa de arquitetura moderna com plantas e maquete no primeiro plano" height="562" loading="eager" src="loja-arquitetos.jpg" width="900"/>
+        </picture>
         <span class="tpl-badge-live">● Disponível</span>
       </div>
       <div class="tpl-body">
         <div class="tpl-title-row">
-          <span class="tpl-icon-box" style="background:#4d3a10;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></span>
+          <span class="tpl-icon-box" style="background:#4d3a10;"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></span>
           <h3>Site para Arquitetos</h3>
         </div>
-        <p>Modelos prontos para escritórios e profissionais de arquitetura. Escolha o seu, nós personalizamos para você e tenha seu site no ar em menos de 24 horas.</p>
+        <p>Modelos profissionais para escritórios e arquitetos. Escolha o seu e tenha seu site personalizado no ar em menos de 24 horas.</p>
         <div class="tpl-footer">
           <span class="tpl-price">5 modelos disponíveis</span>
-          <a class="tpl-btn" href="https://sites.oztechsmartcontrol.com.br/arquitetura/" target="_blank" rel="noopener">Ver catálogo <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="tpl-btn" href="https://sites.oztechsmartcontrol.com.br/arquitetura/" target="_blank" rel="noopener">Ver 5 modelos <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
     <div class="tpl-card">
-      <div class="tpl-thumb" style="background:#1c0724 url('loja-fotografos.jpg') center/cover no-repeat;">
+      <div class="tpl-thumb">
+        <picture>
+          <source srcset="loja-fotografos.webp" type="image/webp"/>
+          <img alt="Câmera profissional e laptop com edição de fotos em estúdio" height="562" loading="eager" src="loja-fotografos.jpg" width="900"/>
+        </picture>
         <span class="tpl-badge-live">● Disponível</span>
       </div>
       <div class="tpl-body">
         <div class="tpl-title-row">
-          <span class="tpl-icon-box" style="background:#3a1f4d;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect height="14" rx="2" width="20" x="2" y="6"/><circle cx="12" cy="13" r="4"/><path d="M8 6l1.5-2h5L16 6"/></svg></span>
+          <span class="tpl-icon-box" style="background:#3a1f4d;"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect height="14" rx="2" width="20" x="2" y="6"/><circle cx="12" cy="13" r="4"/><path d="M8 6l1.5-2h5L16 6"/></svg></span>
           <h3>Site para Fotógrafos</h3>
         </div>
-        <p>Modelos prontos para fotógrafos e estúdios de fotografia. Escolha o seu, nós personalizamos para você e tenha seu site no ar em menos de 24 horas.</p>
+        <p>Modelos profissionais para fotógrafos e estúdios. Escolha o seu e tenha seu site personalizado no ar em menos de 24 horas.</p>
         <div class="tpl-footer">
           <span class="tpl-price">5 modelos disponíveis</span>
-          <a class="tpl-btn" href="https://sites.oztechsmartcontrol.com.br/fotografia/" target="_blank" rel="noopener">Ver catálogo <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="tpl-btn" href="https://sites.oztechsmartcontrol.com.br/fotografia/" target="_blank" rel="noopener">Ver 5 modelos <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
     <div class="tpl-card">
-      <div class="tpl-thumb" style="background:#0a1f14 url('loja-personal.jpg') center/cover no-repeat;">
+      <div class="tpl-thumb">
+        <picture>
+          <source srcset="loja-personal.webp" type="image/webp"/>
+          <img alt="Academia moderna com halteres e ambiente motivacional" height="562" loading="eager" src="loja-personal.jpg" width="900"/>
+        </picture>
         <span class="tpl-badge-live">● Disponível</span>
       </div>
       <div class="tpl-body">
         <div class="tpl-title-row">
-          <span class="tpl-icon-box" style="background:#123a24;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6.5 6.5 4 9m0 0-1.5 1.5L4 12l6 6 1.5-1.5L13 18l2.5-2.5M4 9l3 3M17.5 17.5 20 15m0 0 1.5-1.5L20 12l-6-6-1.5 1.5L11 6l-2.5 2.5M20 15l-3-3M8 8l8 8"/></svg></span>
+          <span class="tpl-icon-box" style="background:#123a24;"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect height="6" rx="1" width="3" x="1.5" y="9"/><rect height="6" rx="1" width="3" x="19.5" y="9"/><rect height="3.4" rx="0.6" width="2.2" x="4.5" y="10.3"/><rect height="3.4" rx="0.6" width="2.2" x="17.3" y="10.3"/><line x1="6.7" x2="17.3" y1="12" y2="12"/></svg></span>
           <h3>Site para Personal Trainer</h3>
         </div>
-        <p>Modelos prontos para personal trainers e treinadores esportivos. Escolha o seu, nós personalizamos para você e tenha seu site no ar em menos de 24 horas.</p>
+        <p>Modelos profissionais para personal trainers e treinadores esportivos. Escolha o seu e tenha seu site personalizado no ar em menos de 24 horas.</p>
         <div class="tpl-footer">
           <span class="tpl-price">5 modelos disponíveis</span>
-          <a class="tpl-btn" href="https://sites.oztechsmartcontrol.com.br/personal-trainer/" target="_blank" rel="noopener">Ver catálogo <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="tpl-btn" href="https://sites.oztechsmartcontrol.com.br/personal-trainer/" target="_blank" rel="noopener">Ver 5 modelos <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
     <div class="tpl-card">
-      <div class="tpl-thumb" style="background:#1c0724 url('loja-advogados.jpg') center/cover no-repeat;">
+      <div class="tpl-thumb">
+        <picture>
+          <source srcset="loja-advogados.webp" type="image/webp"/>
+          <img alt="Escritório de advocacia com martelo de juiz e balança da justiça" height="562" loading="lazy" src="loja-advogados.jpg" width="900"/>
+        </picture>
         <span class="tpl-badge-soon">● Em breve</span>
       </div>
       <div class="tpl-body">
         <div class="tpl-title-row">
-          <span class="tpl-icon-box" style="background:#2f1040;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M5 7l3.5 7a3.5 3.5 0 0 1-7 0L5 7Zm14 0-3.5 7a3.5 3.5 0 0 0 7 0L19 7ZM4 7h16"/></svg></span>
+          <span class="tpl-icon-box" style="background:#2f1040;"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M5 7l3.5 7a3.5 3.5 0 0 1-7 0L5 7Zm14 0-3.5 7a3.5 3.5 0 0 0 7 0L19 7ZM4 7h16"/></svg></span>
           <h3>Site para Advogados</h3>
         </div>
-        <p>Presença digital séria e confiável, com áreas de atuação e canal direto de contato.</p>
+        <p>Presença digital séria e confiável para escritórios de advocacia.</p>
         <div class="tpl-footer">
           <span class="tpl-price">Preço em breve</span>
-          <a class="tpl-btn" data-wa-text="Tenho interesse no site pronto para Advogados." href="#">Tenho interesse <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="tpl-btn" data-wa-text="Tenho interesse no site pronto para Advogados." href="#">Tenho interesse <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
     <div class="tpl-card">
-      <div class="tpl-thumb" style="background:#071a24 url('loja-ecommerce.jpg') center/cover no-repeat;">
+      <div class="tpl-thumb">
+        <picture>
+          <source srcset="loja-ecommerce.webp" type="image/webp"/>
+          <img alt="Laptop exibindo loja virtual com caixas de entrega ao lado" height="562" loading="lazy" src="loja-ecommerce.jpg" width="900"/>
+        </picture>
         <span class="tpl-badge-soon">● Em breve</span>
       </div>
       <div class="tpl-body">
         <div class="tpl-title-row">
-          <span class="tpl-icon-box" style="background:#06324a;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.6L21 7H6"/></svg></span>
+          <span class="tpl-icon-box" style="background:#06324a;"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.6L21 7H6"/></svg></span>
           <h3>Site para E-commerce</h3>
         </div>
-        <p>Vitrine online para vender produtos, com catálogo, carrinho e integração de pagamento.</p>
+        <p>Vitrine online completa para vender seus produtos.</p>
         <div class="tpl-footer">
           <span class="tpl-price">Preço em breve</span>
-          <a class="tpl-btn" data-wa-text="Tenho interesse no site pronto para E-commerce." href="#">Tenho interesse <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="tpl-btn" data-wa-text="Tenho interesse no site pronto para E-commerce." href="#">Tenho interesse <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
     <div class="tpl-card">
-      <div class="tpl-thumb" style="background:#241a10 url('loja-estetica.jpg') center/cover no-repeat;">
+      <div class="tpl-thumb">
+        <picture>
+          <source srcset="loja-estetica.webp" type="image/webp"/>
+          <img alt="Sala de clínica de estética com maca e ambiente acolhedor" height="562" loading="lazy" src="loja-estetica.jpg" width="900"/>
+        </picture>
         <span class="tpl-badge-soon">● Em breve</span>
       </div>
       <div class="tpl-body">
         <div class="tpl-title-row">
-          <span class="tpl-icon-box" style="background:#4a2a1c;"><svg fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="m12 2 2.6 6.6L21 11l-6.4 2.4L12 20l-2.6-6.6L3 11l6.4-2.4L12 2Z"/></svg></span>
+          <span class="tpl-icon-box" style="background:#4a1c33;"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.2"/><circle cx="12" cy="6" r="2.8"/><circle cx="12" cy="18" r="2.8"/><circle cx="6" cy="12" r="2.8"/><circle cx="18" cy="12" r="2.8"/></svg></span>
           <h3>Site para Clínicas de Estética</h3>
         </div>
         <p>Modelos sofisticados para clínicas e profissionais da estética e beleza.</p>
         <div class="tpl-footer">
           <span class="tpl-price">Preço em breve</span>
-          <a class="tpl-btn" data-wa-text="Tenho interesse no site pronto para Clínicas de Estética." href="#">Tenho interesse <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="tpl-btn" data-wa-text="Tenho interesse no site pronto para Clínicas de Estética." href="#">Tenho interesse <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
     <div class="tpl-card">
-      <div class="tpl-thumb" style="background:#0a1420 url('loja-imobiliarias.jpg') center/cover no-repeat;">
+      <div class="tpl-thumb">
+        <picture>
+          <source srcset="loja-imobiliarias.webp" type="image/webp"/>
+          <img alt="Casa de alto padrão iluminada ao entardecer com piscina" height="562" loading="lazy" src="loja-imobiliarias.jpg" width="900"/>
+        </picture>
         <span class="tpl-badge-soon">● Em breve</span>
       </div>
       <div class="tpl-body">
         <div class="tpl-title-row">
-          <span class="tpl-icon-box" style="background:#123049;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></span>
+          <span class="tpl-icon-box" style="background:#123049;"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></span>
           <h3>Site para Imobiliárias</h3>
         </div>
-        <p>Apresente imóveis, facilite o contato com clientes e destaque seus lançamentos.</p>
+        <p>Apresente imóveis e destaque seus lançamentos com elegância.</p>
         <div class="tpl-footer">
           <span class="tpl-price">Preço em breve</span>
-          <a class="tpl-btn" data-wa-text="Tenho interesse no site pronto para Imobiliárias." href="#">Tenho interesse <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="tpl-btn" data-wa-text="Tenho interesse no site pronto para Imobiliárias." href="#">Tenho interesse <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
@@ -350,13 +389,13 @@
       </div>
       <div class="tpl-body">
         <div class="tpl-title-row">
-          <span class="tpl-icon-box" style="background:#1c2430;"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></span>
+          <span class="tpl-icon-box" style="background:#1c2430;"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></span>
           <h3>Não achou seu nicho?</h3>
         </div>
         <p>Estamos ampliando o catálogo toda semana. Conte pra gente qual site você precisa.</p>
         <div class="tpl-footer">
           <span class="tpl-price">Sob consulta</span>
-          <a class="tpl-btn" data-wa-text="Não encontrei o nicho que eu precisava no catálogo de sites prontos. Podemos conversar?" href="#">Tenho interesse <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="tpl-btn" data-wa-text="Não encontrei o nicho que eu precisava no catálogo de sites prontos. Podemos conversar?" href="#">Tenho interesse <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
@@ -366,20 +405,20 @@
   <section class="loja-benefits reveal">
     <div class="loja-container loja-benefits__grid">
       <div class="loja-benefit">
-        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V6Z"/><path d="m9 12 2 2 4-4"/></svg>
-        <div><strong>Seguro e confiável</strong><span>Sites rápidos, seguros e otimizados.</span></div>
+        <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V6Z"/><path d="m9 12 2 2 4-4"/></svg>
+        <div><strong>Seguro e confiável</strong><span>Hospedagem segura e certificado SSL.</span></div>
       </div>
       <div class="loja-benefit">
-        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect height="20" rx="2" width="12" x="6" y="2"/><path d="M11 18h2"/></svg>
-        <div><strong>Responsivo</strong><span>Perfeito em qualquer dispositivo.</span></div>
+        <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect height="10" rx="1.5" width="14" x="2" y="4"/><path d="M6 18h6"/><rect height="11" rx="1.5" width="6" x="16" y="9"/></svg>
+        <div><strong>100% Responsivo</strong><span>Perfeito em qualquer dispositivo.</span></div>
       </div>
       <div class="loja-benefit">
-        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>
-        <div><strong>Fácil de gerenciar</strong><span>Painel intuitivo e completo.</span></div>
+        <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>
+        <div><strong>Fácil de gerenciar</strong><span>Edite textos, imagens e cores.</span></div>
       </div>
       <div class="loja-benefit">
-        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect height="6" rx="1.4" width="4" x="2" y="14"/><rect height="6" rx="1.4" width="4" x="18" y="14"/></svg>
-        <div><strong>Suporte dedicado</strong><span>Acompanhamento em todas as etapas.</span></div>
+        <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect height="6" rx="1.4" width="4" x="2" y="14"/><rect height="6" rx="1.4" width="4" x="18" y="14"/></svg>
+        <div><strong>Suporte dedicado</strong><span>Estamos prontos para ajudar.</span></div>
       </div>
     </div>
   </section>
