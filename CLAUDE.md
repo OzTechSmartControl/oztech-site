@@ -40,7 +40,9 @@ Ao adicionar texto novo com `data-i18n`, é preciso cadastrar a mesma chave nos 
 
 ### Widget de chat "Zé"
 
-Funções `ze*` (`zeToggle`, `zeSend`, `zeCallAPI`, etc.) implementam um widget de chat que consome uma API externa em `ZE_API_URL = 'https://assistente.oztechsmartcontrol.com.br/api/web-chat/message'` — esse backend roda na VPS da OzTech, fora deste repositório e fora do Portal de Sites.
+Funções `ze*` (`zeToggle`, `zeSend`, `zeCallAPI`, etc.) implementam um widget de chat que consome uma API externa em `ZE_API_URL = 'https://assistente.oztechsmartcontrol.com.br/api/web-chat/message'` — esse backend roda na VPS da OzTech, fora deste repositório e fora do Portal de Sites. Identidade da conversa é um UUID por navegador (`zeSessionId()`, `localStorage["oz_ze_session_id"]`) — nunca um telefone real; o servidor guarda o histórico, o cliente só manda a última mensagem.
+
+Quando o backend acabou de gerar um protocolo de atendimento humano, a resposta JSON traz `actions: [{type, label, href}]` (`whatsapp`/`email`/`phone`) além de `reply` — `zeCallAPI()` renderiza isso como botões (`.ze-action-btn`) presos àquela bolha de mensagem específica, complementando o texto. `actions` vem vazio (`[]`) em qualquer resposta que não tenha acabado de criar um protocolo. Atenção ao CSS: `.ze-bubble a` (regra genérica pra links soltos no texto da IA) tem mais especificidade que `.ze-action-btn` sozinho — a regra real precisa ser `.ze-bubble a.ze-action-btn` pra não herdar o azul sublinhado.
 
 ### Formulário de contato
 
